@@ -18,6 +18,7 @@ namespace SurveyQuestionsConfigurator.Entities
         public int Order { get; set; }
 
         [Required]
+        [MaxLength(3999)]
         public string Text { get; set; }
 
         [Required]

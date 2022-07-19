@@ -1,6 +1,7 @@
 ﻿using SurveyQuestionsConfigurator.CommonHelpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,9 @@ namespace SurveyQuestionsConfigurator.Entities
 {
     public class StarQuestion : Question
     {
+        [Required]
+        [Range(1, 10)]
+        [Display(Name = "Number Of Stars(1-10):")]
         public int NumberOfStars { get; set; }
 
         public StarQuestion(int pID, int pOrder, string pText, QuestionType pType, int pNumberOfStars) :

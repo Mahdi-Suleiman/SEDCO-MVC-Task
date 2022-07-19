@@ -13,7 +13,8 @@ namespace SurveyQuestionsConfigurator.Entities
     public class SmileyQuestion : Question
     {
         [Required]
-        [Range(1, 10)]
+        [Range(2, 5)]
+        [Display(Name = "Number Of Smiley Faces(2-5):")]
         public int NumberOfSmileyFaces { get; set; }
         public SmileyQuestion(int pID, int pOrder, string pText, QuestionType pType, int pNumberOfSmileyFaces) :
             base(pID, pOrder, pText, pType)

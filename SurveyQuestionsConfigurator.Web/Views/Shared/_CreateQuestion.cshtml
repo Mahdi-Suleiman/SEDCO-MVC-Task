@@ -4,9 +4,6 @@
     ViewBag.Title = "_Question";
 }
 
-<h2>_Question</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -30,17 +27,80 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EnumDropDownListFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" }, @onchange = "typeChanged(this)" })
+            @Html.EnumDropDownListFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" }, @onchange = "QuestionTypeChanged()" })
             @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
         </div>
     </div>
-
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    function QuestionTypeChanged() {
+        const newPathname = ["SmileyQuestion/Create", "SliderQuestion/Create", "StarQuestion/Create"];
+        const sel = document.getElementById("Type");
+        const text = sel.selectedIndex;
+        switch (text) {
+            case 0: {
+                window.location.pathname = newPathname[0]
+            }
+                break;
+            case 1: {
+                window.location.pathname = newPathname[1]
+            }
+                break;
+            case 2: {
+                window.location.pathname = newPathname[2]
+            }
+                break;
+            default:
+                window.location.pathname = newPathname[0]
+                break;
+        }
+    }
+
+
+    //function SetDefaultValue()
+    //{
+    //    alert("aaa")
+    //    var tQuestionType = window.location.href.split("Question")[0].split("/");
+    //    const sel = document.getElementById("Type");
+    //    console.log(tQuestionType.toUpperCase());
+    //    if (tQuestionType.toUpperCase() == "SMILEY") {
+    //        sel.selectedIndex = 0
+    //    }
+    //    else if (tQuestionType.toUpperCase() == "SLIDER") {
+    //        sel.selectedIndex = 1
+    //    }
+    //    else {
+    //        sel.selectedIndex = 2
+    //    }
+
+
+    //    //alert(tQuestionType[currentUrlWithoutParams.length - 1]);
+    //}
+</script>
+
+    @*@if (Model.Type == SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SMILEY)
+    {
+<script>
+    const sel = document.getElementById("Type");
+    sel.selectedIndex = 0
+</script>
+    }
+    else if (Model.Type == SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SLIDER)
+    {
+<script>
+    const sel = document.getElementById("Type");
+    sel.selectedIndex = 1
+</script>
+    }
+    else
+    {
+<script>
+    const sel = document.getElementById("Type");
+    sel.selectedIndex = 2
+</script>
+    }*@

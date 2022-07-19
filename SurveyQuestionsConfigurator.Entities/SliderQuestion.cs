@@ -1,6 +1,7 @@
 ﻿using SurveyQuestionsConfigurator.CommonHelpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,21 @@ namespace SurveyQuestionsConfigurator.Entities
     public class SliderQuestion : Question
     {
         #region Attributes
+
+        [Required]
+        [Range(1, 99)]
         public int StartValue { get; set; }
+
+        [Required]
+        [Range(1, 100)]
         public int EndValue { get; set; }
+
+        [Required]
+        [MaxLength(100)]
         public string StartValueCaption { get; set; }
+
+        [Required]
+        [MaxLength(100)]
         public string EndValueCaption { get; set; }
         #endregion
 
