@@ -303,6 +303,9 @@
     <Content Include="Views\SliderQuestion\Details.cshtml" />
     <Content Include="Views\StarQuestion\Details.cshtml" />
     <Content Include="Views\Questions\Delete.cshtml" />
+    <Content Include="Views\SmileyQuestion\Edit.cshtml" />
+    <Content Include="Views\SliderQuestion\Edit.cshtml" />
+    <Content Include="Views\StarQuestion\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
