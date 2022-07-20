@@ -111,5 +111,19 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 return View();
             }
         }
+
+        ///////// actions that returns their relative partial views
+        public ActionResult PartialSmiley()
+        {
+            return PartialView("_CreateSmileyQuestion");
+        }
+        public ActionResult PartialSlider()
+        {
+            return PartialView("_CreateSliderQuestion");
+        }
+        public ActionResult PartialStar()
+        {
+            return PartialView("_CreateStarQuestion");
+        }
     }
 }

@@ -4,12 +4,13 @@
     int i = 1;
 }
 
-<div class="jumbotron">
+@*<div class="jumbotron">
     <h1>Survey Questions Configurator</h1>
+    <p>Survey Questions Configurator</p>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>*@
+<br /> 
 <table class="table table-hover">
     <thead>
         <tr>
@@ -25,7 +26,6 @@
         @foreach (var item in Model)
         {
             <tr>
-
                 <th scope="row">@(i++)</th>
                 <td>@item.Order</td>
                 <td>@item.Type</td>
@@ -33,17 +33,15 @@
                 <td><a href="/edit/@item.ID" class="btn btn-success">Edit &raquo;</a></td>
                 <!--<td>-->@*<a href="Home/Delete/@item.ID" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete &raquo;</a>*@<!--</td>-->
                 <!--<td>-->@*@Html.ActionLink("Delete", "Delete", "HomeController", null, new { @class = "btn btn-danger", @onclick = "return confirm('Are you sure?')" })*@<!--</td>-->
-            <td>
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    <input type="submit" value="Delete" class="btn btn-default" />
-                    @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
-                }
-            </td>
-
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="Delete" class="btn btn-danger" onclick = "return confirm('Are you sure?')" />
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+                    }
+                </td>
             </tr>
-
         }
         @*<tr>
             <th scope="row">1</th>
