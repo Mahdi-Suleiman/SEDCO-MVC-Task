@@ -18,7 +18,10 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.Partial("_CreateQuestion", @Model)
 <div id="partialView">
-    @* if not loaded at first like this, client-side validation will not work *@
+    @* 
+        if not loaded at first like this, client-side validation will not work
+        content then changes using jquery ajax requests
+    *@
     @Html.Partial("_CreateSmileyQuestion", @Model)
     @Html.Partial("_CreateSliderQuestion", @Model)
     @Html.Partial("_CreateStarQuestion", @Model)
