@@ -1,0 +1,66 @@
+﻿@model SurveyQuestionsConfigurator.Entities.SliderQuestion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SliderQuestion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartValueCaption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartValueCaption)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndValueCaption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndValueCaption)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

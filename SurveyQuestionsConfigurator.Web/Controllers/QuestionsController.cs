@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static SurveyQuestionsConfigurator.Entities.Generic;
 
 namespace SurveyQuestionsConfigurator.Web.Controllers
 {
@@ -41,9 +42,40 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         }
 
         // GET: Questions/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, QuestionType type = QuestionType.SMILEY)
         {
-            return View();
+            //Console.WriteLine(type);
+
+            switch (type)
+            {
+                case QuestionType.SMILEY:
+                    {
+                        SmileyQuestion tSmileyQuestion = new SmileyQuestion(id);
+                        mQuestionManager.GetSmileyQuestionByID(ref tSmileyQuestion);
+                        return View("~/Views/SmileyQuestion/Details.cshtml", tSmileyQuestion);
+                    }
+                case QuestionType.SLIDER:
+                    {
+                        SliderQuestion tSliderQuestion = new SliderQuestion(id);
+                        mQuestionManager.GetSliderQuestionByID(ref tSliderQuestion);
+                        return View("~/Views/SliderQuestion/Details.cshtml", tSliderQuestion);
+                    }
+                case QuestionType.STAR:
+                    {
+                        StarQuestion tStarQuestion = new StarQuestion(id);
+                        mQuestionManager.GetStarQuestionByID(ref tStarQuestion);
+                        return View("~/Views/StarQuestion/Details.cshtml", tStarQuestion);
+                    }
+                default:
+                    break;
+            }
+
+            if (type == QuestionType.SMILEY)
+            {
+
+            }
+            return View("~/Views/Home/About.cshtml");
+            //return new EmptyResult();
         }
 
         // GET: Questions/Create
@@ -54,7 +86,8 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
         // POST: Questions/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(SmileyQuestion collection)
         {
             try
             {
@@ -67,6 +100,39 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(SliderQuestion collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(StarQuestion collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         // GET: Questions/Edit/5
         public ActionResult Edit(int id)
