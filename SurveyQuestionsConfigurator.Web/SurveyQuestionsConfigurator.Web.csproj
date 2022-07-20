@@ -306,6 +306,7 @@
     <Content Include="Views\SmileyQuestion\Edit.cshtml" />
     <Content Include="Views\SliderQuestion\Edit.cshtml" />
     <Content Include="Views\StarQuestion\Edit.cshtml" />
+    <Content Include="Views\Shared\_EditQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

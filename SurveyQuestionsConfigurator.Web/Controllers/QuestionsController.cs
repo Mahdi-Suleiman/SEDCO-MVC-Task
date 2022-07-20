@@ -204,8 +204,13 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         }
 
         // GET: Questions/Edit/5
-        public ActionResult Edit(int id, QuestionType type)
+        public ActionResult Edit(int id, QuestionType type, string ModelErrorName = null, string ModelErrorMessage = null)
         {
+            if (ModelErrorName != null && ModelErrorMessage != null)
+            {
+                ModelState.AddModelError(ModelErrorName, ModelErrorMessage); // didn't work because it bounce 2 requests
+            }
+
             switch (type)
             {
                 case QuestionType.SMILEY:
@@ -235,12 +240,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
         // POST: Questions/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection pCollection)
+        public ActionResult Edit(int id, QuestionType type, FormCollection pCollection)
         {
             try
             {
-                string strtype = pCollection["Type"];
-                int type = Convert.ToInt32(pCollection["Type"]);
+                //string strtype = pCollection["Type"];
+                //int type = Convert.ToInt32(pCollection["Type"]);
 
                 // TODO: Add update logic here
                 if (ModelState.IsValid)
@@ -271,20 +276,21 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                             return RedirectToAction("Index");
                             break;
                         case ErrorCode.VALIDATION:
-                            TempData["Error"] = "Question order already in use, Try using another one.";
-                            ModelState.AddModelError("Order", "Question order already in use, Try using another one."); // didn't work because it bounce 2 requests
+                            //TempData["Error"] = "Question order already in use, Try using another one.";
+                            return RedirectToAction("Edit", new { id = id, type = (QuestionType)type, ModelErrorName = "Order", ModelErrorMessage = "Question order already in use, Try using another one." });
+                            //ModelState.AddModelError("Order", "Question order already in use, Try using another one."); // didn't work because it bounce 2 requests
                             break;
                     }
                 }
 
 
                 return RedirectToAction("Edit", new { id = id, type = (QuestionType)type });
-
                 return Redirect(Request.UrlReferrer.PathAndQuery);
                 return View();
             }
             catch
             {
+                return Redirect(Request.UrlReferrer.PathAndQuery);
                 return View();
             }
         }
