@@ -17,8 +17,12 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.Partial("_CreateQuestion", @Model)
-    <div id="partialView">
-    </div>
+<div id="partialView">
+    @* if not loaded at first like this, client-side validation will not work *@
+    @Html.Partial("_CreateSmileyQuestion", @Model)
+    @Html.Partial("_CreateSliderQuestion", @Model)
+    @Html.Partial("_CreateStarQuestion", @Model)
+</div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -37,6 +41,16 @@
 
     $(document).ready(function() {
         $("#partialView").load('@Url.Action("PartialSmiley")');
+        Sys.Mvc.FormContext._Application_Load();
+
+        @*$.ajax({
+            url: "@Url.Action("PartialSmiley")",
+            dataType: "html",
+            success: function (result) {
+                $('#partialView').html(result);
+                Sys.Mvc.FormContext._Application_Load();
+            }
+        });*@
     });
 
 </script>

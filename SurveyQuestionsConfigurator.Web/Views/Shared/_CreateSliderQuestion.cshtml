@@ -1,5 +1,6 @@
 ﻿@model SurveyQuestionsConfigurator.Entities.SliderQuestion
 
+
 <div class="form-group">
     @Html.LabelFor(model => model.StartValue, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
@@ -32,10 +33,6 @@
     </div>
 </div>
 
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
