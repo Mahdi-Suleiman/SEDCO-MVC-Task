@@ -12,7 +12,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 {
     public class QuestionsController : Controller
     {
+
+        #region Properties & Attributes
         private readonly QuestionManager mQuestionManager;
+        #endregion
+
+        #region Constructor
         public QuestionsController()
         {
             try
@@ -24,13 +29,16 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 Logger.LogError(ex);
             }
         }
+        #endregion
+
+        #region Actions
 
         /// <summary>
         /// GET: /Questions
         /// Fill the list to be rendered in the view
         /// </summary>
         /// <returns>
-        /// ActionResult
+        /// View
         /// </returns>
         [HttpGet]
         public ActionResult Index()
@@ -54,7 +62,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// and return it with the view to render its details
         /// </summary>
         /// <returns>
-        /// ActionResult
+        /// View
         /// </returns>
         [HttpGet]
         public ActionResult Details(int id, QuestionType type)
@@ -95,7 +103,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// GET: /Questions/Create
         /// Returns the create view
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// View
+        /// </returns>
         [HttpGet]
         public ActionResult Create()
         {
@@ -110,7 +120,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// 4) Based on the result, redirect to the index action or return the same view with a validation error on the order field
         /// </summary>
         /// <param name="collection"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// View
+        /// </returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(FormCollection collection)
@@ -149,7 +161,6 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                             break;
                     }
                 }
-
                 return View();
             }
             catch (Exception ex)
@@ -159,6 +170,230 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// GET: Questions/Edit/5?type=SMILEY
+        /// GET: Questions/Edit/5?type=SMILEY?ModelErrorName=loremIpsum?ModelErrorMessage=loremIpsum
+        /// GET: Questions/Edit/5?type=SMILEY?ModelErrorName=loremIpsum?ModelErrorMessage=loremIpsum?order=1
+        /// 1) Check if any errors are redirected from a failed POST request, if exist add to ModelState
+        /// 2) Pass id, type and order to a function that rturns an appropriate view based on the existance of the question
+        /// </summary>
+        /// <returns>
+        /// View
+        /// </returns>
+        [HttpGet]
+        public ActionResult Edit(int id, QuestionType type, int order = -1, string ModelErrorName = null, string ModelErrorMessage = null)
+        {
+            try
+            {
+                if (ModelErrorName != null && ModelErrorMessage != null)
+                {
+                    ModelState.AddModelError(ModelErrorName, ModelErrorMessage);
+                }
+
+                switch (type)
+                {
+                    case QuestionType.SMILEY:
+                    default:
+                        {
+                            return GetEditSmileyQuestion(id, type, order);
+                        }
+                    case QuestionType.SLIDER:
+                        {
+                            return GetEditSliderQuestion(id, type, order);
+                        }
+                    case QuestionType.STAR:
+                        {
+                            return GetEditStarQuestion(id, type, order);
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                TempData["Error"] = "Something went wrong, please try again.";
+                return RedirectToAction("Index");
+            }
+        }
+
+        /// <summary>
+        /// POST: Questions/Edit/5?type=SMILEY
+        /// 1) Validated the posted form
+        /// 2) Get question order from posted form
+        /// 3) Return view based on the corresponding returned result
+        /// </summary>
+        /// <returns>
+        /// View
+        /// </returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, QuestionType type, FormCollection collection)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    int tOrder = Convert.ToInt32(collection["Order"]);
+                    ErrorCode tResult = ErrorCode.ERROR;
+                    switch (type)
+                    {
+                        case QuestionType.SMILEY:
+                            {
+                                tResult = EditSmileyQuestion(id, collection);
+                            }
+                            break;
+                        case QuestionType.SLIDER:
+                            {
+                                tResult = EditSliderQuestion(id, collection);
+                            }
+                            break;
+                        case QuestionType.STAR:
+                            {
+                                tResult = EditStarQuestion(id, collection);
+                            }
+                            break;
+                    }
+
+                    switch (tResult)
+                    {
+                        case ErrorCode.SUCCESS:
+                            return RedirectToAction("Index");
+                        case ErrorCode.VALIDATION:
+                            return RedirectToAction("Edit", new { id = id, type = type, order = tOrder, ModelErrorName = "Order", ModelErrorMessage = "Question order already in use, Try using another one." });
+                    }
+                }
+                return RedirectToAction("Edit", new { id = id, type = type });
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                return RedirectToAction("Edit", new { id = id, type = type });
+                //return Redirect(Request.UrlReferrer.PathAndQuery);
+            }
+        }
+
+        /// <summary>
+        /// GET: Questions/Delete/5?type=SMILEY
+        /// 1) Get a question form DB
+        /// 2) Return its corresponding view
+        /// </summary>
+        /// <returns>
+        /// View
+        /// </returns>
+        [HttpGet]
+        public ActionResult Delete(int id, QuestionType type)
+        {
+            try
+            {
+                switch (type)
+                {
+                    case QuestionType.SMILEY:
+                        {
+                            SmileyQuestion tSmileyQuestion = new SmileyQuestion(id);
+                            ErrorCode tResult = mQuestionManager.GetSmileyQuestionByID(ref tSmileyQuestion);
+                            return View(tSmileyQuestion);
+                        }
+                    case QuestionType.SLIDER:
+                        {
+                            SliderQuestion tSliderQuestion = new SliderQuestion(id);
+                            ErrorCode tResult = mQuestionManager.GetSliderQuestionByID(ref tSliderQuestion);
+                            return View(tSliderQuestion);
+                        }
+                    case QuestionType.STAR:
+                        {
+                            StarQuestion tStarQuestion = new StarQuestion(id);
+                            ErrorCode tResult = mQuestionManager.GetStarQuestionByID(ref tStarQuestion);
+                            return View(tStarQuestion);
+                        }
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                return View();
+            }
+        }
+
+        /// <summary>
+        /// POST: Questions/Delete/5type=SMILEY
+        /// 1) Try to delete a question and get the operation
+        /// 2) Return corresponding view with appropriate message to view
+        /// </summary>
+        /// <returns>
+        /// View
+        /// </returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                ErrorCode tResult = mQuestionManager.DeleteQuestionByID(id);
+                switch (tResult)
+                {
+                    case ErrorCode.SUCCESS:
+                        return RedirectToAction("Index");
+                    default:
+                        TempData["Error"] = "Something wrong happened, please try again.";
+                        return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                return View();
+            }
+        }
+
+        #endregion
+
+        #region actions that returns their relative partial views
+
+        /// <summary>
+        /// used by jquery ajax requests
+        /// </summary>
+        /// <returns>
+        /// PartialView("_CreateSmileyQuestion")
+        /// </returns>
+        public ActionResult PartialSmiley()
+        {
+            return PartialView("_CreateSmileyQuestion");
+        }
+
+        /// <summary>
+        /// used by jquery ajax requests
+        /// </summary>
+        /// <returns>
+        /// PartialView("_CreateSliderQuestion")
+        /// </returns>
+        public ActionResult PartialSlider()
+        {
+            return PartialView("_CreateSliderQuestion");
+        }
+
+        /// <summary>
+        /// used by jquery ajax requests
+        /// </summary>
+        /// <returns>
+        /// PartialView("_CreateStarQuestion")
+        /// </returns>
+        public ActionResult PartialStar()
+        {
+            return PartialView("_CreateStarQuestion");
+        }
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// 1) Create a question object and attempt to add it to DB
+        /// 2) Return operation's result
+        /// </summary>
+        /// <returns>
+        /// ErrorCode.SUCCESS
+        /// ErrorCode.ERROR
+        /// ErrorCode.VALIDATION
+        /// </returns>
         private ErrorCode AddSmileyQuestion(FormCollection collection)
         {
             try
@@ -180,6 +415,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// 1) Create a question object and attempt to add it to DB
+        /// 2) Return operation's result
+        /// </summary>
+        /// <returns>
+        /// ErrorCode.SUCCESS
+        /// ErrorCode.ERROR
+        /// ErrorCode.VALIDATION
+        /// </returns>
         private ErrorCode AddSliderQuestion(FormCollection collection)
         {
             try
@@ -212,6 +456,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// 1) Create a question object and attempt to add it to DB
+        /// 2) Return operation's result
+        /// </summary>
+        /// <returns>
+        /// ErrorCode.SUCCESS
+        /// ErrorCode.ERROR
+        /// ErrorCode.VALIDATION
+        /// </returns>
         private ErrorCode AddStarQuestion(FormCollection collection)
         {
             try
@@ -234,100 +487,86 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         }
 
         /// <summary>
-        /// GET: Questions/Edit/5?type=SMILEY
-        /// GET: Questions/Edit/5?type=SMILEY?ModelErrorName=loremIpsum?ModelErrorMessage=loremIpsum
+        /// Get question by id
+        /// Check of there is a passed order from post edit request that is caused by a validation error, if any set it as the order of the question (This improves the UX by not reseting the order field to 1 on every request)
         /// </summary>
-        /// <param name="ModelErrorName"></param>
-        /// <param name="ModelErrorMessage"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public ActionResult Edit(int id, QuestionType type, string ModelErrorName = null, string ModelErrorMessage = null, int order = -1)
+        /// <returns>
+        /// View("DisabledEdit")
+        /// View("~/Views/SmileyQuestion/Edit.cshtml")
+        /// </returns>
+        private ActionResult GetEditSmileyQuestion(int id, QuestionType type, int order)
         {
-            if (ModelErrorName != null && ModelErrorMessage != null)
+            SmileyQuestion tSmileyQuestion = new SmileyQuestion(id);
+            ErrorCode tReslut = mQuestionManager.GetSmileyQuestionByID(ref tSmileyQuestion);
+            if (order != -1)
             {
-                ModelState.AddModelError(ModelErrorName, ModelErrorMessage); // didn't work because it bounce 2 requests
+                tSmileyQuestion.Order = order;
             }
-
-            switch (type)
+            if (tReslut != ErrorCode.SUCCESS)
             {
-                case QuestionType.SMILEY:
-                    {
-                        SmileyQuestion tSmileyQuestion = new SmileyQuestion(id);
-                        mQuestionManager.GetSmileyQuestionByID(ref tSmileyQuestion);
-                        return View("~/Views/SmileyQuestion/Edit.cshtml", tSmileyQuestion);
-                    }
-                    break;
-                case QuestionType.SLIDER:
-                    {
-                        SliderQuestion tSliderQuestion = new SliderQuestion(id);
-                        mQuestionManager.GetSliderQuestionByID(ref tSliderQuestion);
-                        return View("~/Views/SliderQuestion/Edit.cshtml", tSliderQuestion);
-                    }
-                    break;
-                case QuestionType.STAR:
-                    {
-                        StarQuestion tStarQuestion = new StarQuestion(id);
-                        mQuestionManager.GetStarQuestionByID(ref tStarQuestion);
-                        return View("~/Views/StarQuestion/Edit.cshtml", tStarQuestion);
-                    }
-                    break;
+                TempData["Error"] = "This Question doesn't exist, please refresh and try again.";
+                return View("DisabledEdit");
             }
-            return View();
+            return View("~/Views/SmileyQuestion/Edit.cshtml", tSmileyQuestion);
         }
 
-        // POST: Questions/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, QuestionType type, FormCollection collection)
+        /// <summary>
+        /// Get question by id
+        /// Check of there is a passed order from post edit request that is caused by a validation error, if any set it as the order of the question (This improves the UX by not reseting the order field to 1 on every request)
+        /// </summary>
+        /// <returns>
+        /// View("DisabledEdit")
+        /// View("~/Views/SmileyQuestion/Edit.cshtml")
+        /// </returns>
+        private ActionResult GetEditSliderQuestion(int id, QuestionType type, int order)
         {
-            try
+            SliderQuestion tSliderQuestion = new SliderQuestion(id);
+            ErrorCode tReslut = mQuestionManager.GetSliderQuestionByID(ref tSliderQuestion);
+            if (order != -1)
             {
-                if (ModelState.IsValid)
-                {
-                    ErrorCode tResult = ErrorCode.ERROR;
-                    switch ((QuestionType)type)
-                    {
-                        case QuestionType.SMILEY:
-                            {
-                                tResult = EditSmileyQuestion(id, collection);
-                            }
-                            break;
-                        case QuestionType.SLIDER:
-                            {
-                                tResult = EditSliderQuestion(id, collection);
-                            }
-                            break;
-                        case QuestionType.STAR:
-                            {
-                                tResult = EditStarQuestion(id, collection);
-                            }
-                            break;
-                    }
-
-                    switch (tResult)
-                    {
-                        case ErrorCode.SUCCESS:
-                            return RedirectToAction("Index");
-                            break;
-                        case ErrorCode.VALIDATION:
-                            //TempData["Error"] = "Question order already in use, Try using another one.";
-                            return RedirectToAction("Edit", new { id = id, type = (QuestionType)type, ModelErrorName = "Order", ModelErrorMessage = "Question order already in use, Try using another one." });
-                            //ModelState.AddModelError("Order", "Question order already in use, Try using another one."); // didn't work because it bounce 2 requests
-                            break;
-                    }
-                }
-
-
-                return RedirectToAction("Edit", new { id = id, type = (QuestionType)type });
-                return Redirect(Request.UrlReferrer.PathAndQuery);
-                return View();
+                tSliderQuestion.Order = order;
             }
-            catch
+            if (tReslut != ErrorCode.SUCCESS)
             {
-                return Redirect(Request.UrlReferrer.PathAndQuery);
-                return View();
+                TempData["Error"] = "This Question doesn't exist, please refresh and try again.";
+                return View("DisabledEdit");
             }
+            return View("~/Views/SliderQuestion/Edit.cshtml", tSliderQuestion);
         }
 
+        /// <summary>
+        /// Get question by id
+        /// Check of there is a passed order from post edit request that is caused by a validation error, if any set it as the order of the question (This improves the UX by not reseting the order field to 1 on every request)
+        /// </summary>
+        /// <returns>
+        /// View("DisabledEdit")
+        /// View("~/Views/SmileyQuestion/Edit.cshtml")
+        /// </returns>
+        private ActionResult GetEditStarQuestion(int id, QuestionType type, int order)
+        {
+            StarQuestion tStarQuestion = new StarQuestion(id);
+            ErrorCode tReslut = mQuestionManager.GetStarQuestionByID(ref tStarQuestion);
+            if (order != -1)
+            {
+                tStarQuestion.Order = order;
+            }
+            if (tReslut != ErrorCode.SUCCESS)
+            {
+                TempData["Error"] = "This Question doesn't exist, please refresh and try again.";
+                return View("DisabledEdit");
+            }
+            return View("~/Views/StarQuestion/Edit.cshtml", tStarQuestion);
+        }
+
+        /// <summary>
+        /// 1) Create a question object and attempt to add it to DB
+        /// 2) Return operation's result
+        /// </summary>
+        /// <returns>
+        /// ErrorCode.SUCCESS
+        /// ErrorCode.ERROR
+        /// ErrorCode.VALIDATION
+        /// </returns>
         private ErrorCode EditSmileyQuestion(int id, FormCollection collection)
         {
             try
@@ -349,7 +588,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 1) Create a question object and attempt to add it to DB
+        /// 2) Return operation's result
+        /// </summary>
+        /// <returns>
+        /// ErrorCode.SUCCESS
+        /// ErrorCode.ERROR
+        /// ErrorCode.VALIDATION
+        /// </returns>
         private ErrorCode EditSliderQuestion(int id, FormCollection Collection)
         {
             try
@@ -381,6 +628,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// 1) Create a question object and attempt to add it to DB
+        /// 2) Return operation's result
+        /// </summary>
+        /// <returns>
+        /// ErrorCode.SUCCESS
+        /// ErrorCode.ERROR
+        /// ErrorCode.VALIDATION
+        /// </returns>
         private ErrorCode EditStarQuestion(int id, FormCollection collection)
         {
             try
@@ -402,64 +658,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
+        #endregion
 
-        // GET: Questions/Delete/5
-        public ActionResult Delete(int id, QuestionType type)
-        {
-            switch (type)
-            {
-                case QuestionType.SMILEY:
-                    {
-                        SmileyQuestion tSmileyQuestion = new SmileyQuestion(id);
-                        mQuestionManager.GetSmileyQuestionByID(ref tSmileyQuestion);
-                        return View(tSmileyQuestion);
-                    }
-                case QuestionType.SLIDER:
-                    {
-                        SliderQuestion tSliderQuestion = new SliderQuestion(id);
-                        mQuestionManager.GetSliderQuestionByID(ref tSliderQuestion);
-                        return View(tSliderQuestion);
-                    }
-                case QuestionType.STAR:
-                    {
-                        StarQuestion tStarQuestion = new StarQuestion(id);
-                        mQuestionManager.GetStarQuestionByID(ref tStarQuestion);
-                        return View(tStarQuestion);
-                    }
-                default:
-                    break;
-            }
-            return View();
-        }
-
-        // POST: Questions/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-                mQuestionManager.DeleteQuestionByID(id);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        ///////// actions that returns their relative partial views
-        public ActionResult PartialSmiley()
-        {
-            return PartialView("_CreateSmileyQuestion");
-        }
-        public ActionResult PartialSlider()
-        {
-            return PartialView("_CreateSliderQuestion");
-        }
-        public ActionResult PartialStar()
-        {
-            return PartialView("_CreateStarQuestion");
-        }
     }
 }
