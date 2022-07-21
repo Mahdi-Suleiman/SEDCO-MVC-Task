@@ -25,7 +25,14 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
-        // GET: Questions
+        /// <summary>
+        /// GET: /Questions
+        /// Fill the list to be rendered in the view
+        /// </summary>
+        /// <returns>
+        /// ActionResult
+        /// </returns>
+        [HttpGet]
         public ActionResult Index()
         {
             try
@@ -37,75 +44,98 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                return new EmptyResult();
+                return View();
             }
         }
 
-        // GET: Questions/Details/5
+        /// <summary>
+        /// GET: /Questions/Details/5?tType=SMILEY
+        /// Create a new question object based on the tType passed in the query string
+        /// and return it with the view to render its details
+        /// </summary>
+        /// <returns>
+        /// ActionResult
+        /// </returns>
+        [HttpGet]
         public ActionResult Details(int id, QuestionType type)
         {
-            //Console.WriteLine(type);
-
-            switch (type)
+            try
             {
-                case QuestionType.SMILEY:
-                    {
-                        SmileyQuestion tSmileyQuestion = new SmileyQuestion(id);
-                        mQuestionManager.GetSmileyQuestionByID(ref tSmileyQuestion);
-                        return View("~/Views/SmileyQuestion/Details.cshtml", tSmileyQuestion);
-                    }
-                case QuestionType.SLIDER:
-                    {
-                        SliderQuestion tSliderQuestion = new SliderQuestion(id);
-                        mQuestionManager.GetSliderQuestionByID(ref tSliderQuestion);
-                        return View("~/Views/SliderQuestion/Details.cshtml", tSliderQuestion);
-                    }
-                case QuestionType.STAR:
-                    {
-                        StarQuestion tStarQuestion = new StarQuestion(id);
-                        mQuestionManager.GetStarQuestionByID(ref tStarQuestion);
-                        return View("~/Views/StarQuestion/Details.cshtml", tStarQuestion);
-                    }
-                default:
-                    break;
+                switch (type)
+                {
+                    case QuestionType.SMILEY:
+                        {
+                            SmileyQuestion tSmileyQuestion = new SmileyQuestion(id);
+                            mQuestionManager.GetSmileyQuestionByID(ref tSmileyQuestion);
+                            return View("~/Views/SmileyQuestion/Details.cshtml", tSmileyQuestion);
+                        }
+                    case QuestionType.SLIDER:
+                        {
+                            SliderQuestion tSliderQuestion = new SliderQuestion(id);
+                            mQuestionManager.GetSliderQuestionByID(ref tSliderQuestion);
+                            return View("~/Views/SliderQuestion/Details.cshtml", tSliderQuestion);
+                        }
+                    case QuestionType.STAR:
+                        {
+                            StarQuestion tStarQuestion = new StarQuestion(id);
+                            mQuestionManager.GetStarQuestionByID(ref tStarQuestion);
+                            return View("~/Views/StarQuestion/Details.cshtml", tStarQuestion);
+                        }
+                }
+                return View();
             }
-
-            return View();
-            //return new EmptyResult();
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                return View();
+            }
         }
 
-        // GET: Questions/Create
+        /// <summary>
+        /// GET: /Questions/Create
+        /// Returns the create view
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Questions/Create
+        /// <summary>
+        /// POST: Questions/Create
+        /// 1) Validate the form the comes with the POST request
+        /// 2) Get the corresponding question tType from the form
+        /// 3) Add the corresponding question tType
+        /// 4) Based on the result, redirect to the index action or return the same view with a validation error on the order field
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(FormCollection pCollection)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    int type = Convert.ToInt32(pCollection["Type"]);
+                    int tType = Convert.ToInt32(collection["Type"]);
                     ErrorCode tResult = ErrorCode.ERROR;
-                    switch ((QuestionType)type)
+                    switch ((QuestionType)tType)
                     {
                         case QuestionType.SMILEY:
                             {
-                                tResult = AddSmileyQuestion(pCollection);
+                                tResult = AddSmileyQuestion(collection);
                             }
                             break;
                         case QuestionType.SLIDER:
                             {
-                                tResult = AddSliderQuestion(pCollection);
+                                tResult = AddSliderQuestion(collection);
                             }
                             break;
                         case QuestionType.STAR:
                             {
-                                tResult = AddStarQuestion(pCollection);
+                                tResult = AddStarQuestion(collection);
                             }
                             break;
                     }
@@ -114,7 +144,6 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                     {
                         case ErrorCode.SUCCESS:
                             return RedirectToAction("Index");
-                            break;
                         case ErrorCode.VALIDATION:
                             ModelState.AddModelError("Order", "Question order already in use, Try using another one.");
                             break;
@@ -123,21 +152,22 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
                 return View();
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.LogError(ex);
                 return View();
             }
         }
 
-        private ErrorCode AddSmileyQuestion(FormCollection pCollection)
+        private ErrorCode AddSmileyQuestion(FormCollection collection)
         {
             try
             {
                 int tId = -1;
-                int tOrder = Convert.ToInt32(pCollection["Order"]);
-                string tText = pCollection["Text"];
+                int tOrder = Convert.ToInt32(collection["Order"]);
+                string tText = collection["Text"];
                 QuestionType tType = QuestionType.SMILEY;
-                int tNumberOfSmileyFaces = Convert.ToInt32(pCollection["NumberOfSmileyFaces"]);
+                int tNumberOfSmileyFaces = Convert.ToInt32(collection["NumberOfSmileyFaces"]);
 
                 SmileyQuestion tSmileyQuestion = new SmileyQuestion(tId, tOrder, tText, tType, tNumberOfSmileyFaces);
                 ErrorCode tResult = mQuestionManager.InsertSmileyQuestion(tSmileyQuestion);
@@ -150,18 +180,18 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
-        private ErrorCode AddSliderQuestion(FormCollection pCollection)
+        private ErrorCode AddSliderQuestion(FormCollection collection)
         {
             try
             {
                 int tId = -1;
-                int tOrder = Convert.ToInt32(pCollection["Order"]);
-                string tText = pCollection["Text"];
+                int tOrder = Convert.ToInt32(collection["Order"]);
+                string tText = collection["Text"];
                 QuestionType tType = QuestionType.SLIDER;
-                int tStartValue = Convert.ToInt32(pCollection["StartValue"]);
-                int tEndValue = Convert.ToInt32(pCollection["EndValue"]);
-                string tStartValueCaption = pCollection["StartValueCaption"];
-                string tEndValueCaption = pCollection["EndValueCaption"];
+                int tStartValue = Convert.ToInt32(collection["StartValue"]);
+                int tEndValue = Convert.ToInt32(collection["EndValue"]);
+                string tStartValueCaption = collection["StartValueCaption"];
+                string tEndValueCaption = collection["EndValueCaption"];
 
 
                 SliderQuestion tSliderQuestion = new SliderQuestion(tId, tOrder, tText, tType, tStartValue, tEndValue, tStartValueCaption, tEndValueCaption);
@@ -182,15 +212,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
-        private ErrorCode AddStarQuestion(FormCollection pCollection)
+        private ErrorCode AddStarQuestion(FormCollection collection)
         {
             try
             {
                 int tId = -1;
-                int tOrder = Convert.ToInt32(pCollection["Order"]);
-                string tText = pCollection["Text"];
+                int tOrder = Convert.ToInt32(collection["Order"]);
+                string tText = collection["Text"];
                 QuestionType tType = QuestionType.STAR;
-                int tNumberOfStars = Convert.ToInt32(pCollection["NumberOfStars"]);
+                int tNumberOfStars = Convert.ToInt32(collection["NumberOfStars"]);
 
                 StarQuestion tStarQuestion = new StarQuestion(tId, tOrder, tText, tType, tNumberOfStars);
                 ErrorCode tResult = mQuestionManager.InsertStarQuestion(tStarQuestion);
@@ -203,8 +233,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
-        // GET: Questions/Edit/5
-        public ActionResult Edit(int id, QuestionType type, string ModelErrorName = null, string ModelErrorMessage = null)
+        /// <summary>
+        /// GET: Questions/Edit/5?type=SMILEY
+        /// GET: Questions/Edit/5?type=SMILEY?ModelErrorName=loremIpsum?ModelErrorMessage=loremIpsum
+        /// </summary>
+        /// <param name="ModelErrorName"></param>
+        /// <param name="ModelErrorMessage"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Edit(int id, QuestionType type, string ModelErrorName = null, string ModelErrorMessage = null, int order = -1)
         {
             if (ModelErrorName != null && ModelErrorMessage != null)
             {
@@ -240,14 +277,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
         // POST: Questions/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, QuestionType type, FormCollection pCollection)
+        public ActionResult Edit(int id, QuestionType type, FormCollection collection)
         {
             try
             {
-                //string strtype = pCollection["Type"];
-                //int type = Convert.ToInt32(pCollection["Type"]);
-
-                // TODO: Add update logic here
                 if (ModelState.IsValid)
                 {
                     ErrorCode tResult = ErrorCode.ERROR;
@@ -255,17 +288,17 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                     {
                         case QuestionType.SMILEY:
                             {
-                                tResult = EditSmileyQuestion(id, pCollection);
+                                tResult = EditSmileyQuestion(id, collection);
                             }
                             break;
                         case QuestionType.SLIDER:
                             {
-                                tResult = EditSliderQuestion(id, pCollection);
+                                tResult = EditSliderQuestion(id, collection);
                             }
                             break;
                         case QuestionType.STAR:
                             {
-                                tResult = EditStarQuestion(id, pCollection);
+                                tResult = EditStarQuestion(id, collection);
                             }
                             break;
                     }
@@ -295,15 +328,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
-        private ErrorCode EditSmileyQuestion(int id, FormCollection pCollection)
+        private ErrorCode EditSmileyQuestion(int id, FormCollection collection)
         {
             try
             {
                 int tId = id;
-                int tOrder = Convert.ToInt32(pCollection["Order"]);
-                string tText = pCollection["Text"];
+                int tOrder = Convert.ToInt32(collection["Order"]);
+                string tText = collection["Text"];
                 QuestionType tType = QuestionType.SMILEY;
-                int tNumberOfSmileyFaces = Convert.ToInt32(pCollection["NumberOfSmileyFaces"]);
+                int tNumberOfSmileyFaces = Convert.ToInt32(collection["NumberOfSmileyFaces"]);
 
                 SmileyQuestion tSmileyQuestion = new SmileyQuestion(tId, tOrder, tText, tType, tNumberOfSmileyFaces);
                 ErrorCode tResult = mQuestionManager.UpdateSmileyQuestion(tSmileyQuestion);
@@ -317,18 +350,18 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         }
 
 
-        private ErrorCode EditSliderQuestion(int id, FormCollection pCollection)
+        private ErrorCode EditSliderQuestion(int id, FormCollection Collection)
         {
             try
             {
                 int tId = id;
-                int tOrder = Convert.ToInt32(pCollection["Order"]);
-                string tText = pCollection["Text"];
+                int tOrder = Convert.ToInt32(Collection["Order"]);
+                string tText = Collection["Text"];
                 QuestionType tType = QuestionType.SLIDER;
-                int tStartValue = Convert.ToInt32(pCollection["StartValue"]);
-                int tEndValue = Convert.ToInt32(pCollection["EndValue"]);
-                string tStartValueCaption = pCollection["StartValueCaption"];
-                string tEndValueCaption = pCollection["EndValueCaption"];
+                int tStartValue = Convert.ToInt32(Collection["StartValue"]);
+                int tEndValue = Convert.ToInt32(Collection["EndValue"]);
+                string tStartValueCaption = Collection["StartValueCaption"];
+                string tEndValueCaption = Collection["EndValueCaption"];
 
 
                 SliderQuestion tSliderQuestion = new SliderQuestion(tId, tOrder, tText, tType, tStartValue, tEndValue, tStartValueCaption, tEndValueCaption);
@@ -348,15 +381,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
-        private ErrorCode EditStarQuestion(int id, FormCollection pCollection)
+        private ErrorCode EditStarQuestion(int id, FormCollection collection)
         {
             try
             {
                 int tId = id;
-                int tOrder = Convert.ToInt32(pCollection["Order"]);
-                string tText = pCollection["Text"];
+                int tOrder = Convert.ToInt32(collection["Order"]);
+                string tText = collection["Text"];
                 QuestionType tType = QuestionType.STAR;
-                int tNumberOfStars = Convert.ToInt32(pCollection["NumberOfStars"]);
+                int tNumberOfStars = Convert.ToInt32(collection["NumberOfStars"]);
 
                 StarQuestion tStarQuestion = new StarQuestion(tId, tOrder, tText, tType, tNumberOfStars);
                 ErrorCode tResult = mQuestionManager.UpdateStarQuestion(tStarQuestion);
