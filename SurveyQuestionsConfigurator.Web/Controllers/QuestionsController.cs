@@ -23,6 +23,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 mQuestionManager = new QuestionManager();
+                //QuestionManager.refreshDataEvent += Refresh;
+                //mQuestionManager.WatchForChanges(); /// Subscribe to data changes event
+
             }
             catch (Exception ex)
             {
@@ -53,6 +56,17 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             {
                 Logger.LogError(ex);
                 return View();
+            }
+        }
+        public void Refresh(ErrorCode pErrorCode, List<Question> pQuestionList)
+        {
+            try
+            {
+                RedirectToAction("Index");
+            }
+            catch
+            {
+                RedirectToAction("Index");
             }
         }
 
