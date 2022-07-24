@@ -23,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="@Url.Action("Index","Home")" class="navbar-brand">
+                <a href="@Url.Action("Index","Questions")" class="navbar-brand">
                     <img src="/assets/sedco_logo.png" alt="website logo" width="65" height="21" />
                 </a>
                 @*@Html.ActionLink("Survey Questions Configurator", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "background-image:url('/assets/sedco_logo.png')" })*@
@@ -43,7 +43,7 @@
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Langauge</a></li>
-                            <li><a href="#">Connection</a></li>
+                            <li><a href=@Url.Action("Index","Connection")>Connection</a></li>
                             @*<li><a href="#">Something else here</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Separated link</a></li>*@

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using System.Web.Configuration;
 using static SurveyQuestionsConfigurator.Entities.Generic;
 namespace SurveyQuestionsConfigurator.DataAccess
 {
@@ -153,7 +154,8 @@ namespace SurveyQuestionsConfigurator.DataAccess
                 string tProviderName = "System.Data.SqlClient";
                 string tSectionName = "connectionStrings";
 
-                Configuration tConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                //Configuration tConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                Configuration tConfig = WebConfigurationManager.OpenWebConfiguration("~");
                 tConfig.ConnectionStrings.ConnectionStrings[0].ConnectionString = pBuilder.ConnectionString;
                 tConfig.ConnectionStrings.ConnectionStrings[0].ProviderName = tProviderName;
                 tConfig.Save(ConfigurationSaveMode.Minimal);

@@ -2,6 +2,7 @@
 using SurveyQuestionsConfigurator.DataAccess;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
@@ -16,6 +17,20 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
         #region Properties & Attributes
 
         DbConnect mDbConnect; /// Data Access Layer
+
+        [Required]
+        [Range(1, 128)]
+        public string ServerName { get; set; }
+        [Required]
+        [Range(1, 128)]
+        public string DatabaseName { get; set; }
+        [Required]
+        [Range(1, 128)]
+        public string UserId { get; set; }
+        [Required]
+        [Range(1, 128)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
 
         #endregion
 

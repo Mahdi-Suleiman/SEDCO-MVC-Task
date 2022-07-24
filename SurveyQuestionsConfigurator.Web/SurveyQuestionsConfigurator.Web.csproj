@@ -148,6 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConnectionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\SliderQuestionController.cs" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\sedco_logo.png" />
+    <Content Include="assets\settings.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -309,6 +311,8 @@
     <Content Include="Views\StarQuestion\Edit.cshtml" />
     <Content Include="Views\Shared\_EditQuestion.cshtml" />
     <Content Include="Views\Shared\DisabledEdit.cshtml" />
+    <Content Include="Views\Connection\Indeeeeex.cshtml" />
+    <Content Include="Views\Connection\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
