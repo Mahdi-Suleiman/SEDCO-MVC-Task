@@ -2,6 +2,7 @@
 using SurveyQuestionsConfigurator.CommonHelpers;
 using SurveyQuestionsConfigurator.Entities;
 using SurveyQuestionsConfigurator.QuestionLogic;
+using SurveyQuestionsConfigurator.Web.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,14 +64,14 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         {
             try
             {
-                //hubContext.Clients.All.addNewMessageToPage(null, null);
+                //tHubContext.Clients.All.addNewMessageToPage(null, null);
                 switch (pErrorCode)
                 {
                     case ErrorCode.SUCCESS:
                     case ErrorCode.EMPTY:
                         {
-                            var hubContext = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
-                            hubContext.Clients.All.addNewMessageToPage(pQuestionList);
+                            var tHubContext = GlobalHost.ConnectionManager.GetHubContext<QuestionsHub>();
+                            tHubContext.Clients.All.RefreshQuestionsList(pQuestionList);
                         }
                         break;
                     default:
@@ -78,8 +79,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 }
                 //RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.LogError(ex);
                 //RedirectToAction("Index");
             }
         }

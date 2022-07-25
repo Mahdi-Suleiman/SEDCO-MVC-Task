@@ -166,7 +166,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="ChatHub.cs" />
+    <Compile Include="Hubs\IQuestionsHub.cs" />
+    <Compile Include="Hubs\QuestionsHub.cs" />
     <Compile Include="Controllers\ConnectionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
