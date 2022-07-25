@@ -1,4 +1,5 @@
-﻿using SurveyQuestionsConfigurator.CommonHelpers;
+﻿using Microsoft.AspNet.SignalR;
+using SurveyQuestionsConfigurator.CommonHelpers;
 using SurveyQuestionsConfigurator.Entities;
 using SurveyQuestionsConfigurator.QuestionLogic;
 using System;
@@ -23,8 +24,8 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 mQuestionManager = new QuestionManager();
-                //QuestionManager.refreshDataEvent += Refresh;
-                //mQuestionManager.WatchForChanges(); /// Subscribe to data changes event
+                QuestionManager.refreshDataEvent += Refresh;
+                mQuestionManager.WatchForChanges(); /// Subscribe to data changes event
 
             }
             catch (Exception ex)
@@ -62,11 +63,24 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         {
             try
             {
-                RedirectToAction("Index");
+                //hubContext.Clients.All.addNewMessageToPage(null, null);
+                switch (pErrorCode)
+                {
+                    case ErrorCode.SUCCESS:
+                    case ErrorCode.EMPTY:
+                        {
+                            var hubContext = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
+                            hubContext.Clients.All.addNewMessageToPage(pQuestionList);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                //RedirectToAction("Index");
             }
             catch
             {
-                RedirectToAction("Index");
+                //RedirectToAction("Index");
             }
         }
 

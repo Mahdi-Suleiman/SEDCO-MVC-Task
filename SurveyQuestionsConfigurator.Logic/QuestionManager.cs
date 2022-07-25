@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 using static SurveyQuestionsConfigurator.Entities.Generic;
 //using System.Web;
 //using System.Web.Mvc;
@@ -181,7 +182,8 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
             try
             {
                 string tSectionName = "AutoRefreshTimer";
-                var tConfigFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                //var tConfigFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                Configuration tConfigFile = WebConfigurationManager.OpenWebConfiguration("~");
                 var tSettings = tConfigFile.AppSettings.Settings;
                 string tValue = tSettings[tSectionName].Value;
                 return Int32.Parse(tValue);
