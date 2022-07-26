@@ -100,9 +100,9 @@ C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.W
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\ar\SurveyQuestionsConfigurator.Web.resources.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\obj\Debug\SurveyQuestionsConfigurator.Web.Resources.LanguageStrings.ar.resources
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\obj\Debug\ar\SurveyQuestionsConfigurator.Web.resources.dll
-C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\ar\SurveyQuestionsConfigurator.Entities.resources.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\roslyn\System.Buffers.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\roslyn\System.Memory.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\roslyn\System.Numerics.Vectors.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\SurveyQuestionsConfigurator.Entities.dll.config
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\ar-JO\SurveyQuestionsConfigurator.Entities.resources.dll

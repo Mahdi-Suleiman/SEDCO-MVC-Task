@@ -205,7 +205,7 @@
     <value>Save</value>
   </data>
   <data name="SavingFailedError" xml:space="preserve">
-    <value>Saving failed, please try again</value>
+    <value>Saving failed, please try again.</value>
   </data>
   <data name="ServerName" xml:space="preserve">
     <value>Server Name</value>

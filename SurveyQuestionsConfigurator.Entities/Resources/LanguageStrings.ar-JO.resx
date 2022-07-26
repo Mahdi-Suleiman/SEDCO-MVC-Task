@@ -118,43 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Arabic" xml:space="preserve">
-    <value />
+    <value>اللغة العربية</value>
   </data>
   <data name="Checkconnectivity" xml:space="preserve">
-    <value />
+    <value>تحقق من الاتصال</value>
   </data>
   <data name="Connection" xml:space="preserve">
-    <value />
+    <value>اعدادات الاتصال</value>
   </data>
   <data name="ConnectionFailedError" xml:space="preserve">
-    <value>Connection Failed!</value>
+    <value>فشل الاتصال.</value>
   </data>
   <data name="Create" xml:space="preserve">
-    <value />
+    <value>إنشاء</value>
   </data>
   <data name="DatabaseName" xml:space="preserve">
-    <value />
+    <value>اسم قاعدة البيانات</value>
+  </data>
+  <data name="DatabaseNameRequired" xml:space="preserve">
+    <value>يجب ادخال اسم قاعدة البيانات.</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value />
+    <value>حذف</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value />
+    <value>التفاصيل</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value />
+    <value>تعديل</value>
   </data>
   <data name="EndValue" xml:space="preserve">
-    <value />
+    <value>القيمة النهائية لشريط التمرير</value>
   </data>
   <data name="EndValueCaption" xml:space="preserve">
-    <value />
+    <value>عنوان القيمة النهائية لشريط التمرير</value>
+  </data>
+  <data name="EndValueCaptionRequired" xml:space="preserve">
+    <value>يجب ادخال القيمة النهائية لشريط التمرير.</value>
   </data>
   <data name="EndValueError" xml:space="preserve">
-    <value>End value must be larger than start value</value>
+    <value>القيمة النهائية يجب ان تكون اكبر من القيمة الابتدائية</value>
+  </data>
+  <data name="EndValueRequired" xml:space="preserve">
+    <value>يجب الدخال القيمة النهائية.</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value />
+    <value>اللغة الانجليزية</value>
   </data>
   <data name="GeneralError" xml:space="preserve">
     <value />
@@ -163,63 +172,90 @@
     <value />
   </data>
   <data name="NumberOfSmileyFaces" xml:space="preserve">
-    <value />
+    <value>عدد الأوجه المبتسمة</value>
+  </data>
+  <data name="NumberOfSmileyFacesRequired" xml:space="preserve">
+    <value>يجب ادخال عدد الأوجه المبتسمة.</value>
   </data>
   <data name="NumberOfStars" xml:space="preserve">
-    <value />
+    <value>عدد النجوم.</value>
+  </data>
+  <data name="NumberOfStarsRequired" xml:space="preserve">
+    <value>يجب ادخال عدد النجوم.</value>
   </data>
   <data name="Order" xml:space="preserve">
-    <value />
+    <value>الترتيب</value>
+  </data>
+  <data name="OrderRequired" xml:space="preserve">
+    <value>يجب ادخال الترتيب.</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value />
+    <value>كلمة المرور</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>يجب ادخال كلمة المرور.</value>
   </data>
   <data name="QuestionDoesNotExistError" xml:space="preserve">
-    <value>This Question doesn't exist, please refresh and try again.</value>
+    <value>هذا السؤال غير موجود ، يرجى التحديث والمحاولة مرة أخرى.</value>
   </data>
   <data name="Questions" xml:space="preserve">
-    <value />
+    <value>الاسئلة</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value />
+    <value>حفظ</value>
   </data>
   <data name="SavingFailedError" xml:space="preserve">
-    <value>Saving failed, please try again</value>
+    <value>حدث خطأ أثناء حفظ الإعدادات الرجاء المحاولة مرة اخرى</value>
   </data>
   <data name="ServerName" xml:space="preserve">
-    <value />
+    <value>اسم الخادم</value>
+  </data>
+  <data name="ServerNameRequired" xml:space="preserve">
+    <value>يجب ادخال اسم الخادم.</value>
   </data>
   <data name="SettingsSavedMessage" xml:space="preserve">
-    <value>Settings Saved Successfully.</value>
+    <value>تم حفظ الإعدادات بنجاح.</value>
   </data>
   <data name="SLIDER" xml:space="preserve">
-    <value />
+    <value>شريط</value>
   </data>
   <data name="SMILEY" xml:space="preserve">
-    <value />
+    <value>وجه مبتسم</value>
   </data>
   <data name="SomethingWentWrongError" xml:space="preserve">
-    <value>Something went wrong, please try again.</value>
+    <value>حدث خطأ ما، الرجاء المحاولة مرة أخرى.</value>
   </data>
   <data name="STAR" xml:space="preserve">
-    <value />
+    <value>نجمة</value>
   </data>
   <data name="StartValue" xml:space="preserve">
-    <value />
+    <value>القيمة الابتدائية</value>
   </data>
   <data name="StartValueCaption" xml:space="preserve">
-    <value />
+    <value>عنوان القيمة الابتدائية</value>
+  </data>
+  <data name="StartValueCaptionRequired" xml:space="preserve">
+    <value>يجب ادخال عنوان القيمة الابتدائية.</value>
+  </data>
+  <data name="StartValueRequired" xml:space="preserve">
+    <value>يجب ادخال القيمة الابتدائية.</value>
   </data>
   <data name="SuccessfulConnectionMessage" xml:space="preserve">
-    <value>Connection was successful.</value>
+    <value>نجح الاتصال.</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value />
+    <value>النص</value>
+  </data>
+  <data name="TextRequired" xml:space="preserve">
+    <value>يجب ادخال النص.</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value />
+    <value>النوع</value>
   </data>
   <data name="UserId" xml:space="preserve">
-    <value />
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="UserIdRequired" xml:space="preserve">
+    <value>يجب ادخال اسم المستخدم.</value>
   </data>
 </root>

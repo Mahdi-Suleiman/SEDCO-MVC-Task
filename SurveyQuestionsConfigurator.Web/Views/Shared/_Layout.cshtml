@@ -33,7 +33,7 @@
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
             <li>@Html.ActionLink("About", "About", "Home")</li>
             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                    <li>@Html.ActionLink("Questions", "Index", "Questions")</li>
+                    <li>@Html.ActionLink(SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Questions, "Index", "Questions")</li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -57,8 +57,13 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><span style="margin-right: 4px"><img src="~/assets/english.png" alt="langauge" height="20" width="20" /></span>English</a></li>
-                            <li><a href="#"><span style="margin-right: 4px"><img src="~/assets/arabic.png" alt="langauge" height="20" width="20" /></span>Arabic</a></li>
+                            <li><a href="#">
+                                    <span style="margin-right: 4px"><img src="~/assets/english.png" alt="langauge" height="20" width="20" /></span>
+                                    @SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.English
+                                </a></li>
+                            <li><a href="#"><span style="margin-right: 4px"><img src="~/assets/arabic.png" alt="langauge" height="20" width="20" /></span>
+                                @SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Arabic
+                                </a></li>
                         </ul>
                     </li>
                 </ul>

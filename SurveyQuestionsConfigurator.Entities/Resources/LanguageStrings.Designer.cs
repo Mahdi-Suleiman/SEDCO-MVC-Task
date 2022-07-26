@@ -322,7 +322,7 @@ namespace SurveyQuestionsConfigurator.Entities.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saving failed, please try again.
+        ///   Looks up a localized string similar to Saving failed, please try again..
         /// </summary>
         public static string SavingFailedError {
             get {
