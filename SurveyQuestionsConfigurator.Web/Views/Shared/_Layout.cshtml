@@ -65,11 +65,11 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), new {language = "en-US"})">
+                            <li><a href="@Url.Action("English", "Language", new {language = "en-US"})">
                                     <span style="margin: 4px"><img src="~/assets/english.png" alt="langauge" height="20" width="20" /></span>
                                     @SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.English
                                 </a></li>
-                            <li><a href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), new {language = "ar-JO"})"><span style="margin: 4px"><img src="~/assets/arabic.png" alt="langauge" height="20" width="20" /></span>
+                            <li><a href="@Url.Action("Arabic", "Language", new {language = "ar-JO"})"><span style="margin: 4px"><img src="~/assets/arabic.png" alt="langauge" height="20" width="20" /></span>
                                 @SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Arabic
                                 </a></li>
                         </ul>

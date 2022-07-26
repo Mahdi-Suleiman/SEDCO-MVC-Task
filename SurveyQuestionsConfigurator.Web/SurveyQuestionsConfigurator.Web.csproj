@@ -163,6 +163,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Hubs\IQuestionsHub.cs" />
     <Compile Include="Hubs\QuestionsHub.cs" />
     <Compile Include="Controllers\ConnectionController.cs" />
@@ -352,6 +353,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Language\" />
     <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
