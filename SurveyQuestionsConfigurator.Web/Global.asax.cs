@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -17,7 +20,16 @@ namespace SurveyQuestionsConfigurator.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            CultureInfo mDefaultCulture = new CultureInfo(ConfigurationManager.AppSettings["DefaultCulture"]);
+            string tDefaultCulture = ConfigurationManager.AppSettings["DefaultCulture"];
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(tDefaultCulture);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(tDefaultCulture);
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            string tDefaultCulture = ConfigurationManager.AppSettings["DefaultCulture"];
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(tDefaultCulture);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(tDefaultCulture);
         }
     }
 }
