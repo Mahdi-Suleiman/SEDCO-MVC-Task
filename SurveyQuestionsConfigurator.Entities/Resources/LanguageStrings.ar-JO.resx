@@ -130,7 +130,7 @@
     <value>فشل الاتصال.</value>
   </data>
   <data name="Create" xml:space="preserve">
-    <value>إنشاء</value>
+    <value>إنشاء سؤال</value>
   </data>
   <data name="DatabaseName" xml:space="preserve">
     <value>اسم قاعدة البيانات</value>

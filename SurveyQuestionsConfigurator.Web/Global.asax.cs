@@ -16,6 +16,8 @@ namespace SurveyQuestionsConfigurator.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            CultureInfo mDefaultCulture = new CultureInfo(ConfigurationManager.AppSettings["DefaultCulture"]);
         }
     }
 }
