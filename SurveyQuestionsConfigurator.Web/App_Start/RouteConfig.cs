@@ -15,8 +15,8 @@ namespace SurveyQuestionsConfigurator.Web
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Questions", action = "Index", id = UrlParameter.Optional }
+                url: "{language}/{controller}/{action}/{id}",
+                defaults: new { controller = "Questions", action = "Index", id = UrlParameter.Optional, language = "en-US" }
                 //defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

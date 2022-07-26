@@ -27,6 +27,9 @@ namespace SurveyQuestionsConfigurator.Web
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
+            //var q = HttpContext.Current.Request.Url;
+            //Uri theRealURL = new Uri(HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.RawUrl);
+            //string yourValue = HttpUtility.ParseQueryString(theRealURL.Query).Get("type");
             string tDefaultCulture = ConfigurationManager.AppSettings["DefaultCulture"];
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(tDefaultCulture);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(tDefaultCulture);
