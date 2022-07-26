@@ -53,8 +53,8 @@
     </Compile>
     <Compile Include="Question.cs" />
     <Compile Include="Resources\EnumResourceStrings.cs" />
-    <Compile Include="Resources\LanguageStrings.ar-JO.Designer.cs">
-      <DependentUpon>LanguageStrings.ar-JO.resx</DependentUpon>
+    <Compile Include="Resources\LanguageStrings.ar.Designer.cs">
+      <DependentUpon>LanguageStrings.ar.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -82,9 +82,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\LanguageStrings.ar-JO.resx">
+    <EmbeddedResource Include="Resources\LanguageStrings.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>LanguageStrings.ar-JO.Designer.cs</LastGenOutput>
+      <LastGenOutput>LanguageStrings.ar.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\LanguageStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

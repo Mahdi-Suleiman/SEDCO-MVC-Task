@@ -29,4 +29,4 @@ C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.L
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\obj\Debug\SurveyQuestionsConfigurator.Logic.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\obj\Debug\SurveyQuestionsConfigurator.Logic.pdb
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Debug\SurveyQuestionsConfigurator.Entities.dll.config
-C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Debug\ar-JO\SurveyQuestionsConfigurator.Entities.resources.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Debug\ar\SurveyQuestionsConfigurator.Entities.resources.dll

@@ -105,4 +105,4 @@ C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.W
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\roslyn\System.Numerics.Vectors.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\SurveyQuestionsConfigurator.Entities.dll.config
-C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\ar-JO\SurveyQuestionsConfigurator.Entities.resources.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\ar\SurveyQuestionsConfigurator.Entities.resources.dll

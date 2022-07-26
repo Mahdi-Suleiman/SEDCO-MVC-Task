@@ -59,5 +59,11 @@ namespace SurveyQuestionsConfigurator.Entities.Resources
             UserIdRequired,
         }
 
+        public enum CultureName
+        {
+            en,
+            ar
+        }
+
     }
 }

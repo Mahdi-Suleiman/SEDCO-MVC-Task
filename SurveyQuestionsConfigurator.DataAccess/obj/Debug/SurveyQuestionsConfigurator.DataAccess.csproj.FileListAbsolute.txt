@@ -21,4 +21,4 @@ C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.D
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\obj\Debug\SurveyQuestionsConfigurator.DataAccess.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\obj\Debug\SurveyQuestionsConfigurator.DataAccess.pdb
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\bin\Debug\SurveyQuestionsConfigurator.Entities.dll.config
-C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\bin\Debug\ar-JO\SurveyQuestionsConfigurator.Entities.resources.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\bin\Debug\ar\SurveyQuestionsConfigurator.Entities.resources.dll

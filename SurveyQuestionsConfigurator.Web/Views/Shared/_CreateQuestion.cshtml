@@ -2,6 +2,9 @@
 
 @{
     ViewBag.Title = "_Question";
+    string cultureInfo = @System.Globalization.CultureInfo.CurrentCulture.Name;
+    string tEnglish = "en-US";
+    SurveyQuestionsConfigurator.Entities.Generic.QuestionType tQuestionType = SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SMILEY;
 }
 
 @*@using (Html.BeginForm())
@@ -37,6 +40,7 @@
 }
 
 <script>
+    ///Change partial view on selection change
     function QuestionTypeChanged() {
         const tActionNames = ["/Questions/PartialSmiley", "/Questions/PartialSlider", "/Questions/PartialStar"];
         const sel = document.getElementById("Type"); //dropdownlist

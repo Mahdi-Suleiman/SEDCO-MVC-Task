@@ -120,6 +120,9 @@
   <data name="Arabic" xml:space="preserve">
     <value>اللغة العربية</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>عودة الى القائمة</value>
+  </data>
   <data name="Checkconnectivity" xml:space="preserve">
     <value>تحقق من الاتصال</value>
   </data>
@@ -178,7 +181,7 @@
     <value>يجب ادخال عدد الأوجه المبتسمة.</value>
   </data>
   <data name="NumberOfStars" xml:space="preserve">
-    <value>عدد النجوم.</value>
+    <value>عدد النجوم</value>
   </data>
   <data name="NumberOfStarsRequired" xml:space="preserve">
     <value>يجب ادخال عدد النجوم.</value>

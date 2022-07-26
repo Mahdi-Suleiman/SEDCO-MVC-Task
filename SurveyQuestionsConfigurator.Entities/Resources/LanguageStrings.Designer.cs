@@ -70,6 +70,15 @@ namespace SurveyQuestionsConfigurator.Entities.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back To List.
+        /// </summary>
+        public static string BackToList {
+            get {
+                return ResourceManager.GetString("BackToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check Connectivity.
         /// </summary>
         public static string Checkconnectivity {

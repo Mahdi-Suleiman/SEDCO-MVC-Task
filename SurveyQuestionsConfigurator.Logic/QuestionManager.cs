@@ -116,7 +116,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
                         if (firstTimeCheck) /// refresh data when DB is empty and both lists are empty and equal
                         {
                             firstTimeCheck = false;
-                            refreshDataEvent?.Invoke(tResult, tList);
+                            //refreshDataEvent?.Invoke(tResult, tList);
                         }
 
                         Thread.Sleep(AutoRefreshTimer);

@@ -120,6 +120,9 @@
   <data name="Arabic" xml:space="preserve">
     <value>Arabic</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Back To List</value>
+  </data>
   <data name="Checkconnectivity" xml:space="preserve">
     <value>Check Connectivity</value>
   </data>

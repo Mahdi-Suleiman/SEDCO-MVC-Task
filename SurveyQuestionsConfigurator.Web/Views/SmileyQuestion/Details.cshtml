@@ -1,14 +1,13 @@
 ﻿@model SurveyQuestionsConfigurator.Entities.SmileyQuestion
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Details;
 }
 
-<h2>Details</h2>
+<hr />
+<h2>@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Details</h2>
 
 <div>
-    <h4>SmileyQuestion</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Order)
@@ -37,6 +36,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID, type = Model.Type }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Edit, "Edit", new { id = Model.ID, type = Model.Type }, htmlAttributes: new { @class = "btn btn-success btn-sm" }) |
+    @Html.Partial("_BackToListPartial")
 </p>
