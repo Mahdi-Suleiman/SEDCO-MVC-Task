@@ -1,4 +1,5 @@
 ﻿using SurveyQuestionsConfigurator.CommonHelpers;
+using SurveyQuestionsConfigurator.Entities.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,15 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SurveyQuestionsConfigurator.Entities.Generic;
-
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
 
 namespace SurveyQuestionsConfigurator.Entities
 {
     public class SmileyQuestion : Question
     {
-        [Required]
+        [Display(Name = nameof(ResourceStrings.NumberOfSmileyFaces), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceStrings.NumberOfSmileyFacesRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [Range(2, 5)]
-        [Display(Name = "Number Of Smiley Faces(2-5):")]
         public int NumberOfSmileyFaces { get; set; }
         public SmileyQuestion(int pID, int pOrder, string pText, QuestionType pType, int pNumberOfSmileyFaces) :
             base(pID, pOrder, pText, pType)

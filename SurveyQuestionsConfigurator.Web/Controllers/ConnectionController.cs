@@ -23,8 +23,18 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         }
 
         // GET: Connection
-        public ActionResult Index(string pMessage = null)
+        public ActionResult Index(string message = null, string error = null)
         {
+            if (!string.IsNullOrEmpty(message))
+            {
+                TempData[nameof(message)] = message;
+            }
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                TempData[nameof(error)] = error;
+            }
+
             mBuilder = mConnectionSettingsManager.GetConnectionString();
             ConnectionSetting tConnectionSettings = new ConnectionSetting(mBuilder);
             return View(tConnectionSettings);
@@ -78,30 +88,32 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 tBuilder.UserID = collection["UserId"];
                 tBuilder.Password = collection["Password"];
 
+                /// If Check Connectivity button is pressed
                 if (collection["Checkconnectivity"] != null)
                 {
                     return CheckConnectivity(tBuilder);
                     //return HttpNotFound();
                 }
 
-
+                /// If Save button is pressed
                 ErrorCode tResult = mConnectionSettingsManager.SaveConnectionString(tBuilder);
 
                 if (tResult == ErrorCode.SUCCESS)
                 {
-                    TempData["Message"] = "Connection Settings Saved Successfully";
+                    //TempData["Message"] = "Connection Settings Saved Successfully";
+                    return RedirectToAction("Index", new { message = "Connection Settings Saved Successfully." });
                 }
                 else
                 {
-                    TempData["Error"] = "Saving failed, please try again";
+                    //TempData["Error"] = "Saving failed, please try again";
+                    return RedirectToAction("Index", new { error = "Saving failed, please try again" });
                 }
 
-                return RedirectToAction("Index");
-
+                //return RedirectToAction("Index", new { message = "Connection Settings Saved Successfully" });
             }
             catch
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { error = "Saving failed, please try again" });
             }
         }
 

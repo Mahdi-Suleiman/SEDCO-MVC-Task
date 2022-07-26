@@ -1,4 +1,5 @@
 ﻿using SurveyQuestionsConfigurator.CommonHelpers;
+using SurveyQuestionsConfigurator.Entities.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SurveyQuestionsConfigurator.Entities.Generic;
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
 
 namespace SurveyQuestionsConfigurator.Entities
 {
     public class StarQuestion : Question
     {
-        [Required]
+        [Display(Name = nameof(ResourceStrings.NumberOfStars), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceStrings.NumberOfStarsRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [Range(1, 10)]
-        [Display(Name = "Number Of Stars(1-10):")]
         public int NumberOfStars { get; set; }
 
         public StarQuestion(int pID, int pOrder, string pText, QuestionType pType, int pNumberOfStars) :

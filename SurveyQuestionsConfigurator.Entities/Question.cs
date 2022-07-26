@@ -1,4 +1,5 @@
 ﻿using SurveyQuestionsConfigurator.CommonHelpers;
+using SurveyQuestionsConfigurator.Entities.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,22 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SurveyQuestionsConfigurator.Entities.Generic;
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
 
 namespace SurveyQuestionsConfigurator.Entities
 {
     public class Question
     {
         public int ID { get; set; }
-
-        [Required]
+        [Display(Name = nameof(ResourceStrings.Order), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceStrings.OrderRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [Range(0, 9999999)]
         public int Order { get; set; }
 
-        [Required]
+        [Display(Name = nameof(ResourceStrings.Text), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceStrings.TextRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [MaxLength(3999)]
         public string Text { get; set; }
 
-        [Required]
+        [Display(Name = nameof(ResourceStrings.Type), ResourceType = typeof(LanguageStrings))]
         public QuestionType Type { get; set; }
 
         public Question(int pID)
