@@ -210,6 +210,9 @@
   <data name="Questions" xml:space="preserve">
     <value>Questions</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -251,6 +254,9 @@
   </data>
   <data name="SuccessfulConnectionMessage" xml:space="preserve">
     <value>Connection was successful.</value>
+  </data>
+  <data name="TechnicalIssuesError" xml:space="preserve">
+    <value>Site is under maintenance, please refresh and try again.</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Text</value>

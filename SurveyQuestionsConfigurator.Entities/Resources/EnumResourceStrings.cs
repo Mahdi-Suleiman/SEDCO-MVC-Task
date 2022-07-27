@@ -8,6 +8,9 @@ namespace SurveyQuestionsConfigurator.Entities.Resources
 {
     public class EnumResourceStrings
     {
+        /// <summary>
+        /// Contains all availble keys in the resource folder => instead of hard coding anything
+        /// </summary>
         public enum ResourceStrings
         {
             Arabic,
@@ -58,7 +61,9 @@ namespace SurveyQuestionsConfigurator.Entities.Resources
             UserId,
             UserIdRequired,
             AreYouSureYouWantToDelete,
-            OrderAlreadyInUse
+            OrderAlreadyInUse,
+            TechnicalIssuesError,
+            Refresh
         }
     }
 }

@@ -23,7 +23,6 @@ namespace SurveyQuestionsConfigurator.Web.Hubs
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                throw;
             }
         }
     }

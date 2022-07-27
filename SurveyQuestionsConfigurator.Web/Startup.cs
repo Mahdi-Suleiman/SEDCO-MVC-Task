@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using SurveyQuestionsConfigurator.CommonHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,15 @@ namespace SurveyQuestionsConfigurator.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            // Any connection or hub wire up and configuration should go here
-            app.MapSignalR();
+            try
+            {
+                // Any connection or hub wire up and configuration should go here
+                app.MapSignalR();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+            }
         }
     }
 }

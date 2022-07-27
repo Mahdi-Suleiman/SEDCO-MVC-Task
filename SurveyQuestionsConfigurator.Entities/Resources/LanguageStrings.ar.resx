@@ -216,6 +216,9 @@
   <data name="Questions" xml:space="preserve">
     <value>الاسئلة</value>
   </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>حفظ</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="SuccessfulConnectionMessage" xml:space="preserve">
     <value>نجح الاتصال.</value>
+  </data>
+  <data name="TechnicalIssuesError" xml:space="preserve">
+    <value>الموقع تحت الصيانة ، يرجى التحديث والمحاولة مرة أخرى.</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>النص</value>

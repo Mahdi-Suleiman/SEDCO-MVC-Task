@@ -13,9 +13,6 @@
     string tStar = cultureInfo == tArabic ? tArabicQuestionType[2] : tEnglishQuestionType[2];
 }
 
-@*@using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()*@
 
 <div class="form-group">
     @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "" })
@@ -38,7 +35,6 @@
         </select>   
     @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
 </div>
-@* } *@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -68,49 +64,7 @@
                 }
              break;
         }
-        //Sys.Mvc.FormContext._Application_Load();
     }
 
-
-    //function SetDefaultValue()
-    //{
-    //    alert("aaa")
-    //    var tQuestionType = window.location.href.split("Question")[0].split("/");
-    //    const sel = document.getElementById("Type");
-    //    console.log(tQuestionType.toUpperCase());
-    //    if (tQuestionType.toUpperCase() == "SMILEY") {
-    //        sel.selectedIndex = 0
-    //    }
-    //    else if (tQuestionType.toUpperCase() == "SLIDER") {
-    //        sel.selectedIndex = 1
-    //    }
-    //    else {
-    //        sel.selectedIndex = 2
-    //    }
-
-
-    //    //alert(tQuestionType[currentUrlWithoutParams.length - 1]);
-    //}
 </script>
 
-@*@if (Model.Type == SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SMILEY)
-        {
-    <script>
-        const sel = document.getElementById("Type");
-        sel.selectedIndex = 0
-    </script>
-        }
-        else if (Model.Type == SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SLIDER)
-        {
-    <script>
-        const sel = document.getElementById("Type");
-        sel.selectedIndex = 1
-    </script>
-        }
-        else
-        {
-    <script>
-        const sel = document.getElementById("Type");
-        sel.selectedIndex = 2
-    </script>
-        }*@

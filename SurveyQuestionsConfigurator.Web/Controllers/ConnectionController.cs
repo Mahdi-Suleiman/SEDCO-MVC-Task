@@ -35,11 +35,19 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
-        // GET: Connection
+        /// <summary>
+        /// GET: Connection
+        /// Get the connectino settings from .config file, fill the ConnectionSetting model and pass it to the view
+        /// </summary>
+        /// <returns>
+        /// ActionResult
+        /// </returns>
         public ActionResult Index(string message = null, string error = null)
         {
             try
             {
+                ///show any message or error passed to the action
+                ///TempData us used in "_Layout" view above @RenderBody() 
                 if (!string.IsNullOrEmpty(message))
                 {
                     TempData[$"{ResourceStrings.Message}"] = message;
@@ -51,8 +59,8 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 }
 
                 mBuilder = mConnectionSettingsManager.GetConnectionString();
-                ConnectionSetting tConnectionSettings = new ConnectionSetting(mBuilder);
-                return View(tConnectionSettings);
+                ConnectionSetting tConnectionSetting = new ConnectionSetting(mBuilder);
+                return View(tConnectionSetting);
             }
             catch (Exception ex)
             {
@@ -61,14 +69,20 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
-        // POST: Connection/Edit/5
+        /// <summary>
+        /// POST: Connection/Edit/5
+        /// This action either check for connectivity and call the corresponding methods for it
+        /// or save the new connection settings in the config file
+        /// </summary>
+        /// <returns>
+        /// ActionResult
+        /// </returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
                 SqlConnectionStringBuilder tBuilder = new SqlConnectionStringBuilder();
                 tBuilder.DataSource = collection["ServerName"];
                 tBuilder.InitialCatalog = collection["DatabaseName"];
@@ -79,7 +93,6 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 if (collection["Checkconnectivity"] != null)
                 {
                     return CheckConnectivity(tBuilder);
-                    //return HttpNotFound();
                 }
 
                 /// If Save button is pressed
@@ -87,26 +100,25 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
                 if (tResult == ErrorCode.SUCCESS)
                 {
-                    //TempData["Message"] = "Connection Settings Saved Successfully";
                     return RedirectToAction("Index", new { message = $"{ResourceStrings.SettingsSavedMessage}" });
-                    //return RedirectToAction("Index", new { message = "Connection Settings Saved Successfully." });
                 }
                 else
                 {
-                    //TempData["Error"] = "Saving failed, please try again";
                     return RedirectToAction("Index", new { error = $"{ResourceStrings.ConnectionFailedError}" });
-                    //return RedirectToAction("Index", new { error = "Saving failed, please try again" });
                 }
-
-                //return RedirectToAction("Index", new { message = "Connection Settings Saved Successfully" });
             }
             catch
             {
                 return RedirectToAction("Index", new { error = $"{ResourceStrings.ConnectionFailedError}" });
-                //return RedirectToAction("Index", new { error = "Saving failed, please try again" });
             }
         }
 
+        /// <summary>
+        /// Checks if the entered connection settings are valid
+        /// </summary>
+        /// <returns>
+        /// ActionResult
+        /// </returns>
         private ActionResult CheckConnectivity(SqlConnectionStringBuilder pBuilder)
         {
             try
@@ -114,13 +126,11 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 ErrorCode tResult = mConnectionSettingsManager.CheckConnectivity(pBuilder);
                 if (tResult == ErrorCode.SUCCESS)
                 {
-                    //TempData["Message"] = "Connection was successful!";
                     TempData[$"{ResourceStrings.Message}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.SuccessfulConnectionMessage}")}";
 
                 }
                 else
                 {
-                    //TempData["Error"] = "Connection Failed!";
                     TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.ConnectionFailedError}")}";
                 }
                 return RedirectToAction("Index");

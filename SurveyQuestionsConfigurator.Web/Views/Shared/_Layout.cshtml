@@ -1,16 +1,16 @@
 ﻿@{ 
-    string cultureInfo = @System.Globalization.CultureInfo.CurrentCulture.Name;
-    string tArabic = "ar-JO";
-    string tHrmlLangAttribute = cultureInfo == tArabic ? "ar" : "en-US";
-    string tDirectionResult = cultureInfo == tArabic ? "rtl" : "ltr";
-    string tCssThResult = cultureInfo == tArabic ? "right" : "left";
-    string tNavbarLTR = cultureInfo == tArabic ? "navbar-right" : "";
-    string tNavbarRTL = cultureInfo == tArabic ? "" : "navbar-right";
+    string cultureInfo = @System.Globalization.CultureInfo.CurrentCulture.Name; ///get current langauge of the application
+    string tArabic = "ar-JO"; ///to compare with
+    string tHrmlLangAttribute = cultureInfo == tArabic ? "ar" : "en-US"; ///used by bootstrap to be either RTL or LTR
+    string tDirAttributeResult = cultureInfo == tArabic ? "rtl" : "ltr"; ///used by bootstrap to be either RTL or LTR
+    string tCssTableHeaderResult = cultureInfo == tArabic ? "right" : "left"; ///css for handling table RTL or LTR
+    string tNavbarLTR = cultureInfo == tArabic ? "navbar-right" : ""; ///handling navbar items to be either LTR based on language
+    string tNavbarRTL = cultureInfo == tArabic ? "" : "navbar-right"; ///handling navbar items to be either RTL based on language
 }
 
 <!DOCTYPE html>
 <html
-      dir="@tDirectionResult"
+      dir="@tDirAttributeResult"
       lang="@tHrmlLangAttribute"
       >
 <head>
@@ -26,11 +26,8 @@
 
 <style>
         #myTable th{
-            text-align:@tCssThResult;
+            text-align:@tCssTableHeaderResult;
         }
-        @*#myTable tr {
-            text-align:@tCssResult;
-        }*@
 </style>
 
 

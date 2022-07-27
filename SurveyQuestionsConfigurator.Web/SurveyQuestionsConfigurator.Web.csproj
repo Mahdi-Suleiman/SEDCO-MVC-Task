@@ -167,11 +167,7 @@
     <Compile Include="Hubs\IQuestionsHub.cs" />
     <Compile Include="Hubs\QuestionsHub.cs" />
     <Compile Include="Controllers\ConnectionController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
-    <Compile Include="Controllers\SliderQuestionController.cs" />
-    <Compile Include="Controllers\SmileyQuestionController.cs" />
-    <Compile Include="Controllers\StarQuestionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -313,13 +309,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
-    <Content Include="Views\SmileyQuestion\Create.cshtml" />
-    <Content Include="Views\SliderQuestion\Create.cshtml" />
-    <Content Include="Views\StarQuestion\Create.cshtml" />
     <Content Include="Views\Shared\_CreateQuestion.cshtml" />
     <Content Include="Views\Shared\_CreateSliderQuestion.cshtml" />
     <Content Include="Views\Questions\Create.cshtml" />
@@ -335,15 +325,13 @@
     <Content Include="Views\StarQuestion\Edit.cshtml" />
     <Content Include="Views\Shared\_EditQuestion.cshtml" />
     <Content Include="Views\Shared\DisabledEdit.cshtml" />
-    <Content Include="Views\Connection\Indeeeeex.cshtml" />
     <Content Include="Views\Connection\Index.cshtml" />
     <Content Include="Views\Shared\_BackToListPartial.cshtml" />
+    <Content Include="Views\Shared\Offline.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Language\" />
-    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

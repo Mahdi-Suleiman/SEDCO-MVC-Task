@@ -340,6 +340,15 @@ namespace SurveyQuestionsConfigurator.Entities.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -462,6 +471,15 @@ namespace SurveyQuestionsConfigurator.Entities.Resources {
         public static string SuccessfulConnectionMessage {
             get {
                 return ResourceManager.GetString("SuccessfulConnectionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site is under maintenance, please refresh and try again..
+        /// </summary>
+        public static string TechnicalIssuesError {
+            get {
+                return ResourceManager.GetString("TechnicalIssuesError", resourceCulture);
             }
         }
         

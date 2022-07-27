@@ -1,4 +1,5 @@
-﻿using SurveyQuestionsConfigurator.Entities.Resources;
+﻿using SurveyQuestionsConfigurator.CommonHelpers;
+using SurveyQuestionsConfigurator.Entities.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,10 +36,17 @@ namespace SurveyQuestionsConfigurator.Entities
 
         public ConnectionSetting(SqlConnectionStringBuilder pBuilder)
         {
-            ServerName = pBuilder.DataSource;
-            DatabaseName = pBuilder.InitialCatalog;
-            UserId = pBuilder.UserID;
-            Password = pBuilder.Password;
+            try
+            {
+                ServerName = pBuilder.DataSource;
+                DatabaseName = pBuilder.InitialCatalog;
+                UserId = pBuilder.UserID;
+                Password = pBuilder.Password;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+            }
         }
 
     }

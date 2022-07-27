@@ -56,8 +56,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 List<Question> testList = new List<Question>();
-                mQuestionManager.GetAllQuestions(ref testList);
-                return View(testList);
+                ErrorCode tResult = mQuestionManager.GetAllQuestions(ref testList);
+                switch (tResult)
+                {
+                    case ErrorCode.SUCCESS:
+                    case ErrorCode.EMPTY:
+                        return View(testList);
+                    default:
+                        return View("~/Views/Shared/Offline.cshtml");
+                }
             }
             catch (Exception ex)
             {
@@ -109,20 +116,41 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                     case QuestionType.SMILEY:
                         {
                             SmileyQuestion tSmileyQuestion = new SmileyQuestion(id);
-                            mQuestionManager.GetSmileyQuestionByID(ref tSmileyQuestion);
-                            return View("~/Views/SmileyQuestion/Details.cshtml", tSmileyQuestion);
+                            ErrorCode tResult = mQuestionManager.GetSmileyQuestionByID(ref tSmileyQuestion);
+                            switch (tResult)
+                            {
+                                case ErrorCode.SUCCESS:
+                                case ErrorCode.EMPTY:
+                                    return View("~/Views/SmileyQuestion/Details.cshtml", tSmileyQuestion);
+                                default:
+                                    return View("~/Views/Shared/Offline.cshtml");
+                            }
                         }
                     case QuestionType.SLIDER:
                         {
                             SliderQuestion tSliderQuestion = new SliderQuestion(id);
-                            mQuestionManager.GetSliderQuestionByID(ref tSliderQuestion);
-                            return View("~/Views/SliderQuestion/Details.cshtml", tSliderQuestion);
+                            ErrorCode tResult = mQuestionManager.GetSliderQuestionByID(ref tSliderQuestion);
+                            switch (tResult)
+                            {
+                                case ErrorCode.SUCCESS:
+                                case ErrorCode.EMPTY:
+                                    return View("~/Views/SliderQuestion/Details.cshtml", tSliderQuestion);
+                                default:
+                                    return View("~/Views/Shared/Offline.cshtml");
+                            }
                         }
                     case QuestionType.STAR:
                         {
                             StarQuestion tStarQuestion = new StarQuestion(id);
-                            mQuestionManager.GetStarQuestionByID(ref tStarQuestion);
-                            return View("~/Views/StarQuestion/Details.cshtml", tStarQuestion);
+                            ErrorCode tResult = mQuestionManager.GetStarQuestionByID(ref tStarQuestion);
+                            switch (tResult)
+                            {
+                                case ErrorCode.SUCCESS:
+                                case ErrorCode.EMPTY:
+                                    return View("~/Views/StarQuestion/Details.cshtml", tStarQuestion);
+                                default:
+                                    return View("~/Views/Shared/Offline.cshtml");
+                            }
                         }
                 }
                 return View();
@@ -144,7 +172,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                return View();
+            }
         }
 
         /// <summary>
@@ -194,6 +230,8 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                         case ErrorCode.VALIDATION:
                             ModelState.AddModelError("Order", "Question order already in use, Try using another one.");
                             break;
+                        default:
+                            return View("~/Views/Shared/Offline.cshtml");
                     }
                 }
                 return View();
@@ -394,7 +432,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// </returns>
         public ActionResult PartialSmiley()
         {
-            return PartialView("_CreateSmileyQuestion");
+            try
+            {
+                return PartialView("_CreateSmileyQuestion");
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                return PartialView("_CreateSmileyQuestion");
+            }
         }
 
         /// <summary>
@@ -405,7 +451,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// </returns>
         public ActionResult PartialSlider()
         {
-            return PartialView("_CreateSliderQuestion");
+            try
+            {
+                return PartialView("_CreateSliderQuestion");
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                return PartialView("_CreateSmileyQuestion");
+            }
         }
 
         /// <summary>
@@ -416,7 +470,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// </returns>
         public ActionResult PartialStar()
         {
-            return PartialView("_CreateStarQuestion");
+            try
+            {
+                return PartialView("_CreateStarQuestion");
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                return PartialView("_CreateSmileyQuestion");
+            }
         }
         #endregion
 
@@ -533,18 +595,26 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// </returns>
         private ActionResult GetEditSmileyQuestion(int id, QuestionType type, int order)
         {
-            SmileyQuestion tSmileyQuestion = new SmileyQuestion(id);
-            ErrorCode tReslut = mQuestionManager.GetSmileyQuestionByID(ref tSmileyQuestion);
-            if (order != -1)
+            try
             {
-                tSmileyQuestion.Order = order;
+                SmileyQuestion tSmileyQuestion = new SmileyQuestion(id);
+                ErrorCode tReslut = mQuestionManager.GetSmileyQuestionByID(ref tSmileyQuestion);
+                if (order != -1)
+                {
+                    tSmileyQuestion.Order = order;
+                }
+                if (tReslut != ErrorCode.SUCCESS)
+                {
+                    TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
+                    return View("DisabledEdit");
+                }
+                return View("~/Views/SmileyQuestion/Edit.cshtml", tSmileyQuestion);
             }
-            if (tReslut != ErrorCode.SUCCESS)
+            catch (Exception ex)
             {
-                TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
-                return View("DisabledEdit");
+                Logger.LogError(ex);
+                return View("~/Views/SmileyQuestion/Edit.cshtml");
             }
-            return View("~/Views/SmileyQuestion/Edit.cshtml", tSmileyQuestion);
         }
 
         /// <summary>
@@ -557,18 +627,26 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// </returns>
         private ActionResult GetEditSliderQuestion(int id, QuestionType type, int order)
         {
-            SliderQuestion tSliderQuestion = new SliderQuestion(id);
-            ErrorCode tReslut = mQuestionManager.GetSliderQuestionByID(ref tSliderQuestion);
-            if (order != -1)
+            try
             {
-                tSliderQuestion.Order = order;
+                SliderQuestion tSliderQuestion = new SliderQuestion(id);
+                ErrorCode tReslut = mQuestionManager.GetSliderQuestionByID(ref tSliderQuestion);
+                if (order != -1)
+                {
+                    tSliderQuestion.Order = order;
+                }
+                if (tReslut != ErrorCode.SUCCESS)
+                {
+                    TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
+                    return View("DisabledEdit");
+                }
+                return View("~/Views/SliderQuestion/Edit.cshtml", tSliderQuestion);
             }
-            if (tReslut != ErrorCode.SUCCESS)
+            catch (Exception ex)
             {
-                TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
-                return View("DisabledEdit");
+                Logger.LogError(ex);
+                return View("~/Views/SliderQuestion/Edit.cshtml");
             }
-            return View("~/Views/SliderQuestion/Edit.cshtml", tSliderQuestion);
         }
 
         /// <summary>
@@ -581,18 +659,26 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// </returns>
         private ActionResult GetEditStarQuestion(int id, QuestionType type, int order)
         {
-            StarQuestion tStarQuestion = new StarQuestion(id);
-            ErrorCode tReslut = mQuestionManager.GetStarQuestionByID(ref tStarQuestion);
-            if (order != -1)
+            try
             {
-                tStarQuestion.Order = order;
+                StarQuestion tStarQuestion = new StarQuestion(id);
+                ErrorCode tReslut = mQuestionManager.GetStarQuestionByID(ref tStarQuestion);
+                if (order != -1)
+                {
+                    tStarQuestion.Order = order;
+                }
+                if (tReslut != ErrorCode.SUCCESS)
+                {
+                    TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
+                    return View("DisabledEdit");
+                }
+                return View("~/Views/StarQuestion/Edit.cshtml", tStarQuestion);
             }
-            if (tReslut != ErrorCode.SUCCESS)
+            catch (Exception ex)
             {
-                TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
-                return View("DisabledEdit");
+                Logger.LogError(ex);
+                return View("~/Views/StarQuestion/Edit.cshtml");
             }
-            return View("~/Views/StarQuestion/Edit.cshtml", tStarQuestion);
         }
 
         /// <summary>
