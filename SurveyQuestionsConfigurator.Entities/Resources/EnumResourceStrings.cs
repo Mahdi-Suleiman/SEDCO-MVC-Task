@@ -57,6 +57,7 @@ namespace SurveyQuestionsConfigurator.Entities.Resources
             Type,
             UserId,
             UserIdRequired,
+            AreYouSureYouWantToDelete
         }
     }
 }

@@ -120,6 +120,9 @@
   <data name="Arabic" xml:space="preserve">
     <value>اللغة العربية</value>
   </data>
+  <data name="AreYouSureYouWantToDelete" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد حذف هذا السؤال؟</value>
+  </data>
   <data name="BackToList" xml:space="preserve">
     <value>عودة الى القائمة</value>
   </data>
@@ -238,10 +241,10 @@
     <value>نجمة</value>
   </data>
   <data name="StartValue" xml:space="preserve">
-    <value>القيمة الابتدائية</value>
+    <value>القيمة الابتدائية لشريط التمرير</value>
   </data>
   <data name="StartValueCaption" xml:space="preserve">
-    <value>عنوان القيمة الابتدائية</value>
+    <value>عنوان القيمة الابتدائية لشريط التمرير</value>
   </data>
   <data name="StartValueCaptionRequired" xml:space="preserve">
     <value>يجب ادخال عنوان القيمة الابتدائية.</value>

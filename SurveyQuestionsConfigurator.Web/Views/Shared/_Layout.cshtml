@@ -1,6 +1,7 @@
 ﻿@{ 
     string cultureInfo = @System.Globalization.CultureInfo.CurrentCulture.Name;
     string tArabic = "ar-JO";
+    string tHrmlLangAttribute = cultureInfo == tArabic ? "ar" : "en-US";
     string tDirectionResult = cultureInfo == tArabic ? "rtl" : "ltr";
     string tCssThResult = cultureInfo == tArabic ? "right" : "left";
     string tNavbarLTR = cultureInfo == tArabic ? "navbar-right" : "";
@@ -10,7 +11,7 @@
 <!DOCTYPE html>
 <html
       dir="@tDirectionResult"
-      lang="ar"
+      lang="@tHrmlLangAttribute"
       >
 <head>
     <meta charset="utf-8" />

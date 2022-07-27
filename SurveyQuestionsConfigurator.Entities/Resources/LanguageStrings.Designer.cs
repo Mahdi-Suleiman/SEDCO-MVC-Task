@@ -70,6 +70,15 @@ namespace SurveyQuestionsConfigurator.Entities.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this question?.
+        /// </summary>
+        public static string AreYouSureYouWantToDelete {
+            get {
+                return ResourceManager.GetString("AreYouSureYouWantToDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back To List.
         /// </summary>
         public static string BackToList {

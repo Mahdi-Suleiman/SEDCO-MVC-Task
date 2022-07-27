@@ -120,6 +120,9 @@
   <data name="Arabic" xml:space="preserve">
     <value>Arabic</value>
   </data>
+  <data name="AreYouSureYouWantToDelete" xml:space="preserve">
+    <value>Are you sure you want to delete this question?</value>
+  </data>
   <data name="BackToList" xml:space="preserve">
     <value>Back To List</value>
   </data>
