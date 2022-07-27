@@ -13,7 +13,6 @@
     <thead>
 
         <tr>
-            <th scope="col"></th>
             <th>
                 @Html.DisplayNameFor(model => model.Order)
             </th>
@@ -30,7 +29,6 @@
         @foreach (var item in Model)
         {
             <tr class="toBeRemoved">
-                <th scope="row"></th>
                 <td>
                     @Html.DisplayFor(modelItem => item.Order)
                 </td>
@@ -80,7 +78,6 @@
                 pQuestionList.forEach((tQuestion, index) => {
                     $('#myTable tbody').append(`
                             <tr class="toBeRemoved">
-                                <th scope="row"></th>
                                 <td>${tQuestion.Order}</td>
                                 <td>
                                 ${cultureInfo == tEnglish ? tQuestionsType[tQuestion.Type] : tArabicQuestionsType[tQuestion.Type] }

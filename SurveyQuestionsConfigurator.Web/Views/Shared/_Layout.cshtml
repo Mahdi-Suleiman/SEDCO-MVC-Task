@@ -1,12 +1,15 @@
 ﻿@{ 
     string cultureInfo = @System.Globalization.CultureInfo.CurrentCulture.Name;
-    string rArabic = "ar-JO";
-    string tResult = cultureInfo == rArabic ? "rtl" : "ltr";
+    string tArabic = "ar-JO";
+    string tDirectionResult = cultureInfo == tArabic ? "rtl" : "ltr";
+    string tCssThResult = cultureInfo == tArabic ? "right" : "left";
+    string tNavbarLTR = cultureInfo == tArabic ? "navbar-right" : "";
+    string tNavbarRTL = cultureInfo == tArabic ? "" : "navbar-right";
 }
 
 <!DOCTYPE html>
 <html
-      dir="@tResult"
+      dir="@tDirectionResult"
       >
 <head>
     <meta charset="utf-8" />
@@ -19,32 +22,38 @@
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
 
+<style>
+        #myTable th{
+            text-align:@tCssThResult;
+        }
+        @*#myTable tr {
+            text-align:@tCssResult;
+        }*@
+</style>
 
 
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header @tNavbarLTR">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="@Url.Action("Index","Questions")" class="navbar-brand">
+                @* navbar-right *@
+                <a href="@Url.Action("Index","Questions")" class="navbar-brand ">
                     <img src="/assets/sedco_logo.png" alt="website logo" width="65" height="21" />
                 </a>
-                @*@Html.ActionLink("Survey Questions Configurator", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "background-image:url('/assets/sedco_logo.png')" })*@
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-            <li>@Html.ActionLink("About", "About", "Home")</li>
-            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+            @* navbar-right *@
+            <div class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav @tNavbarLTR">
                     <li>@Html.ActionLink(SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Questions, "Index", "Questions")</li>
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav @tNavbarRTL">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <img src="~/assets/settings.png" alt="settings" height="20" width="20" />
@@ -52,26 +61,30 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href=@Url.Action("Index","Connection")>@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Connection</a></li>
-                            @*<li><a href="#">Langauge</a></li>*@
                         </ul>
                     </li>
                 </ul>
 
 
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav @tNavbarRTL">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <img src="~/assets/language.png" alt="langauge" height="20" width="20" />
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("English", "Language", new {language = "en-US"})">
+                        <ul class="dropdown-menu" dir="ltr">
+                            <li>
+                                <a href="@Url.Action("Index", "Language", new {language = "en-US"})">
                                     <span style="margin: 4px"><img src="~/assets/english.png" alt="langauge" height="20" width="20" /></span>
                                     @SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.English
-                                </a></li>
-                            <li><a href="@Url.Action("Arabic", "Language", new {language = "ar-JO"})"><span style="margin: 4px"><img src="~/assets/arabic.png" alt="langauge" height="20" width="20" /></span>
-                                @SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Arabic
-                                </a></li>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Language", new {language = "ar-JO"})">
+                                    <span style="margin: 4px"><img src="~/assets/arabic.png" alt="langauge" height="20" width="20" /></span>
+                                    @SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Arabic
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

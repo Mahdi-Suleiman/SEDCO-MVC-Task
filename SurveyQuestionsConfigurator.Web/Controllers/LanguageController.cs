@@ -1,4 +1,5 @@
-﻿using SurveyQuestionsConfigurator.QuestionLogic;
+﻿using SurveyQuestionsConfigurator.CommonHelpers;
+using SurveyQuestionsConfigurator.QuestionLogic;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,44 +14,44 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 {
     public class LanguageController : Controller
     {
-        public ActionResult Arabic(string language)
+        Configuration mConfigFile;
+        KeyValueConfigurationCollection mSettings;
+        string mDefaultCultureSectionName;
+
+        public LanguageController()
         {
-            CultureInfo mDefaultCulture = new CultureInfo(ConfigurationManager.AppSettings["DefaultCulture"]);
-            Configuration tConfigFile = WebConfigurationManager.OpenWebConfiguration("~");
-            KeyValueConfigurationCollection tSettings = tConfigFile.AppSettings.Settings;
-
-
-            tSettings = tConfigFile.AppSettings.Settings;
-            string mDefaultCultureString = "DefaultCulture";
-
-            tSettings[mDefaultCultureString].Value = language;
-            tConfigFile.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection(tConfigFile.AppSettings.SectionInformation.Name);
-
-            return Redirect(HttpContext.Request.Headers["Referer"]);
+            try
+            {
+                mConfigFile = WebConfigurationManager.OpenWebConfiguration("~");
+                mSettings = mConfigFile.AppSettings.Settings;
+                mDefaultCultureSectionName = "DefaultCulture";
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                throw;
+            }
         }
-        public ActionResult English(string language)
+        /// <summary>
+        /// GET: Language
+        /// Change the langauge based on the passed "language" parameter
+        /// </summary>
+        public ActionResult Index(string language)
         {
-            CultureInfo mDefaultCulture = new CultureInfo(ConfigurationManager.AppSettings["DefaultCulture"]);
-            Configuration tConfigFile = WebConfigurationManager.OpenWebConfiguration("~");
-            KeyValueConfigurationCollection tSettings = tConfigFile.AppSettings.Settings;
+            try
+            {
+                mSettings[mDefaultCultureSectionName].Value = language;
+                mConfigFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(mConfigFile.AppSettings.SectionInformation.Name);
 
-
-            tSettings = tConfigFile.AppSettings.Settings;
-            string mDefaultCultureString = "DefaultCulture";
-
-            tSettings[mDefaultCultureString].Value = language;
-            tConfigFile.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection(tConfigFile.AppSettings.SectionInformation.Name);
-
-            //Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
-            return Redirect(HttpContext.Request.Headers["Referer"]);
-        }
-        // GET: Language
-        public ActionResult Index()
-        {
-            return View();
+                //Redirect back to where the request came from
+                return Redirect(HttpContext.Request.Headers["Referer"]);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                return Redirect(HttpContext.Request.Headers["Referer"]);
+            }
         }
 
         // GET: Language/Details/5
