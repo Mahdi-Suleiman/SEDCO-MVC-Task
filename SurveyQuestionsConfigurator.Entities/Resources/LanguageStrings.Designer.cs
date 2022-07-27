@@ -286,6 +286,15 @@ namespace SurveyQuestionsConfigurator.Entities.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Question order already in use, Try using another one..
+        /// </summary>
+        public static string OrderAlreadyInUse {
+            get {
+                return ResourceManager.GetString("OrderAlreadyInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order is required.
         /// </summary>
         public static string OrderRequired {

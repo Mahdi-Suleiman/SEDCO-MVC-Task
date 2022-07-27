@@ -116,7 +116,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
                         if (firstTimeCheck) /// refresh data when DB is empty and both lists are empty and equal
                         {
                             firstTimeCheck = false;
-                            //refreshDataEvent?.Invoke(tResult, tList);
+                            refreshDataEvent?.Invoke(tResult, tList);
                         }
 
                         Thread.Sleep(AutoRefreshTimer);
@@ -597,8 +597,8 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
             try
             {
                 if (CheckCommonQuestionInputFields(pSliderQuestion) == ErrorCode.SUCCESS)
-                    if (!String.IsNullOrWhiteSpace(pSliderQuestion.StartValueCaption) && pSliderQuestion.StartValueCaption.Length < 100)
-                        if (!String.IsNullOrWhiteSpace(pSliderQuestion.EndValueCaption) && pSliderQuestion.EndValueCaption.Length < 100)
+                    if (!String.IsNullOrWhiteSpace(pSliderQuestion.StartValueCaption) && pSliderQuestion.StartValueCaption.Length <= 100)
+                        if (!String.IsNullOrWhiteSpace(pSliderQuestion.EndValueCaption) && pSliderQuestion.EndValueCaption.Length <= 100)
                             if (pSliderQuestion.StartValue < pSliderQuestion.EndValue)
                                 return ErrorCode.SUCCESS;
 

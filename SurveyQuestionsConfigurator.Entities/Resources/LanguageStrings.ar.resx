@@ -198,6 +198,9 @@
   <data name="Order" xml:space="preserve">
     <value>الترتيب</value>
   </data>
+  <data name="OrderAlreadyInUse" xml:space="preserve">
+    <value>هذا الترتيب قيد الاستعمال بالفعل، حاول استخدام ترتيب اخر.</value>
+  </data>
   <data name="OrderRequired" xml:space="preserve">
     <value>يجب ادخال الترتيب.</value>
   </data>

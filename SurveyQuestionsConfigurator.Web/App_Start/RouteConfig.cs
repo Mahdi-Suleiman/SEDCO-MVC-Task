@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SurveyQuestionsConfigurator.CommonHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,16 +12,21 @@ namespace SurveyQuestionsConfigurator.Web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            //string tDefaultCulture = ConfigurationManager.AppSettings["DefaultCulture"];
+            try
+            {
+                routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Questions", action = "Index", id = UrlParameter.Optional }
+                routes.MapRoute(
+                    name: "Default",
+                    url: "{controller}/{action}/{id}",
+                    defaults: new { controller = "Questions", action = "Index", id = UrlParameter.Optional }
                 //defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                );
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+            }
         }
     }
 }

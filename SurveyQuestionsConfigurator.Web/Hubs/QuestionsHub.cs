@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.SignalR;
+using SurveyQuestionsConfigurator.CommonHelpers;
 using SurveyQuestionsConfigurator.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,20 +16,15 @@ namespace SurveyQuestionsConfigurator.Web.Hubs
     {
         public void Refresh(List<Question> pQuestionList)
         {
-            Clients.All.RefreshQuestionsList(pQuestionList);
+            try
+            {
+                Clients.All.RefreshQuestionsList(pQuestionList);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                throw;
+            }
         }
-
-        //    public void Send(string name, string message)
-        //    {
-        //        //Clients.All.hello();
-        //        Clients.All.addNewMessageToPage();
-        //    }
-
-        //    public void Send(Object pObject)
-        //    {
-        //        //Clients.All.hello();
-        //        Clients.All.addNewMessageToPage(pObject);
-        //    }
-        //}
     }
 }

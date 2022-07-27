@@ -293,7 +293,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                         case ErrorCode.SUCCESS:
                             return RedirectToAction("Index");
                         case ErrorCode.VALIDATION:
-                            return RedirectToAction("Edit", new { id = id, type = type, order = tOrder, ModelErrorName = "Order", ModelErrorMessage = "Question order already in use, Try using another one." });
+                            return RedirectToAction("Edit", new { id = id, type = type, order = tOrder, ModelErrorName = $"{ResourceStrings.Order}", ModelErrorMessage = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}" });
+                        default:
+                            return RedirectToAction("Edit", new { id = id, type = type, order = tOrder, ModelErrorName = $"{ResourceStrings.Order}", ModelErrorMessage = $"{mLocalResourceManager.GetString($"{ResourceStrings.SomethingWentWrongError}")}" });
                     }
                 }
                 return RedirectToAction("Edit", new { id = id, type = type });

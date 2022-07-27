@@ -22,28 +22,43 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
         public ConnectionController()
         {
-            mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(LanguageStrings).Assembly);
-            //mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(Controller).Assembly); //intintially cause exception
-            mBuilder = new SqlConnectionStringBuilder();
-            mConnectionSettingsManager = new ConnectionSettingsManager();
+            try
+            {
+                mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(LanguageStrings).Assembly);
+                //mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(Controller).Assembly); //intintially cause exception
+                mBuilder = new SqlConnectionStringBuilder();
+                mConnectionSettingsManager = new ConnectionSettingsManager();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+            }
         }
 
         // GET: Connection
         public ActionResult Index(string message = null, string error = null)
         {
-            if (!string.IsNullOrEmpty(message))
+            try
             {
-                TempData[$"{ResourceStrings.Message}"] = message;
-            }
+                if (!string.IsNullOrEmpty(message))
+                {
+                    TempData[$"{ResourceStrings.Message}"] = message;
+                }
 
-            if (!string.IsNullOrEmpty(error))
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData[$"{ResourceStrings.Error}"] = error;
+                }
+
+                mBuilder = mConnectionSettingsManager.GetConnectionString();
+                ConnectionSetting tConnectionSettings = new ConnectionSetting(mBuilder);
+                return View(tConnectionSettings);
+            }
+            catch (Exception ex)
             {
-                TempData[$"{ResourceStrings.Error}"] = error;
+                Logger.LogError(ex);
+                return View();
             }
-
-            mBuilder = mConnectionSettingsManager.GetConnectionString();
-            ConnectionSetting tConnectionSettings = new ConnectionSetting(mBuilder);
-            return View(tConnectionSettings);
         }
 
         // POST: Connection/Edit/5
