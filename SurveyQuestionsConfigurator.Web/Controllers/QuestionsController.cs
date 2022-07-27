@@ -33,7 +33,6 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 QuestionManager.refreshDataEvent += Refresh;
                 mQuestionManager.WatchForChanges(); /// Subscribe to data changes event
                 mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(LanguageStrings).Assembly);
-
             }
             catch (Exception ex)
             {

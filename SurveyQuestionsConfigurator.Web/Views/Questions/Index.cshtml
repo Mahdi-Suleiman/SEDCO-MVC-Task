@@ -2,7 +2,12 @@
 
 @{
     ViewBag.Title = $"{SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Questions}";
-}
+
+    string cultureInfo = System.Globalization.CultureInfo.CurrentCulture.Name;
+    string tArabic = "ar-JO";
+    bool tIsArabic = (cultureInfo == tArabic ? true : false);
+    string[] tArabicQuestionType = {"وجه مبتسم","شريط","نجمة"};
+    }
 
 <h2>@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Questions</h2>
 @*badge text-bg-primary*@
@@ -17,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Order) &#8597;
             </th>
             <th onclick="w3.sortHTML('#myTable', '.toBeRemoved', 'td:nth-child(2)')" style="cursor:pointer">
-                @Html.DisplayNameFor(model => model.Type) &#8597; 
+                @Html.DisplayNameFor(model => model.Type) &#8597;
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Text)
@@ -33,7 +38,26 @@
                     @Html.DisplayFor(modelItem => item.Order)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
+                        @if (tIsArabic)
+                        {
+                            switch (item.Type)
+                            {
+                                case SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SMILEY:
+                                    @Html.Raw(tArabicQuestionType[0]);
+                                    break;
+                                case SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SLIDER:
+                                    @Html.Raw(tArabicQuestionType[1]);
+                                    break;
+                                case SurveyQuestionsConfigurator.Entities.Generic.QuestionType.STAR:
+                                    @Html.Raw(tArabicQuestionType[2]);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Type);
+                        }
+                    @*@Html.DisplayFor(modelItem => item.Type)*@
                 </td>
                 <td>
                     @Html.TextAreaFor(modelItem => item.Text, htmlAttributes: new { @class = "form-control", rows = "3", style = "min-width: 80%;resize:vertical", @readonly = "true" })
