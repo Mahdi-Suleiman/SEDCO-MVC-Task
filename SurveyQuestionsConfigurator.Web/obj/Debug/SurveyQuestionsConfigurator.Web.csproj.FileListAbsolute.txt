@@ -95,11 +95,6 @@ C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.W
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\obj\Debug\SurveyQuestionsConfigurator.Web.csproj.CopyComplete
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\obj\Debug\SurveyQuestionsConfigurator.Web.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\obj\Debug\SurveyQuestionsConfigurator.Web.pdb
-C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\obj\Debug\SurveyQuestionsConfigurator.Web.Resources.LanguageStrings.resources
-C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\obj\Debug\SurveyQuestionsConfigurator.Web.csproj.GenerateResource.cache
-C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\ar\SurveyQuestionsConfigurator.Web.resources.dll
-C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\obj\Debug\SurveyQuestionsConfigurator.Web.Resources.LanguageStrings.ar.resources
-C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\obj\Debug\ar\SurveyQuestionsConfigurator.Web.resources.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\roslyn\System.Buffers.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\roslyn\System.Memory.dll
 C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\bin\roslyn\System.Numerics.Vectors.dll

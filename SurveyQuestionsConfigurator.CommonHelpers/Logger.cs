@@ -24,6 +24,10 @@ namespace SurveyQuestionsConfigurator.CommonHelpers
                 /// The process cannot access the file 'LogFile.txt' because it is being used by another process
                 lock (mBalanceLock)
                 {
+                    ///create directory if doens't exist
+                    System.IO.FileInfo file = new System.IO.FileInfo($"{mExeFolder}/logs/");
+                    file.Directory.Create(); // If the directory already exists, this method does nothing.
+
                     using (StreamWriter sw = new StreamWriter($"{mExeFolder}/logs/LogFile.txt", append: true))
                     {
                         sw.WriteLine($@"

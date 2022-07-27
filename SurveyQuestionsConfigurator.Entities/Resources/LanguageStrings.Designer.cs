@@ -214,20 +214,20 @@ namespace SurveyQuestionsConfigurator.Entities.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Error.
         /// </summary>
-        public static string GeneralError {
+        public static string Error {
             get {
-                return ResourceManager.GetString("GeneralError", resourceCulture);
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Message.
         /// </summary>
-        public static string GeneralMessage {
+        public static string Message {
             get {
-                return ResourceManager.GetString("GeneralMessage", resourceCulture);
+                return ResourceManager.GetString("Message", resourceCulture);
             }
         }
         

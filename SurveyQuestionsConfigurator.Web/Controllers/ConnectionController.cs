@@ -1,13 +1,16 @@
 ﻿using SurveyQuestionsConfigurator.CommonHelpers;
 using SurveyQuestionsConfigurator.Entities;
+using SurveyQuestionsConfigurator.Entities.Resources;
 using SurveyQuestionsConfigurator.QuestionLogic;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using static SurveyQuestionsConfigurator.Entities.Generic;
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
 
 namespace SurveyQuestionsConfigurator.Web.Controllers
 {
@@ -15,9 +18,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
     {
         private SqlConnectionStringBuilder mBuilder; /// passed to ConnectionSettingsManager (Busniess Logic Layer)
         private readonly ConnectionSettingsManager mConnectionSettingsManager;
+        private readonly ResourceManager mLocalResourceManager;
 
         public ConnectionController()
         {
+            mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(LanguageStrings).Assembly);
+            //mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(Controller).Assembly); //intintially cause exception
             mBuilder = new SqlConnectionStringBuilder();
             mConnectionSettingsManager = new ConnectionSettingsManager();
         }
@@ -38,40 +44,6 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             mBuilder = mConnectionSettingsManager.GetConnectionString();
             ConnectionSetting tConnectionSettings = new ConnectionSetting(mBuilder);
             return View(tConnectionSettings);
-        }
-
-        // GET: Connection/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Connection/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Connection/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Connection/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
         }
 
         // POST: Connection/Edit/5
@@ -101,19 +73,22 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 if (tResult == ErrorCode.SUCCESS)
                 {
                     //TempData["Message"] = "Connection Settings Saved Successfully";
-                    return RedirectToAction("Index", new { message = "Connection Settings Saved Successfully." });
+                    return RedirectToAction("Index", new { message = $"{ResourceStrings.SettingsSavedMessage}" });
+                    //return RedirectToAction("Index", new { message = "Connection Settings Saved Successfully." });
                 }
                 else
                 {
                     //TempData["Error"] = "Saving failed, please try again";
-                    return RedirectToAction("Index", new { error = "Saving failed, please try again" });
+                    return RedirectToAction("Index", new { error = $"{ResourceStrings.ConnectionFailedError}" });
+                    //return RedirectToAction("Index", new { error = "Saving failed, please try again" });
                 }
 
                 //return RedirectToAction("Index", new { message = "Connection Settings Saved Successfully" });
             }
             catch
             {
-                return RedirectToAction("Index", new { error = "Saving failed, please try again" });
+                return RedirectToAction("Index", new { error = $"{ResourceStrings.ConnectionFailedError}" });
+                //return RedirectToAction("Index", new { error = "Saving failed, please try again" });
             }
         }
 
@@ -124,12 +99,14 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 ErrorCode tResult = mConnectionSettingsManager.CheckConnectivity(pBuilder);
                 if (tResult == ErrorCode.SUCCESS)
                 {
-                    TempData["Message"] = "Connection was successful!";
+                    //TempData["Message"] = "Connection was successful!";
+                    TempData[$"{ResourceStrings.Message}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.SuccessfulConnectionMessage}")}";
+
                 }
                 else
                 {
-                    TempData["Error"] = "Connection Failed!";
-
+                    //TempData["Error"] = "Connection Failed!";
+                    TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.ConnectionFailedError}")}";
                 }
                 return RedirectToAction("Index");
             }
@@ -137,28 +114,6 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             {
                 Logger.LogError(ex);
                 return RedirectToAction("Index");
-            }
-        }
-
-        // GET: Connection/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Connection/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
             }
         }
     }

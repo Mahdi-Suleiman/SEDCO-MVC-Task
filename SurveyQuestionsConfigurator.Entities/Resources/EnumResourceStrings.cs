@@ -26,8 +26,8 @@ namespace SurveyQuestionsConfigurator.Entities.Resources
             EndValueError,
             EndValueRequired,
             English,
-            GeneralError,
-            GeneralMessage,
+            Error,
+            Message,
             NumberOfSmileyFaces,
             NumberOfSmileyFacesRequired,
             NumberOfStars,
@@ -58,12 +58,5 @@ namespace SurveyQuestionsConfigurator.Entities.Resources
             UserId,
             UserIdRequired,
         }
-
-        public enum CultureName
-        {
-            en,
-            ar
-        }
-
     }
 }
