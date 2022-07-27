@@ -1,14 +1,17 @@
 ﻿using Microsoft.AspNet.SignalR;
 using SurveyQuestionsConfigurator.CommonHelpers;
 using SurveyQuestionsConfigurator.Entities;
+using SurveyQuestionsConfigurator.Entities.Resources;
 using SurveyQuestionsConfigurator.QuestionLogic;
 using SurveyQuestionsConfigurator.Web.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using static SurveyQuestionsConfigurator.Entities.Generic;
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
 
 namespace SurveyQuestionsConfigurator.Web.Controllers
 {
@@ -17,6 +20,8 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
         #region Properties & Attributes
         private readonly QuestionManager mQuestionManager;
+        private readonly ResourceManager mLocalResourceManager;
+
         #endregion
 
         #region Constructor
@@ -27,6 +32,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 mQuestionManager = new QuestionManager();
                 QuestionManager.refreshDataEvent += Refresh;
                 mQuestionManager.WatchForChanges(); /// Subscribe to data changes event
+                mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(LanguageStrings).Assembly);
 
             }
             catch (Exception ex)
@@ -240,7 +246,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                TempData["Error"] = "Something went wrong, please try again.";
+                TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.SomethingWentWrongError}")}";
                 return RedirectToAction("Index");
             }
         }
@@ -364,7 +370,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                     case ErrorCode.SUCCESS:
                         return RedirectToAction("Index");
                     default:
-                        TempData["Error"] = "Something wrong happened, please try again.";
+                        TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.SomethingWentWrongError}")}";
                         return RedirectToAction("Index");
                 }
             }
@@ -474,7 +480,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 if (tEndValue < tStartValue)
                 {
                     //ModelState.AddModelError("EndValue", "End value must be larger than start value");
-                    TempData["Error"] = "End value must be larger than start value";
+                    TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
                 }
 
                 return tResult;
@@ -534,7 +540,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
             if (tReslut != ErrorCode.SUCCESS)
             {
-                TempData["Error"] = "This Question doesn't exist, please refresh and try again.";
+                TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
                 return View("DisabledEdit");
             }
             return View("~/Views/SmileyQuestion/Edit.cshtml", tSmileyQuestion);
@@ -558,7 +564,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
             if (tReslut != ErrorCode.SUCCESS)
             {
-                TempData["Error"] = "This Question doesn't exist, please refresh and try again.";
+                TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
                 return View("DisabledEdit");
             }
             return View("~/Views/SliderQuestion/Edit.cshtml", tSliderQuestion);
@@ -582,7 +588,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
             if (tReslut != ErrorCode.SUCCESS)
             {
-                TempData["Error"] = "This Question doesn't exist, please refresh and try again.";
+                TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
                 return View("DisabledEdit");
             }
             return View("~/Views/StarQuestion/Edit.cshtml", tStarQuestion);
@@ -646,7 +652,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
                 if (tEndValue < tStartValue)
                 {
-                    TempData["Error"] = "End value must be larger than start value";
+                    TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
                 }
 
                 return tResult;

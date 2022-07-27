@@ -33,12 +33,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         {
             if (!string.IsNullOrEmpty(message))
             {
-                TempData[nameof(message)] = message;
+                TempData[$"{ResourceStrings.Message}"] = message;
             }
 
             if (!string.IsNullOrEmpty(error))
             {
-                TempData[nameof(error)] = error;
+                TempData[$"{ResourceStrings.Error}"] = error;
             }
 
             mBuilder = mConnectionSettingsManager.GetConnectionString();

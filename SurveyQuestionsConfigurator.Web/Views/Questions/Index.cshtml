@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SurveyQuestionsConfigurator.Entities.Question>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = $"{SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Questions}";
 }
 
 <h2>@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Questions</h2>
@@ -14,10 +14,10 @@
 
         <tr>
             <th onclick="w3.sortHTML('#myTable', '.toBeRemoved', 'td:nth-child(1)')" style="cursor:pointer">
-                @Html.DisplayNameFor(model => model.Order)
+                @Html.DisplayNameFor(model => model.Order) &#8597;
             </th>
             <th onclick="w3.sortHTML('#myTable', '.toBeRemoved', 'td:nth-child(2)')" style="cursor:pointer">
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.DisplayNameFor(model => model.Type) &#8597; 
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Text)
