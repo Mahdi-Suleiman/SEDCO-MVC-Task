@@ -261,6 +261,9 @@
   <data name="SuccessfulConnectionMessage" xml:space="preserve">
     <value>نجح الاتصال.</value>
   </data>
+  <data name="SurveyQuestionsConfigurator" xml:space="preserve">
+    <value>منسق اسئلة الاستبيانات</value>
+  </data>
   <data name="TechnicalIssuesError" xml:space="preserve">
     <value>الموقع تحت الصيانة ، يرجى التحديث والمحاولة مرة أخرى.</value>
   </data>

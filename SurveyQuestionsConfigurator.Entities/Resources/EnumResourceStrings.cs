@@ -63,7 +63,8 @@ namespace SurveyQuestionsConfigurator.Entities.Resources
             AreYouSureYouWantToDelete,
             OrderAlreadyInUse,
             TechnicalIssuesError,
-            Refresh
+            Refresh,
+            SurveyQuestionsConfigurator
         }
     }
 }

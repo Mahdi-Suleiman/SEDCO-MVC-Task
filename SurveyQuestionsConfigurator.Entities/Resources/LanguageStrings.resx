@@ -255,6 +255,9 @@
   <data name="SuccessfulConnectionMessage" xml:space="preserve">
     <value>Connection was successful.</value>
   </data>
+  <data name="SurveyQuestionsConfigurator" xml:space="preserve">
+    <value>Survey Questions Configurator</value>
+  </data>
   <data name="TechnicalIssuesError" xml:space="preserve">
     <value>Site is under maintenance, please refresh and try again.</value>
   </data>

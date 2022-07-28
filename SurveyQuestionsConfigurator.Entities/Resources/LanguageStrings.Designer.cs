@@ -475,6 +475,15 @@ namespace SurveyQuestionsConfigurator.Entities.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Survey Questions Configurator.
+        /// </summary>
+        public static string SurveyQuestionsConfigurator {
+            get {
+                return ResourceManager.GetString("SurveyQuestionsConfigurator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Site is under maintenance, please refresh and try again..
         /// </summary>
         public static string TechnicalIssuesError {
