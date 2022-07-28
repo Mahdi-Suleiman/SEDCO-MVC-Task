@@ -14,10 +14,14 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 {
     public class LanguageController : Controller
     {
+        #region Properties & Attributes
         Configuration mConfigFile;
         KeyValueConfigurationCollection mSettings;
         string mDefaultCultureSectionName;
 
+        #endregion
+
+        #region Constructor
         public LanguageController()
         {
             try
@@ -32,6 +36,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
+        #endregion
+
+        #region Actions
         /// <summary>
         /// GET: Language
         /// Change the langauge based on the passed "language" parameter
@@ -57,5 +64,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 return Redirect(HttpContext.Request.Headers["Referer"]);
             }
         }
+
+        #endregion
     }
 }

@@ -16,10 +16,15 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 {
     public class ConnectionController : Controller
     {
+        #region Properties & Attributes
+
         private SqlConnectionStringBuilder mBuilder; /// passed to ConnectionSettingsManager (Busniess Logic Layer)
         private readonly ConnectionSettingsManager mConnectionSettingsManager;
         private readonly ResourceManager mLocalResourceManager;
 
+        #endregion
+
+        #region Constructor
         public ConnectionController()
         {
             try
@@ -35,6 +40,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
+        #endregion
+
+        #region Actions
         /// <summary>
         /// GET: Connection
         /// Get the connectino settings from .config file, fill the ConnectionSetting model and pass it to the view
@@ -113,6 +121,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
+        #endregion
+
+        #region Methods
         /// <summary>
         /// Checks if the entered connection settings are valid
         /// </summary>
@@ -141,5 +152,8 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        #endregion
+
     }
 }

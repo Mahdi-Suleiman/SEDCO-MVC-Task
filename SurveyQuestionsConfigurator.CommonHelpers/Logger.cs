@@ -56,6 +56,10 @@ namespace SurveyQuestionsConfigurator.CommonHelpers
                 mBalanceLock2 = new object();
                 lock (mBalanceLock2)
                 {
+                    ///create directory if doens't exist
+                    System.IO.FileInfo file = new System.IO.FileInfo($"{mExeFolder}/logs/");
+                    file.Directory.Create(); // If the directory already exists, this method does nothing.
+
                     using (StreamWriter sw = new StreamWriter($"{mExeFolder}/logs/LogFile.txt", append: true))
                     {
                         sw.WriteLine($@"
