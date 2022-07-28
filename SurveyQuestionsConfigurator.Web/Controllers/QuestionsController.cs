@@ -228,7 +228,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                         case ErrorCode.SUCCESS:
                             return RedirectToAction("Index");
                         case ErrorCode.VALIDATION:
-                            ModelState.AddModelError("Order", "Question order already in use, Try using another one.");
+                            ModelState.AddModelError($"{ResourceStrings.Order}", mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}"));
                             break;
                         default:
                             return View("~/Views/Shared/Offline.cshtml");
