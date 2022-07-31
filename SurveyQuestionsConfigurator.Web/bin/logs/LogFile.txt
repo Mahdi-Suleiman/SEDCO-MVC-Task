@@ -1282,3 +1282,67 @@ Error Number:2,State:0,Class:20
    at System.Convert.ToInt32(String value)
    at SurveyQuestionsConfigurator.Web.Controllers.QuestionsController.AddSliderQuestion(FormCollection collection, String& pSliderModelError, String& pSliderModelErrorMessaage) in C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\Controllers\QuestionsController.cs:line 576
 
+
+ -------------- (7/31/2022 3:55:08 PM) --------------
+
+-Exception Type: System.FormatException
+-Exception Call Site: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+-Exception Short Message: Input string was not in a correct format.
+-Exception Long Message: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at SurveyQuestionsConfigurator.Web.Controllers.QuestionsController.AddSmileyQuestion(FormCollection collection) in C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\Controllers\QuestionsController.cs:line 561
+-Exception Stack Trace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at SurveyQuestionsConfigurator.Web.Controllers.QuestionsController.AddSmileyQuestion(FormCollection collection) in C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\Controllers\QuestionsController.cs:line 561
+
+
+ -------------- (7/31/2022 4:01:29 PM) --------------
+
+-Exception Type: System.FormatException
+-Exception Call Site: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+-Exception Short Message: Input string was not in a correct format.
+-Exception Long Message: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at SurveyQuestionsConfigurator.Web.Controllers.QuestionsController.AddSmileyQuestion(FormCollection collection) in C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\Controllers\QuestionsController.cs:line 561
+-Exception Stack Trace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at SurveyQuestionsConfigurator.Web.Controllers.QuestionsController.AddSmileyQuestion(FormCollection collection) in C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\Controllers\QuestionsController.cs:line 561
+
+
+ -------------- (7/31/2022 4:08:43 PM) --------------
+
+-Exception Type: System.FormatException
+-Exception Call Site: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+-Exception Short Message: Input string was not in a correct format.
+-Exception Long Message: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at SurveyQuestionsConfigurator.Web.Controllers.SmileyQuestionController.Create(FormCollection collection) in C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\Controllers\SmileyQuestionController.cs:line 51
+-Exception Stack Trace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at SurveyQuestionsConfigurator.Web.Controllers.SmileyQuestionController.Create(FormCollection collection) in C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\Controllers\SmileyQuestionController.cs:line 51
+
+
+ -------------- (7/31/2022 4:08:48 PM) --------------
+
+-Exception Type: System.FormatException
+-Exception Call Site: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
+-Exception Short Message: Input string was not in a correct format.
+-Exception Long Message: System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at SurveyQuestionsConfigurator.Web.Controllers.SmileyQuestionController.Create(FormCollection collection) in C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\Controllers\SmileyQuestionController.cs:line 51
+-Exception Stack Trace:    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at SurveyQuestionsConfigurator.Web.Controllers.SmileyQuestionController.Create(FormCollection collection) in C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Web\Controllers\SmileyQuestionController.cs:line 51
+

@@ -1,0 +1,34 @@
+﻿@model SurveyQuestionsConfigurator.Entities.SmileyQuestion
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.Partial("_CreateQuestion", @Model)
+
+    @Html.Partial("_CreateSmileyQuestion", @Model)
+
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.Partial("_BackToListPartial")
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

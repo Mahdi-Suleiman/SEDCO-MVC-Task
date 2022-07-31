@@ -29,13 +29,11 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         private readonly string mEditSliderQuestionViewName;
         private readonly string mEditStarQuestionViewName;
 
-        enum KeyConstants
+        enum ControllerNameConstants
         {
-            ServerName,
-            DatabaseName,
-            UserId,
-            Password,
-            Checkconnectivity
+            SmileyQuestion,
+            SliderQuestion,
+            StarQuestion
         }
 
         enum ActionNameConstants
@@ -43,6 +41,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             Index,
             Edit,
             DisabledEdit,
+            Create,
             _CreateSmileyQuestion,
             _CreateSliderQuestion,
             _CreateStarQuestion
@@ -203,23 +202,26 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// View
         /// </returns>
         [HttpGet]
-        public ActionResult Create(FormCollection collection = null, string extraUselessParamToRemoveSameParameterConflict = null)
+        public ActionResult Create(QuestionType type = QuestionType.SMILEY)
         {
             try
             {
-                if (collection == null)
+                switch (type)
                 {
-                    return View();
-                }
-                else
-                {
-                    return View();
+                    case QuestionType.SMILEY:
+                    default:
+                        return RedirectToAction(nameof(ActionNameConstants.Create), nameof(ControllerNameConstants.SmileyQuestion));
+                    case QuestionType.SLIDER:
+                        return RedirectToAction(nameof(ActionNameConstants.Create), nameof(ControllerNameConstants.SliderQuestion));
+                    case QuestionType.STAR:
+                        return RedirectToAction(nameof(ActionNameConstants.Create), nameof(ControllerNameConstants.StarQuestion));
+
                 }
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                return View();
+                return RedirectToAction(nameof(ActionNameConstants.Create), nameof(ControllerNameConstants.SmileyQuestion));
             }
         }
 

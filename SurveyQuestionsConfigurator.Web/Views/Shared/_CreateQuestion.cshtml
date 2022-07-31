@@ -16,61 +16,79 @@
 
 <div class="form-group">
     <div class="col-md-12">
-    @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "" })
-    @Html.EditorFor(model => model.Order, new { htmlAttributes = new { @class = "form-control", min = "1", max = "9999999" } })
-    @Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
+        @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "" })
+        @Html.EditorFor(model => model.Order, new { htmlAttributes = new { @class = "form-control", min = "1", max = "9999999" } })
+        @Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
     </div>
 </div>
 
 <div class="form-group">
     <div class="col-md-12">
-    @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "" })
-    @Html.TextAreaFor(model => model.Text, htmlAttributes: new { @class = "form-control", rows = "3", style = "resize:vertical;", maxlength = "3999" })
-    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-md-12">
-    @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "" })
-    @*@Html.EnumDropDownListFor(model => model.Type, htmlAttributes: new { @class = "form-control", @onchange = "QuestionTypeChanged()" })*@
-    <select class="form-control valid" data-val="true" data-val-required="The Type field is required." id="Type" name="Type" onchange="QuestionTypeChanged()" aria-describedby="Type-error" aria-invalid="false">
-        <option selected="selected" value="0">@tSmiley</option>
-        <option value="1">@tSlider</option>
-        <option value="2">@tStar</option>
-    </select>
-    @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+        @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "" })
+        @Html.TextAreaFor(model => model.Text, htmlAttributes: new { @class = "form-control", rows = "3", style = "resize:vertical;", maxlength = "3999" })
+        @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
     </div>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
 
+
+
+}
 <script>
     ///Change partial view on selection change
     function QuestionTypeChanged() {
-        const tActionNames = ["/Questions/PartialSmiley", "/Questions/PartialSlider", "/Questions/PartialStar"];
+        const tActionNames = ["/SmileyQuestion/Create", "/SliderQuestion/Create", "/StarQuestion/Create"];
         const sel = document.getElementById("Type"); //dropdownlist
         const text = sel.selectedIndex;
         switch (text) {
-            case 0: {
-                $("#partialView").load(tActionNames[0]);
-            }
-             break;
-            case 1: {
-                $("#partialView").load(tActionNames[1]);
-            }
-             break;
-            case 2: {
-                $("#partialView").load(tActionNames[2]);
-            }
-             break;
+            case 0:
             default: {
-                $("#partialView").load(tActionNames[0]);
-                }
-             break;
+                window.location.pathname = tActionNames[0];
+            }
+                break;
+            case 1: {
+                window.location.pathname = tActionNames[1];
+            }
+                break;
+            case 2: {
+                window.location.pathname = tActionNames[2];
+            }
+                break;
+            //default: {
+            //    window.location.pathname = tActionNames[0];
+            //}
+            //    break;
         }
     }
 
 </script>
+@*<script>
+        ///Change partial view on selection change
+        function QuestionTypeChanged() {
+            const tActionNames = ["/Questions/PartialSmiley", "/Questions/PartialSlider", "/Questions/PartialStar"];
+            const sel = document.getElementById("Type"); //dropdownlist
+            const text = sel.selectedIndex;
+            switch (text) {
+                case 0: {
+                    $("#partialView").load(tActionNames[0]);
+                }
+                    break;
+                case 1: {
+                    $("#partialView").load(tActionNames[1]);
+                }
+                    break;
+                case 2: {
+                    $("#partialView").load(tActionNames[2]);
+                }
+                    break;
+                default: {
+                    $("#partialView").load(tActionNames[0]);
+                }
+                    break;
+            }
+        }
+
+    </script>*@
 
