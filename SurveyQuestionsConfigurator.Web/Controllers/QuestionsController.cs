@@ -22,6 +22,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         private readonly QuestionManager mQuestionManager;
         private readonly ResourceManager mLocalResourceManager;
         private readonly string mOfflineViewName;
+        private readonly string mSmileyQuestionDetailsViewName;
+        private readonly string mSliderQuestionDetailsViewName;
+        private readonly string mStartQuestionDetailsViewName;
+        private readonly string mEditSmileyQuestionViewName;
+        private readonly string mEditSliderQuestionViewName;
+        private readonly string mEditStarQuestionViewName;
 
         enum KeyConstants
         {
@@ -34,7 +40,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
         enum ActionNameConstants
         {
-            Index
+            Index,
+            Edit,
+            DisabledEdit,
+            _CreateSmileyQuestion,
+            _CreateSliderQuestion,
+            _CreateStarQuestion
         }
 
         #endregion
@@ -49,6 +60,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 mQuestionManager.WatchForChanges(); /// Subscribe to data changes event
                 mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(LanguageStrings).Assembly);
                 mOfflineViewName = "~/Views/Shared/Offline.cshtml";
+                mSmileyQuestionDetailsViewName = "~/Views/SmileyQuestion/Details.cshtml";
+                mSliderQuestionDetailsViewName = "~/Views/SliderQuestion/Details.cshtml";
+                mStartQuestionDetailsViewName = "~/Views/StarQuestion/Details.cshtml";
+                mEditSmileyQuestionViewName = "~/Views/SmileyQuestion/Edit.cshtml";
+                mEditSliderQuestionViewName = "~/Views/SliderQuestion/Edit.cshtml";
+                mEditStarQuestionViewName = "~/Views/StarQuestion/Edit.cshtml";
             }
             catch (Exception ex)
             {
@@ -79,7 +96,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                     case ErrorCode.EMPTY:
                         return View(testList);
                     default:
-                        return View("~/Views/Shared/Offline.cshtml");
+                        return View(mOfflineViewName);
                 }
             }
             catch (Exception ex)
@@ -137,9 +154,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                             {
                                 case ErrorCode.SUCCESS:
                                 case ErrorCode.EMPTY:
-                                    return View("~/Views/SmileyQuestion/Details.cshtml", tSmileyQuestion);
+                                    return View(mSmileyQuestionDetailsViewName, tSmileyQuestion);
                                 default:
-                                    return View("~/Views/Shared/Offline.cshtml");
+                                    return View(mOfflineViewName);
                             }
                         }
                     case QuestionType.SLIDER:
@@ -150,9 +167,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                             {
                                 case ErrorCode.SUCCESS:
                                 case ErrorCode.EMPTY:
-                                    return View("~/Views/SliderQuestion/Details.cshtml", tSliderQuestion);
+                                    return View(mSliderQuestionDetailsViewName, tSliderQuestion);
                                 default:
-                                    return View("~/Views/Shared/Offline.cshtml");
+                                    return View(mOfflineViewName);
                             }
                         }
                     case QuestionType.STAR:
@@ -163,9 +180,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                             {
                                 case ErrorCode.SUCCESS:
                                 case ErrorCode.EMPTY:
-                                    return View("~/Views/StarQuestion/Details.cshtml", tStarQuestion);
+                                    return View(mStartQuestionDetailsViewName, tStarQuestion);
                                 default:
-                                    return View("~/Views/Shared/Offline.cshtml");
+                                    return View(mOfflineViewName);
                             }
                         }
                 }
@@ -218,7 +235,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    int tType = Convert.ToInt32(collection["Type"]);
+                    int tType = Convert.ToInt32(collection[nameof(ResourceStrings.Type)]);
                     ErrorCode tResult = ErrorCode.ERROR;
                     switch ((QuestionType)tType)
                     {
@@ -242,12 +259,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                     switch (tResult)
                     {
                         case ErrorCode.SUCCESS:
-                            return RedirectToAction("Index");
+                            return RedirectToAction(nameof(ActionNameConstants.Index));
                         case ErrorCode.VALIDATION:
                             ModelState.AddModelError($"{ResourceStrings.Order}", mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}"));
                             break;
                         default:
-                            return View("~/Views/Shared/Offline.cshtml");
+                            return View(mOfflineViewName);
                     }
                 }
                 return View();
@@ -300,7 +317,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             {
                 Logger.LogError(ex);
                 TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.SomethingWentWrongError}")}";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(ActionNameConstants.Index));
             }
         }
 
@@ -321,7 +338,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    int tOrder = Convert.ToInt32(collection["Order"]);
+                    int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
                     ErrorCode tResult = ErrorCode.ERROR;
                     switch (type)
                     {
@@ -345,19 +362,19 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                     switch (tResult)
                     {
                         case ErrorCode.SUCCESS:
-                            return RedirectToAction("Index");
+                            return RedirectToAction(nameof(ActionNameConstants.Index));
                         case ErrorCode.VALIDATION:
-                            return RedirectToAction("Edit", new { id = id, type = type, order = tOrder, ModelErrorName = $"{ResourceStrings.Order}", ModelErrorMessage = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}" });
+                            return RedirectToAction(nameof(ActionNameConstants.Edit), new { id = id, type = type, order = tOrder, ModelErrorName = $"{ResourceStrings.Order}", ModelErrorMessage = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}" });
                         default:
-                            return RedirectToAction("Edit", new { id = id, type = type, order = tOrder, ModelErrorName = $"{ResourceStrings.Order}", ModelErrorMessage = $"{mLocalResourceManager.GetString($"{ResourceStrings.SomethingWentWrongError}")}" });
+                            return RedirectToAction(nameof(ActionNameConstants.Edit), new { id = id, type = type, order = tOrder, ModelErrorName = $"{ResourceStrings.Order}", ModelErrorMessage = $"{mLocalResourceManager.GetString($"{ResourceStrings.SomethingWentWrongError}")}" });
                     }
                 }
-                return RedirectToAction("Edit", new { id = id, type = type });
+                return RedirectToAction(nameof(ActionNameConstants.Edit), new { id = id, type = type });
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                return RedirectToAction("Edit", new { id = id, type = type });
+                return RedirectToAction(nameof(ActionNameConstants.Edit), new { id = id, type = type });
                 //return Redirect(Request.UrlReferrer.PathAndQuery);
             }
         }
@@ -423,10 +440,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 switch (tResult)
                 {
                     case ErrorCode.SUCCESS:
-                        return RedirectToAction("Index");
+                        return RedirectToAction(nameof(ActionNameConstants.Index));
                     default:
                         TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.SomethingWentWrongError}")}";
-                        return RedirectToAction("Index");
+                        return RedirectToAction(nameof(ActionNameConstants.Index));
                 }
             }
             catch (Exception ex)
@@ -450,12 +467,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         {
             try
             {
-                return PartialView("_CreateSmileyQuestion");
+                return PartialView(nameof(ActionNameConstants._CreateSmileyQuestion));
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                return PartialView("_CreateSmileyQuestion");
+                return PartialView(nameof(ActionNameConstants._CreateSmileyQuestion));
             }
         }
 
@@ -469,12 +486,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         {
             try
             {
-                return PartialView("_CreateSliderQuestion");
+                return PartialView(nameof(ActionNameConstants._CreateSliderQuestion));
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                return PartialView("_CreateSmileyQuestion");
+                return PartialView(nameof(ActionNameConstants._CreateSliderQuestion));
             }
         }
 
@@ -488,12 +505,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         {
             try
             {
-                return PartialView("_CreateStarQuestion");
+                return PartialView(nameof(ActionNameConstants._CreateStarQuestion));
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                return PartialView("_CreateSmileyQuestion");
+                return PartialView(nameof(ActionNameConstants._CreateStarQuestion));
             }
         }
         #endregion
@@ -514,10 +531,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = -1;
-                int tOrder = Convert.ToInt32(collection["Order"]);
-                string tText = collection["Text"];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
+                string tText = collection[nameof(ResourceStrings.Text)];
                 QuestionType tType = QuestionType.SMILEY;
-                int tNumberOfSmileyFaces = Convert.ToInt32(collection["NumberOfSmileyFaces"]);
+                int tNumberOfSmileyFaces = Convert.ToInt32(collection[nameof(ResourceStrings.NumberOfSmileyFaces)]);
 
                 SmileyQuestion tSmileyQuestion = new SmileyQuestion(tId, tOrder, tText, tType, tNumberOfSmileyFaces);
                 ErrorCode tResult = mQuestionManager.InsertSmileyQuestion(tSmileyQuestion);
@@ -544,13 +561,13 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = -1;
-                int tOrder = Convert.ToInt32(collection["Order"]);
-                string tText = collection["Text"];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
+                string tText = collection[nameof(ResourceStrings.Text)];
                 QuestionType tType = QuestionType.SLIDER;
-                int tStartValue = Convert.ToInt32(collection["StartValue"]);
-                int tEndValue = Convert.ToInt32(collection["EndValue"]);
-                string tStartValueCaption = collection["StartValueCaption"];
-                string tEndValueCaption = collection["EndValueCaption"];
+                int tStartValue = Convert.ToInt32(collection[nameof(ResourceStrings.StartValue)]);
+                int tEndValue = Convert.ToInt32(collection[nameof(ResourceStrings.EndValue)]);
+                string tStartValueCaption = collection[nameof(ResourceStrings.StartValueCaption)];
+                string tEndValueCaption = collection[nameof(ResourceStrings.EndValueCaption)];
 
 
                 SliderQuestion tSliderQuestion = new SliderQuestion(tId, tOrder, tText, tType, tStartValue, tEndValue, tStartValueCaption, tEndValueCaption);
@@ -585,10 +602,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = -1;
-                int tOrder = Convert.ToInt32(collection["Order"]);
-                string tText = collection["Text"];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
+                string tText = collection[nameof(ResourceStrings.Text)];
                 QuestionType tType = QuestionType.STAR;
-                int tNumberOfStars = Convert.ToInt32(collection["NumberOfStars"]);
+                int tNumberOfStars = Convert.ToInt32(collection[nameof(ResourceStrings.NumberOfStars)]);
 
                 StarQuestion tStarQuestion = new StarQuestion(tId, tOrder, tText, tType, tNumberOfStars);
                 ErrorCode tResult = mQuestionManager.InsertStarQuestion(tStarQuestion);
@@ -622,14 +639,14 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 if (tReslut != ErrorCode.SUCCESS)
                 {
                     TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
-                    return View("DisabledEdit");
+                    return View(nameof(ActionNameConstants.DisabledEdit));
                 }
-                return View("~/Views/SmileyQuestion/Edit.cshtml", tSmileyQuestion);
+                return View(mEditSmileyQuestionViewName, tSmileyQuestion);
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                return View("~/Views/SmileyQuestion/Edit.cshtml");
+                return View(mEditSmileyQuestionViewName);
             }
         }
 
@@ -654,14 +671,14 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 if (tReslut != ErrorCode.SUCCESS)
                 {
                     TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
-                    return View("DisabledEdit");
+                    return View(nameof(ActionNameConstants.DisabledEdit));
                 }
-                return View("~/Views/SliderQuestion/Edit.cshtml", tSliderQuestion);
+                return View(mEditSliderQuestionViewName, tSliderQuestion);
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                return View("~/Views/SliderQuestion/Edit.cshtml");
+                return View(mEditSliderQuestionViewName);
             }
         }
 
@@ -686,14 +703,14 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 if (tReslut != ErrorCode.SUCCESS)
                 {
                     TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
-                    return View("DisabledEdit");
+                    return View(nameof(ActionNameConstants.DisabledEdit));
                 }
-                return View("~/Views/StarQuestion/Edit.cshtml", tStarQuestion);
+                return View(mEditStarQuestionViewName, tStarQuestion);
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                return View("~/Views/StarQuestion/Edit.cshtml");
+                return View(mEditStarQuestionViewName);
             }
         }
 
@@ -711,10 +728,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = id;
-                int tOrder = Convert.ToInt32(collection["Order"]);
-                string tText = collection["Text"];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
+                string tText = collection[nameof(ResourceStrings.Text)];
                 QuestionType tType = QuestionType.SMILEY;
-                int tNumberOfSmileyFaces = Convert.ToInt32(collection["NumberOfSmileyFaces"]);
+                int tNumberOfSmileyFaces = Convert.ToInt32(collection[nameof(ResourceStrings.NumberOfSmileyFaces)]);
 
                 SmileyQuestion tSmileyQuestion = new SmileyQuestion(tId, tOrder, tText, tType, tNumberOfSmileyFaces);
                 ErrorCode tResult = mQuestionManager.UpdateSmileyQuestion(tSmileyQuestion);
@@ -741,13 +758,13 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = id;
-                int tOrder = Convert.ToInt32(Collection["Order"]);
-                string tText = Collection["Text"];
+                int tOrder = Convert.ToInt32(Collection[nameof(ResourceStrings.Order)]);
+                string tText = Collection[nameof(ResourceStrings.Text)];
                 QuestionType tType = QuestionType.SLIDER;
-                int tStartValue = Convert.ToInt32(Collection["StartValue"]);
-                int tEndValue = Convert.ToInt32(Collection["EndValue"]);
-                string tStartValueCaption = Collection["StartValueCaption"];
-                string tEndValueCaption = Collection["EndValueCaption"];
+                int tStartValue = Convert.ToInt32(Collection[nameof(ResourceStrings.StartValue)]);
+                int tEndValue = Convert.ToInt32(Collection[nameof(ResourceStrings.EndValue)]);
+                string tStartValueCaption = Collection[nameof(ResourceStrings.StartValueCaption)];
+                string tEndValueCaption = Collection[nameof(ResourceStrings.EndValueCaption)];
 
 
                 SliderQuestion tSliderQuestion = new SliderQuestion(tId, tOrder, tText, tType, tStartValue, tEndValue, tStartValueCaption, tEndValueCaption);
@@ -781,10 +798,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = id;
-                int tOrder = Convert.ToInt32(collection["Order"]);
-                string tText = collection["Text"];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
+                string tText = collection[nameof(ResourceStrings.Text)];
                 QuestionType tType = QuestionType.STAR;
-                int tNumberOfStars = Convert.ToInt32(collection["NumberOfStars"]);
+                int tNumberOfStars = Convert.ToInt32(collection[nameof(ResourceStrings.NumberOfStars)]);
 
                 StarQuestion tStarQuestion = new StarQuestion(tId, tOrder, tText, tType, tNumberOfStars);
                 ErrorCode tResult = mQuestionManager.UpdateStarQuestion(tStarQuestion);
