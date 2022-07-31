@@ -1,4 +1,19 @@
-﻿@model SurveyQuestionsConfigurator.Entities.Question
+﻿@switch ((SurveyQuestionsConfigurator.Entities.Generic.QuestionType)Model.Type)
+{
+    case SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SMILEY:
+        @model SurveyQuestionsConfigurator.Entities.SmileyQuestion;
+        break;
+    case SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SLIDER:
+        @model SurveyQuestionsConfigurator.Entities.SliderQuestion;
+        break;
+    case SurveyQuestionsConfigurator.Entities.Generic.QuestionType.STAR:
+        @model SurveyQuestionsConfigurator.Entities.StarQuestion;
+        break;
+    default:
+        break;
+}
+
+@model SurveyQuestionsConfigurator.Entities.Question
 
 @{
     ViewBag.Title = $"{SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Create}";
@@ -11,31 +26,31 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.Partial("_CreateQuestion", @Model)
-    <div id="partialView">
-        @*
-            if not loaded at first like this, client-side validation will not work
-            content then changes using jquery ajax requests
-        *@
-        @Html.Partial("_CreateSmileyQuestion", @Model)
-        @Html.Partial("_CreateSliderQuestion", @Model)
-        @Html.Partial("_CreateStarQuestion", @Model)
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-12">
-            <input type="submit" value="@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Create" class="btn btn-success" />
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Partial("_CreateQuestion", @Model)
+        <div id="partialView">
+            @*
+                if not loaded at first like this, client-side validation will not work
+                content then changes using jquery ajax requests
+            *@
+            @Html.Partial("_CreateSmileyQuestion", @Model)
+            @Html.Partial("_CreateSliderQuestion", @Model)
+            @Html.Partial("_CreateStarQuestion", @Model)
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-12">
-        @Html.Partial("_BackToListPartial")
-        </div>
-    </div>
 
-</div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Create" class="btn btn-success" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.Partial("_BackToListPartial")
+            </div>
+        </div>
+
+    </div>
 }
 
 
