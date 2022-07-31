@@ -102,15 +102,17 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
                     {
                         tList.Clear();
                         tResult = mRepository.GetAll(ref tList);
-
-                        if (mChachedQuestions.SequenceEqual(tList) == false &&
-                        !firstTimeCheck) /// if there is a difference
+                        lock (mChachedQuestions)
                         {
-                            if (tResult != ErrorCode.ERROR)
+                            if (mChachedQuestions.SequenceEqual(tList) == false &&
+                            !firstTimeCheck) /// if there is a difference
                             {
-                                ResetChachedQuestionsList(tList);
+                                if (tResult != ErrorCode.ERROR)
+                                {
+                                    ResetChachedQuestionsList(tList);
+                                }
+                                refreshDataEvent?.Invoke(tResult, tList);
                             }
-                            refreshDataEvent?.Invoke(tResult, tList);
                         }
 
                         if (firstTimeCheck) /// refresh data when DB is empty and both lists are empty and equal

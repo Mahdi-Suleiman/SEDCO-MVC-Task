@@ -1,0 +1,62 @@
+﻿@model SurveyQuestionsConfigurator.Entities.SliderQuestion
+@{
+    ViewBag.Title = "_Question";
+    string cultureInfo = System.Globalization.CultureInfo.CurrentCulture.Name;
+    string tArabic = "ar-JO";
+    bool tIsArabic = (cultureInfo == tArabic ? true : false);
+    string[] tArabicQuestionType = { "وجه مبتسم", "شريط", "نجمة" };
+    string[] tEnglishQuestionType = { "Smiley Face", "Slider", "Star" };
+
+    string tSmiley = cultureInfo == tArabic ? tArabicQuestionType[0] : tEnglishQuestionType[0];
+    string tSlider = cultureInfo == tArabic ? tArabicQuestionType[1] : tEnglishQuestionType[1];
+    string tStar = cultureInfo == tArabic ? tArabicQuestionType[2] : tEnglishQuestionType[2];
+}
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "" })
+        <select class="form-control valid" data-val="true" data-val-required="The Type field is required." id="Type" name="Type" onchange="QuestionTypeChanged()" aria-describedby="Type-error" aria-invalid="false">
+            <option  value="0">@tSmiley</option>
+            <option selected="selected" value="1">@tSlider</option>
+            <option value="2">@tStar</option>
+        </select>
+        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.LabelFor(model => model.StartValue, htmlAttributes: new { @class = "" })
+        @Html.EditorFor(model => model.StartValue, new { htmlAttributes = new { @class = "form-control", min = "1", max = "99" } })
+        @Html.ValidationMessageFor(model => model.StartValue, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.LabelFor(model => model.EndValue, htmlAttributes: new { @class = "" })
+        @Html.EditorFor(model => model.EndValue, new { htmlAttributes = new { @class = "form-control", min = "2", max = "100" } })
+        @Html.ValidationMessageFor(model => model.EndValue, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.LabelFor(model => model.StartValueCaption, htmlAttributes: new { @class = "" })
+        @Html.EditorFor(model => model.StartValueCaption, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
+        @Html.ValidationMessageFor(model => model.StartValueCaption, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.LabelFor(model => model.EndValueCaption, htmlAttributes: new { @class = "" })
+        @Html.EditorFor(model => model.EndValueCaption, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
+        @Html.ValidationMessageFor(model => model.EndValueCaption, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

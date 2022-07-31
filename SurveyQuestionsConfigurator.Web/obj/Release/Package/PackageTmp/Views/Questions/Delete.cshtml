@@ -1,0 +1,68 @@
+﻿@model SurveyQuestionsConfigurator.Entities.Question
+
+@{
+    ViewBag.Title = $"{SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Delete}";
+    string cultureInfo = System.Globalization.CultureInfo.CurrentCulture.Name;
+    string tArabic = "ar-JO";
+    bool tIsArabic = (cultureInfo == tArabic ? true : false);
+    string[] tArabicQuestionType = { "وجه مبتسم", "شريط", "نجمة" };
+}
+
+<h2>@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Delete</h2>
+<hr />
+
+<h3>@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.AreYouSureYouWantToDelete </h3>
+<div class="row">
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "" })
+            @Html.DisplayFor(model => model.Order)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+
+            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "" })
+            @if (tIsArabic)
+            {
+                switch (Model.Type)
+                {
+                    case SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SMILEY:
+                        @Html.Raw(tArabicQuestionType[0]);
+                        break;
+                    case SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SLIDER:
+                        @Html.Raw(tArabicQuestionType[1]);
+                        break;
+                    case SurveyQuestionsConfigurator.Entities.Generic.QuestionType.STAR:
+                        @Html.Raw(tArabicQuestionType[2]);
+                        break;
+                }
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Type)
+
+            }
+        </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "" })
+                @Html.DisplayFor(model => model.Text)
+            </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <div class="col-md-12">
+                    <input type="submit" value="@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Delete" class="btn btn-danger" /> |
+                    @Html.Partial("_BackToListPartial")
+                </div>
+            </div>
+
+
+        }
+    </div>

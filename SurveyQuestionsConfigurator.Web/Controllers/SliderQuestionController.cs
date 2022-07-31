@@ -116,20 +116,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
                 if (tResult == ErrorCode.VALIDATION)
                 {
-                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
-                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
-                    //pSliderModelError;
                     pSliderModelError = $"{ResourceConstants.Order}";
                     pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
                 }
 
                 if (tEndValue < tStartValue)
                 {
-                    //ModelState.AddModelError("EndValue", "End value must be larger than start value");
-                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
-                    //pSliderModelError = $"{ResourceConstants.EndValue}";
-                    //pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
-                    //TempData[$"{ResourceConstants.EndValue}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
                     pSliderModelError = $"{ResourceConstants.EndValue}";
                     pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
                 }

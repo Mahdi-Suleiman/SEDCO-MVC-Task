@@ -1,0 +1,33 @@
+﻿@model SurveyQuestionsConfigurator.Entities.StarQuestion
+@{
+    ViewBag.Title = "_Question";
+    string cultureInfo = System.Globalization.CultureInfo.CurrentCulture.Name;
+    string tArabic = "ar-JO";
+    bool tIsArabic = (cultureInfo == tArabic ? true : false);
+    string[] tArabicQuestionType = { "وجه مبتسم", "شريط", "نجمة" };
+    string[] tEnglishQuestionType = { "Smiley Face", "Slider", "Star" };
+
+    string tSmiley = cultureInfo == tArabic ? tArabicQuestionType[0] : tEnglishQuestionType[0];
+    string tSlider = cultureInfo == tArabic ? tArabicQuestionType[1] : tEnglishQuestionType[1];
+    string tStar = cultureInfo == tArabic ? tArabicQuestionType[2] : tEnglishQuestionType[2];
+}
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "" })
+        <select class="form-control valid" data-val="true" data-val-required="The Type field is required." id="Type" name="Type" onchange="QuestionTypeChanged()" aria-describedby="Type-error" aria-invalid="false">
+            <option  value="0">@tSmiley</option>
+            <option value="1">@tSlider</option>
+            <option selected="selected" value="2">@tStar</option>
+        </select>
+        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.LabelFor(model => model.NumberOfStars, htmlAttributes: new { @class = "" })
+        @Html.EditorFor(model => model.NumberOfStars, new { htmlAttributes = new { @class = "form-control", min = "1", max = "10" } })
+        @Html.ValidationMessageFor(model => model.NumberOfStars, "", new { @class = "text-danger" })
+    </div>
+</div>
