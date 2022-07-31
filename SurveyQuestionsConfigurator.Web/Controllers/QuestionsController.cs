@@ -203,11 +203,18 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// View
         /// </returns>
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(FormCollection collection = null, string extraUselessParamToRemoveSameParameterConflict = null)
         {
             try
             {
-                return View();
+                if (collection == null)
+                {
+                    return View();
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch (Exception ex)
             {

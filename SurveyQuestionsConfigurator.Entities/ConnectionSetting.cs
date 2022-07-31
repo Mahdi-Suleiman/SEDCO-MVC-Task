@@ -31,7 +31,7 @@ namespace SurveyQuestionsConfigurator.Entities
         [Display(Name = nameof(ResourceStrings.Password), ResourceType = typeof(LanguageStrings))]
         [Required(ErrorMessageResourceName = nameof(ResourceStrings.PasswordRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [MaxLength(128)]
-        [DataType(DataType.Password)]
+        //[DataType(DataType.Password)]
         public string Password { get; set; }
 
         public ConnectionSetting(SqlConnectionStringBuilder pBuilder)
