@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\WebSurveyQuestionConfigurator.publish</_PublishTargetUrl>
-    <History>True|2022-07-31T15:30:22.2778566Z;</History>
+    <History>True|2022-07-31T16:20:00.7473043Z;True|2022-07-31T19:01:10.3745745+03:00;True|2022-07-31T18:30:22.2778566+03:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="assets/arabic.png">
@@ -30,7 +30,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/28/2022 09:45:50</publishTime>
     </File>
     <File Include="bin/ar/SurveyQuestionsConfigurator.Entities.resources.dll">
-      <publishTime>07/31/2022 18:22:03</publishTime>
+      <publishTime>07/31/2022 19:01:06</publishTime>
     </File>
     <File Include="bin/Autofac.dll">
       <publishTime>07/28/2022 09:45:50</publishTime>
@@ -171,37 +171,37 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/31/2022 18:22:02</publishTime>
     </File>
     <File Include="bin/SurveyQuestionsConfigurator.DataAccess.dll">
-      <publishTime>07/31/2022 18:22:03</publishTime>
+      <publishTime>07/31/2022 19:01:06</publishTime>
     </File>
     <File Include="bin/SurveyQuestionsConfigurator.DataAccess.pdb">
-      <publishTime>07/31/2022 18:22:03</publishTime>
+      <publishTime>07/31/2022 19:01:06</publishTime>
     </File>
     <File Include="bin/SurveyQuestionsConfigurator.Entities.dll">
-      <publishTime>07/31/2022 18:22:03</publishTime>
+      <publishTime>07/31/2022 19:01:06</publishTime>
     </File>
     <File Include="bin/SurveyQuestionsConfigurator.Entities.dll.config">
       <publishTime>07/26/2022 15:36:59</publishTime>
     </File>
     <File Include="bin/SurveyQuestionsConfigurator.Entities.pdb">
-      <publishTime>07/31/2022 18:22:03</publishTime>
+      <publishTime>07/31/2022 19:01:06</publishTime>
     </File>
     <File Include="bin/SurveyQuestionsConfigurator.Logic.dll">
-      <publishTime>07/31/2022 18:22:04</publishTime>
+      <publishTime>07/31/2022 19:01:07</publishTime>
     </File>
     <File Include="bin/SurveyQuestionsConfigurator.Logic.pdb">
-      <publishTime>07/31/2022 18:22:04</publishTime>
+      <publishTime>07/31/2022 19:01:07</publishTime>
     </File>
     <File Include="bin/SurveyQuestionsConfigurator.Repositories.dll">
-      <publishTime>07/31/2022 18:22:04</publishTime>
+      <publishTime>07/31/2022 19:01:07</publishTime>
     </File>
     <File Include="bin/SurveyQuestionsConfigurator.Repositories.pdb">
-      <publishTime>07/31/2022 18:22:04</publishTime>
+      <publishTime>07/31/2022 19:01:07</publishTime>
     </File>
     <File Include="bin/SurveyQuestionsConfigurator.Web.dll">
-      <publishTime>07/31/2022 18:30:18</publishTime>
+      <publishTime>07/31/2022 19:19:59</publishTime>
     </File>
     <File Include="bin/SurveyQuestionsConfigurator.Web.pdb">
-      <publishTime>07/31/2022 18:30:18</publishTime>
+      <publishTime>07/31/2022 19:19:59</publishTime>
     </File>
     <File Include="bin/System.Buffers.dll">
       <publishTime>07/28/2022 09:45:51</publishTime>
@@ -369,13 +369,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/31/2022 16:22:05</publishTime>
     </File>
     <File Include="Views/Shared/_CreateSliderQuestion.cshtml">
-      <publishTime>07/31/2022 17:23:39</publishTime>
+      <publishTime>07/31/2022 19:08:09</publishTime>
     </File>
     <File Include="Views/Shared/_CreateSmileyQuestion.cshtml">
-      <publishTime>07/31/2022 16:22:14</publishTime>
+      <publishTime>07/31/2022 19:08:09</publishTime>
     </File>
     <File Include="Views/Shared/_CreateStarQuestion.cshtml">
-      <publishTime>07/31/2022 16:21:17</publishTime>
+      <publishTime>07/31/2022 19:08:09</publishTime>
     </File>
     <File Include="Views/Shared/_EditQuestion.cshtml">
       <publishTime>07/28/2022 11:43:30</publishTime>
@@ -384,31 +384,31 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/28/2022 12:55:18</publishTime>
     </File>
     <File Include="Views/SliderQuestion/Create.cshtml">
-      <publishTime>07/31/2022 17:58:13</publishTime>
+      <publishTime>07/31/2022 19:09:48</publishTime>
     </File>
     <File Include="Views/SliderQuestion/Details.cshtml">
       <publishTime>07/28/2022 12:40:52</publishTime>
     </File>
     <File Include="Views/SliderQuestion/Edit.cshtml">
-      <publishTime>07/28/2022 11:46:31</publishTime>
+      <publishTime>07/31/2022 19:16:18</publishTime>
     </File>
     <File Include="Views/SmileyQuestion/Create.cshtml">
-      <publishTime>07/31/2022 17:46:20</publishTime>
+      <publishTime>07/31/2022 19:09:48</publishTime>
     </File>
     <File Include="Views/SmileyQuestion/Details.cshtml">
       <publishTime>07/28/2022 12:42:12</publishTime>
     </File>
     <File Include="Views/SmileyQuestion/Edit.cshtml">
-      <publishTime>07/28/2022 11:46:53</publishTime>
+      <publishTime>07/31/2022 19:16:15</publishTime>
     </File>
     <File Include="Views/StarQuestion/Create.cshtml">
-      <publishTime>07/31/2022 17:46:20</publishTime>
+      <publishTime>07/31/2022 19:09:48</publishTime>
     </File>
     <File Include="Views/StarQuestion/Details.cshtml">
       <publishTime>07/28/2022 12:42:12</publishTime>
     </File>
     <File Include="Views/StarQuestion/Edit.cshtml">
-      <publishTime>07/28/2022 11:47:02</publishTime>
+      <publishTime>07/31/2022 19:16:10</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>07/18/2022 10:00:39</publishTime>
@@ -417,7 +417,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/18/2022 10:00:39</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/31/2022 18:30:19</publishTime>
+      <publishTime>07/31/2022 19:19:59</publishTime>
     </File>
   </ItemGroup>
 </Project>

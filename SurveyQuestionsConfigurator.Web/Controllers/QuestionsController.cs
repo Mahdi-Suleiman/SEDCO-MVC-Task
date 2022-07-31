@@ -29,24 +29,6 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         private readonly string mEditSliderQuestionViewName;
         private readonly string mEditStarQuestionViewName;
 
-        enum ControllerNameConstants
-        {
-            SmileyQuestion,
-            SliderQuestion,
-            StarQuestion
-        }
-
-        enum ActionNameConstants
-        {
-            Index,
-            Edit,
-            DisabledEdit,
-            Create,
-            _CreateSmileyQuestion,
-            _CreateSliderQuestion,
-            _CreateStarQuestion
-        }
-
         #endregion
 
         #region Constructor
@@ -108,7 +90,6 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         {
             try
             {
-                //tHubContext.Clients.All.addNewMessageToPage(null, null);
                 switch (pErrorCode)
                 {
                     case ErrorCode.SUCCESS:
@@ -121,12 +102,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                     default:
                         break;
                 }
-                //RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                //RedirectToAction("Index");
             }
         }
 
@@ -232,7 +211,6 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// 3) Add the corresponding question tType
         /// 4) Based on the result, redirect to the index action or return the same view with a validation error on the order field
         /// </summary>
-        /// <param name="collection"></param>
         /// <returns>
         /// View
         /// </returns>
@@ -274,7 +252,6 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                             if (tSliderModelError != null)
                             {
                                 ModelState.AddModelError(tSliderModelError, tSliderModelErrorMessaage);
-                                //ModelState.AddModelError($"{ResourceConstants.Order}", mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}"));
                             }
                             break;
                         default:
@@ -589,19 +566,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
                 if (tResult == ErrorCode.VALIDATION)
                 {
-                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
-                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
-                    //pSliderModelError;
                     pSliderModelError = $"{ResourceConstants.Order}";
                     pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
                 }
 
                 if (tEndValue < tStartValue)
                 {
-                    //ModelState.AddModelError("EndValue", "End value must be larger than start value");
-                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
-                    //pSliderModelError = $"{ResourceConstants.EndValue}";
-                    //pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
                     TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
                     pSliderModelError = null;
                 }

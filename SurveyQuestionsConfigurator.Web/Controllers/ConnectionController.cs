@@ -22,19 +22,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         private readonly ConnectionSettingsManager mConnectionSettingsManager;
         private readonly ResourceManager mLocalResourceManager;
 
-        enum KeyConstants
-        {
-            ServerName,
-            DatabaseName,
-            UserId,
-            Password,
-            Checkconnectivity
-        }
 
-        enum ActionNameConstants
-        {
-            Index
-        }
 
         #endregion
 

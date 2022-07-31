@@ -11,26 +11,27 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
 
-        @Html.Partial("_EditQuestion", Model)
-        @Html.Partial("_CreateSliderQuestion", Model)
+    @Html.Partial("_EditQuestion", Model)
 
-        <div class="form-group">
-            <div class="col-md-12">
-                <input type="submit" value="@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Save" class="btn btn-success" />
-            </div>
-        </div>
+    @Html.Partial("_CreateSliderQuestion", Model)
 
-        <div class="form-group">
-            <div class="col-md-12">
-            @Html.Partial("_BackToListPartial")
-            </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <input type="submit" value="@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Save" class="btn btn-success" />
         </div>
     </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.Partial("_BackToListPartial")
+        </div>
+    </div>
+</div>
 }
 
 @section Scripts {

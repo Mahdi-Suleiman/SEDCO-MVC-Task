@@ -36,5 +36,37 @@ namespace SurveyQuestionsConfigurator.Entities
             EndValueCaption,
             ReturnValue
         }
+        public enum KeyConstants
+        {
+            ServerName,
+            DatabaseName,
+            UserId,
+            Password,
+            Checkconnectivity
+        }
+
+        public enum ActionNameConstants
+        {
+            Index,
+            Edit,
+            DisabledEdit,
+            Create,
+            _CreateSmileyQuestion,
+            _CreateSliderQuestion,
+            _CreateStarQuestion
+        }
+
+
+        public enum ControllerNameConstants
+        {
+            SmileyQuestion,
+            SliderQuestion,
+            StarQuestion
+        }
+
+        public enum ControllerConstants
+        {
+            Questions,
+        }
     }
 }

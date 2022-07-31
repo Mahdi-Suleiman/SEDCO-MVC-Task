@@ -15,28 +15,37 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 {
     public class StarQuestionController : Controller
     {
+        #region Properties & Attributes
         private readonly QuestionManager mQuestionManager;
         private readonly string mOfflineViewName;
         private readonly ResourceManager mLocalResourceManager;
 
-
-        enum ActionNameConstants
-        {
-            Index,
-        }
-        enum ControllerConstants
-        {
-            Questions,
-        }
+        #endregion
+        #region Constructor
         public StarQuestionController()
         {
-            mQuestionManager = new QuestionManager();
-            mOfflineViewName = "~/Views/Shared/Offline.cshtml";
-            mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(LanguageStrings).Assembly);
+            try
+            {
+                mQuestionManager = new QuestionManager();
+                mOfflineViewName = "~/Views/Shared/Offline.cshtml";
+                mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(LanguageStrings).Assembly);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+            }
 
         }
 
-        // GET: StarQuestion/Create
+        #endregion
+        #region Actions
+        /// <summary>
+        /// GET: StarQuestion/Create
+        /// Returns the create view
+        /// </summary>
+        /// <returns>
+        /// View
+        /// </returns>
         public ActionResult Create()
         {
             try
@@ -50,8 +59,18 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
-        // POST: StarQuestion/Create
+        /// <summary>
+        /// POST: StarQuestion/Create
+        /// 1) Validate the form the comes with the POST request
+        /// 2) Get the corresponding question tType from the form
+        /// 3) Add the corresponding question tType
+        /// 4) Based on the result, redirect to the index action or return the same view with a validation error on the order field
+        /// </summary>
+        /// <returns>
+        /// View
+        /// </returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(FormCollection collection)
         {
             try
@@ -87,6 +106,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
+
+        #endregion
+
+        #region Methods
         /// <summary>
         /// 1) Create a question object and attempt to add it to DB
         /// 2) Return operation's result
@@ -124,6 +147,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 return ErrorCode.ERROR;
             }
         }
+
+
+        #endregion
+
 
     }
 }

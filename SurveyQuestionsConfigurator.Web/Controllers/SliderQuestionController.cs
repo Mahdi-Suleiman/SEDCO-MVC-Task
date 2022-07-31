@@ -15,27 +15,41 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 {
     public class SliderQuestionController : Controller
     {
+        #region Properties & Attributes
+
+        #endregion
+        #region Constructor
+
+        #endregion
+        #region Actions
+
+        #endregion
         private readonly QuestionManager mQuestionManager;
         private readonly string mOfflineViewName;
         private readonly ResourceManager mLocalResourceManager;
 
-        enum ActionNameConstants
-        {
-            Index,
-        }
-        enum ControllerConstants
-        {
-            Questions,
-        }
+
         public SliderQuestionController()
         {
-            mQuestionManager = new QuestionManager();
-            mOfflineViewName = "~/Views/Shared/Offline.cshtml";
-            mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(LanguageStrings).Assembly);
-
+            try
+            {
+                mQuestionManager = new QuestionManager();
+                mOfflineViewName = "~/Views/Shared/Offline.cshtml";
+                mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(LanguageStrings).Assembly);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+            }
         }
 
-        // GET: SliderQuestion/Create
+        /// <summary>
+        /// GET: SliderQuestion/Create
+        /// Returns the create view
+        /// </summary>
+        /// <returns>
+        /// View
+        /// </returns>
         public ActionResult Create()
         {
             try
@@ -49,8 +63,18 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             }
         }
 
-        // POST: SliderQuestion/Create
+        /// <summary>
+        /// POST: SliderQuestion/Create
+        /// 1) Validate the form the comes with the POST request
+        /// 2) Get the corresponding question tType from the form
+        /// 3) Add the corresponding question tType
+        /// 4) Based on the result, redirect to the index action or return the same view with a validation error on the order field
+        /// </summary>
+        /// <returns>
+        /// View
+        /// </returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(FormCollection collection)
         {
             try
