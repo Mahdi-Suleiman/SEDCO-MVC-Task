@@ -4,65 +4,73 @@
     ViewBag.Title = "Index";
 }
 
-@*<h2>Index</h2>*@
 <br />
 <h4>@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Connection</h4>
+<hr />
 
 @using (Html.BeginForm("Edit", "Connection"))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<div class="form-group">
-    <div class="col-md-12">
-    @Html.LabelFor(model => model.ServerName, htmlAttributes: new { @class = "" })
-    @Html.EditorFor(model => model.ServerName, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(model => model.ServerName, "", new { @class = "text-danger" })
-    </div>
-</div>
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.ServerName, htmlAttributes: new { @class = "" })
+                @Html.EditorFor(model => model.ServerName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ServerName, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-<div class="form-group">
-    <div class="col-md-12">
-    @Html.LabelFor(model => model.DatabaseName, htmlAttributes: new { @class = "" })
-    @Html.EditorFor(model => model.DatabaseName, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(model => model.DatabaseName, "", new { @class = "text-danger" })
-    </div>
-</div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.DatabaseName, htmlAttributes: new { @class = "" })
+                @Html.EditorFor(model => model.DatabaseName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DatabaseName, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-<div class="form-group">
-    <div class="col-md-12">
-    @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "" })
-    @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-    </div>
-</div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "" })
+                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-<div class="form-group">
-    <div class="col-md-12">
-    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
-    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type="password" } })
-    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-    </div>
-</div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
 
-<div class="form-group">
-    <div class="col-md-12">
-    <input type="submit" value="@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Save" name="Save" class="btn btn-success" />
-    </div>
-</div>
-    <div class="form-group">
-        <div class="col-md-12">
-            <input type="submit" value="@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Checkconnectivity" name="Checkconnectivity" class="btn btn-default" />
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onclick="ShowPassword()">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        @SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.ShowPassword
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Save" name="Save" class="btn btn-success" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Checkconnectivity" name="Checkconnectivity" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.Partial("_BackToListPartial")
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-12">
-            @Html.Partial("_BackToListPartial")
-        </div>
-    </div>
-</div>
 
 }
 
@@ -71,3 +79,14 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    function ShowPassword() {
+        const tPassword = document.getElementById("Password");
+        if (tPassword.type === "password") {
+            tPassword.type = "text";
+        } else {
+            tPassword.type = "password";
+        }
+    }
+</script>

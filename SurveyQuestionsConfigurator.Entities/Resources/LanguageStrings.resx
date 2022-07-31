@@ -228,6 +228,9 @@
   <data name="SettingsSavedMessage" xml:space="preserve">
     <value>Settings Saved Successfully.</value>
   </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>Show Password</value>
+  </data>
   <data name="SLIDER" xml:space="preserve">
     <value>SLIDER</value>
   </data>

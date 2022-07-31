@@ -1,0 +1,13 @@
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\bin\Release\SurveyQuestionsConfigurator.DataAccess.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\bin\Release\SurveyQuestionsConfigurator.DataAccess.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\bin\Release\SurveyQuestionsConfigurator.CommonHelpers.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\bin\Release\SurveyQuestionsConfigurator.Entities.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\bin\Release\SurveyQuestionsConfigurator.CommonHelpers.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\bin\Release\SurveyQuestionsConfigurator.Entities.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\bin\Release\SurveyQuestionsConfigurator.Entities.dll.config
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\bin\Release\ar\SurveyQuestionsConfigurator.Entities.resources.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\obj\Release\SurveyQuestionsConfigurator.DataAccess.csproj.AssemblyReference.cache
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\obj\Release\SurveyQuestionsConfigurator.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\obj\Release\SurveyQuestionsConfigurator.DataAccess.csproj.CopyComplete
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\obj\Release\SurveyQuestionsConfigurator.DataAccess.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.DataAccess\obj\Release\SurveyQuestionsConfigurator.DataAccess.pdb

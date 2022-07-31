@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SurveyQuestionsConfigurator.Entities.Generic;
-using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceConstants;
 
 namespace SurveyQuestionsConfigurator.Entities
 {
     public class StarQuestion : Question
     {
-        [Display(Name = nameof(ResourceStrings.NumberOfStars), ResourceType = typeof(LanguageStrings))]
-        [Required(ErrorMessageResourceName = nameof(ResourceStrings.NumberOfStarsRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
+        [Display(Name = nameof(ResourceConstants.NumberOfStars), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceConstants.NumberOfStarsRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [Range(1, 10)]
         public int NumberOfStars { get; set; }
 

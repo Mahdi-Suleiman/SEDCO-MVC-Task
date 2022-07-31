@@ -1,32 +1,33 @@
 ﻿@model SurveyQuestionsConfigurator.Entities.SmileyQuestion
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = $"{SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Create}";
 }
 
-<h2>Create</h2>
+<h2>@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Create</h2>
+<hr />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    @Html.Partial("_CreateQuestion", @Model)
+    <div class="form-horizontal">
+        @Html.Partial("_CreateQuestion", @Model)
 
-    @Html.Partial("_CreateSmileyQuestion", @Model)
+        @Html.Partial("_CreateSmileyQuestion", @Model)
 
 
-    <div class="form-group">
-        <div class="col-md-12">
-            <input type="submit" value="Create" class="btn btn-success" />
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="@SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.Create" class="btn btn-success" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.Partial("_BackToListPartial")
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-12">
-            @Html.Partial("_BackToListPartial")
-        </div>
-    </div>
-</div>
 }
 
 @section Scripts {

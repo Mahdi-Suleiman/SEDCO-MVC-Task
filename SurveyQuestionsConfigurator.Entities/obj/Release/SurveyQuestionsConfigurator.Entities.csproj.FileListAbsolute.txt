@@ -1,0 +1,16 @@
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\bin\Release\SurveyQuestionsConfigurator.Entities.dll.config
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\bin\Release\SurveyQuestionsConfigurator.Entities.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\bin\Release\SurveyQuestionsConfigurator.Entities.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\bin\Release\ar\SurveyQuestionsConfigurator.Entities.resources.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\bin\Release\SurveyQuestionsConfigurator.CommonHelpers.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\bin\Release\SurveyQuestionsConfigurator.CommonHelpers.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\obj\Release\SurveyQuestionsConfigurator.Entities.csproj.AssemblyReference.cache
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\obj\Release\SurveyQuestionsConfigurator.Entities.Properties.Resources.resources
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\obj\Release\SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.resources
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\obj\Release\SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings.ar.resources
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\obj\Release\SurveyQuestionsConfigurator.Entities.csproj.GenerateResource.cache
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\obj\Release\SurveyQuestionsConfigurator.Entities.csproj.CoreCompileInputs.cache
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\obj\Release\ar\SurveyQuestionsConfigurator.Entities.resources.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\obj\Release\SurveyQuestionsConfigurator.Entities.csproj.CopyComplete
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\obj\Release\SurveyQuestionsConfigurator.Entities.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Entities\obj\Release\SurveyQuestionsConfigurator.Entities.pdb

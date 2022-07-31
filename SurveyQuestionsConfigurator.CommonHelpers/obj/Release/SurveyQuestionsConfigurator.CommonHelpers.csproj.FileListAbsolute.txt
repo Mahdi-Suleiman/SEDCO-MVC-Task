@@ -1,0 +1,6 @@
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.CommonHelpers\bin\Release\SurveyQuestionsConfigurator.CommonHelpers.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.CommonHelpers\bin\Release\SurveyQuestionsConfigurator.CommonHelpers.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.CommonHelpers\obj\Release\SurveyQuestionsConfigurator.CommonHelpers.csproj.AssemblyReference.cache
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.CommonHelpers\obj\Release\SurveyQuestionsConfigurator.CommonHelpers.csproj.CoreCompileInputs.cache
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.CommonHelpers\obj\Release\SurveyQuestionsConfigurator.CommonHelpers.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.CommonHelpers\obj\Release\SurveyQuestionsConfigurator.CommonHelpers.pdb

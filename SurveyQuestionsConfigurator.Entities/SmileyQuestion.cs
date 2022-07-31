@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SurveyQuestionsConfigurator.Entities.Generic;
-using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceConstants;
 
 namespace SurveyQuestionsConfigurator.Entities
 {
     public class SmileyQuestion : Question
     {
-        [Display(Name = nameof(ResourceStrings.NumberOfSmileyFaces), ResourceType = typeof(LanguageStrings))]
-        [Required(ErrorMessageResourceName = nameof(ResourceStrings.NumberOfSmileyFacesRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
+        [Display(Name = nameof(ResourceConstants.NumberOfSmileyFaces), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceConstants.NumberOfSmileyFacesRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [Range(2, 5)]
         public int NumberOfSmileyFaces { get; set; }
         public SmileyQuestion(int pID, int pOrder, string pText, QuestionType pType, int pNumberOfSmileyFaces) :

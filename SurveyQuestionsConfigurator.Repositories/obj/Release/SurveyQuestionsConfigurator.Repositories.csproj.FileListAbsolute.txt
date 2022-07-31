@@ -1,0 +1,15 @@
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\bin\Release\SurveyQuestionsConfigurator.Repositories.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\bin\Release\SurveyQuestionsConfigurator.Repositories.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\bin\Release\SurveyQuestionsConfigurator.CommonHelpers.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\bin\Release\SurveyQuestionsConfigurator.DataAccess.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\bin\Release\SurveyQuestionsConfigurator.Entities.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\bin\Release\SurveyQuestionsConfigurator.CommonHelpers.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\bin\Release\SurveyQuestionsConfigurator.DataAccess.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\bin\Release\SurveyQuestionsConfigurator.Entities.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\bin\Release\SurveyQuestionsConfigurator.Entities.dll.config
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\bin\Release\ar\SurveyQuestionsConfigurator.Entities.resources.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\obj\Release\SurveyQuestionsConfigurator.Repositories.csproj.AssemblyReference.cache
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\obj\Release\SurveyQuestionsConfigurator.Repositories.csproj.CoreCompileInputs.cache
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\obj\Release\SurveyQuestionsConfigurator.Repositories.csproj.CopyComplete
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\obj\Release\SurveyQuestionsConfigurator.Repositories.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Repositories\obj\Release\SurveyQuestionsConfigurator.Repositories.pdb

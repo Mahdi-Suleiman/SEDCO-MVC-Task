@@ -234,6 +234,9 @@
   <data name="SettingsSavedMessage" xml:space="preserve">
     <value>تم حفظ الإعدادات بنجاح.</value>
   </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>اظهار كلمة المرور</value>
+  </data>
   <data name="SLIDER" xml:space="preserve">
     <value>شريط</value>
   </data>

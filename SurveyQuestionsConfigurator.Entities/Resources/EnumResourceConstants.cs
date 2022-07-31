@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SurveyQuestionsConfigurator.Entities.Resources
 {
-    public class EnumResourceStrings
+    public class EnumResourceConstants
     {
         /// <summary>
         /// Contains all availble keys in the resource folder => instead of hard coding anything
         /// </summary>
-        public enum ResourceStrings
+        public enum ResourceConstants
         {
             Arabic,
             Checkconnectivity,
@@ -64,7 +64,8 @@ namespace SurveyQuestionsConfigurator.Entities.Resources
             OrderAlreadyInUse,
             TechnicalIssuesError,
             Refresh,
-            SurveyQuestionsConfigurator
+            SurveyQuestionsConfigurator,
+            ShowPassword
         }
     }
 }

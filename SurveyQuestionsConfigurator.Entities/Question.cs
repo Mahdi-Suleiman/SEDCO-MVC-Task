@@ -7,24 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SurveyQuestionsConfigurator.Entities.Generic;
-using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceConstants;
 
 namespace SurveyQuestionsConfigurator.Entities
 {
     public class Question
     {
         public int ID { get; set; }
-        [Display(Name = nameof(ResourceStrings.Order), ResourceType = typeof(LanguageStrings))]
-        [Required(ErrorMessageResourceName = nameof(ResourceStrings.OrderRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
+        [Display(Name = nameof(ResourceConstants.Order), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceConstants.OrderRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [Range(0, 9999999)]
         public int Order { get; set; }
 
-        [Display(Name = nameof(ResourceStrings.Text), ResourceType = typeof(LanguageStrings))]
-        [Required(ErrorMessageResourceName = nameof(ResourceStrings.TextRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
+        [Display(Name = nameof(ResourceConstants.Text), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceConstants.TextRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [MaxLength(3999)]
         public string Text { get; set; }
 
-        [Display(Name = nameof(ResourceStrings.Type), ResourceType = typeof(LanguageStrings))]
+        [Display(Name = nameof(ResourceConstants.Type), ResourceType = typeof(LanguageStrings))]
         public QuestionType Type { get; set; }
 
         public Question(int pID)

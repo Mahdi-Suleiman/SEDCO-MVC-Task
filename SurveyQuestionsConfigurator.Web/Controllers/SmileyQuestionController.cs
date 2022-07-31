@@ -9,7 +9,7 @@ using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using static SurveyQuestionsConfigurator.Entities.Generic;
-using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceConstants;
 
 namespace SurveyQuestionsConfigurator.Web.Controllers
 {
@@ -59,7 +59,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 SmileyQuestion tSmileyQuestion = null;
                 if (ModelState.IsValid)
                 {
-                    int tType = Convert.ToInt32(collection[nameof(ResourceStrings.Type)]);
+                    int tType = Convert.ToInt32(collection[nameof(ResourceConstants.Type)]);
                     string tSliderModelError = null, tSliderModelErrorMessaage = null;
                     ErrorCode tResult = AddSmileyQuestion(collection, ref tSmileyQuestion, ref tSliderModelError, ref tSliderModelErrorMessaage);
 
@@ -101,10 +101,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = -1;
-                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
-                string tText = collection[nameof(ResourceStrings.Text)];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceConstants.Order)]);
+                string tText = collection[nameof(ResourceConstants.Text)];
                 QuestionType tType = QuestionType.SMILEY;
-                int tNumberOfSmileyFaces = Convert.ToInt32(collection[nameof(ResourceStrings.NumberOfSmileyFaces)]);
+                int tNumberOfSmileyFaces = Convert.ToInt32(collection[nameof(ResourceConstants.NumberOfSmileyFaces)]);
 
                 SmileyQuestion tSmileyQuestion = new SmileyQuestion(tId, tOrder, tText, tType, tNumberOfSmileyFaces);
                 pSmileyQuestion = tSmileyQuestion;
@@ -112,8 +112,8 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
                 if (tResult == ErrorCode.VALIDATION)
                 {
-                    pSliderModelError = $"{ResourceStrings.Order}";
-                    pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}";
+                    pSliderModelError = $"{ResourceConstants.Order}";
+                    pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
                 }
 
                 return tResult;

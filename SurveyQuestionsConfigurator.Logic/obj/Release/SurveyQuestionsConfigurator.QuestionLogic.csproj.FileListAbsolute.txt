@@ -1,0 +1,17 @@
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\SurveyQuestionsConfigurator.Logic.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\SurveyQuestionsConfigurator.Logic.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\SurveyQuestionsConfigurator.CommonHelpers.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\SurveyQuestionsConfigurator.DataAccess.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\SurveyQuestionsConfigurator.Entities.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\SurveyQuestionsConfigurator.Repositories.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\SurveyQuestionsConfigurator.CommonHelpers.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\SurveyQuestionsConfigurator.DataAccess.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\SurveyQuestionsConfigurator.Entities.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\SurveyQuestionsConfigurator.Entities.dll.config
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\SurveyQuestionsConfigurator.Repositories.pdb
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\bin\Release\ar\SurveyQuestionsConfigurator.Entities.resources.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\obj\Release\SurveyQuestionsConfigurator.QuestionLogic.csproj.AssemblyReference.cache
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\obj\Release\SurveyQuestionsConfigurator.QuestionLogic.csproj.CoreCompileInputs.cache
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\obj\Release\SurveyQuestionsConfigurator.QuestionLogic.csproj.CopyComplete
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\obj\Release\SurveyQuestionsConfigurator.Logic.dll
+C:\Users\mahdi\Desktop\github repos\SEDCO-MVC-Task\SurveyQuestionsConfigurator.Logic\obj\Release\SurveyQuestionsConfigurator.Logic.pdb

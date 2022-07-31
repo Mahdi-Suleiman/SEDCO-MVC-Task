@@ -11,7 +11,7 @@ using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using static SurveyQuestionsConfigurator.Entities.Generic;
-using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceConstants;
 
 namespace SurveyQuestionsConfigurator.Web.Controllers
 {
@@ -244,7 +244,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    int tType = Convert.ToInt32(collection[nameof(ResourceStrings.Type)]);
+                    int tType = Convert.ToInt32(collection[nameof(ResourceConstants.Type)]);
                     ErrorCode tResult = ErrorCode.ERROR;
                     string tSliderModelError = null, tSliderModelErrorMessaage = null;
                     switch ((QuestionType)tType)
@@ -274,7 +274,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                             if (tSliderModelError != null)
                             {
                                 ModelState.AddModelError(tSliderModelError, tSliderModelErrorMessaage);
-                                //ModelState.AddModelError($"{ResourceStrings.Order}", mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}"));
+                                //ModelState.AddModelError($"{ResourceConstants.Order}", mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}"));
                             }
                             break;
                         default:
@@ -330,7 +330,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.SomethingWentWrongError}")}";
+                TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.SomethingWentWrongError}")}";
                 return RedirectToAction(nameof(ActionNameConstants.Index));
             }
         }
@@ -352,7 +352,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
+                    int tOrder = Convert.ToInt32(collection[nameof(ResourceConstants.Order)]);
                     ErrorCode tResult = ErrorCode.ERROR;
                     switch (type)
                     {
@@ -378,9 +378,9 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                         case ErrorCode.SUCCESS:
                             return RedirectToAction(nameof(ActionNameConstants.Index));
                         case ErrorCode.VALIDATION:
-                            return RedirectToAction(nameof(ActionNameConstants.Edit), new { id = id, type = type, order = tOrder, ModelErrorName = $"{ResourceStrings.Order}", ModelErrorMessage = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}" });
+                            return RedirectToAction(nameof(ActionNameConstants.Edit), new { id = id, type = type, order = tOrder, ModelErrorName = $"{ResourceConstants.Order}", ModelErrorMessage = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}" });
                         default:
-                            return RedirectToAction(nameof(ActionNameConstants.Edit), new { id = id, type = type, order = tOrder, ModelErrorName = $"{ResourceStrings.Order}", ModelErrorMessage = $"{mLocalResourceManager.GetString($"{ResourceStrings.SomethingWentWrongError}")}" });
+                            return RedirectToAction(nameof(ActionNameConstants.Edit), new { id = id, type = type, order = tOrder, ModelErrorName = $"{ResourceConstants.Order}", ModelErrorMessage = $"{mLocalResourceManager.GetString($"{ResourceConstants.SomethingWentWrongError}")}" });
                     }
                 }
                 return RedirectToAction(nameof(ActionNameConstants.Edit), new { id = id, type = type });
@@ -456,7 +456,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                     case ErrorCode.SUCCESS:
                         return RedirectToAction(nameof(ActionNameConstants.Index));
                     default:
-                        TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.SomethingWentWrongError}")}";
+                        TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.SomethingWentWrongError}")}";
                         return RedirectToAction(nameof(ActionNameConstants.Index));
                 }
             }
@@ -545,10 +545,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = -1;
-                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
-                string tText = collection[nameof(ResourceStrings.Text)];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceConstants.Order)]);
+                string tText = collection[nameof(ResourceConstants.Text)];
                 QuestionType tType = QuestionType.SMILEY;
-                int tNumberOfSmileyFaces = Convert.ToInt32(collection[nameof(ResourceStrings.NumberOfSmileyFaces)]);
+                int tNumberOfSmileyFaces = Convert.ToInt32(collection[nameof(ResourceConstants.NumberOfSmileyFaces)]);
 
                 SmileyQuestion tSmileyQuestion = new SmileyQuestion(tId, tOrder, tText, tType, tNumberOfSmileyFaces);
                 ErrorCode tResult = mQuestionManager.InsertSmileyQuestion(tSmileyQuestion);
@@ -575,13 +575,13 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = -1;
-                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
-                string tText = collection[nameof(ResourceStrings.Text)];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceConstants.Order)]);
+                string tText = collection[nameof(ResourceConstants.Text)];
                 QuestionType tType = QuestionType.SLIDER;
-                int tStartValue = Convert.ToInt32(collection[nameof(ResourceStrings.StartValue)]);
-                int tEndValue = Convert.ToInt32(collection[nameof(ResourceStrings.EndValue)]);
-                string tStartValueCaption = collection[nameof(ResourceStrings.StartValueCaption)];
-                string tEndValueCaption = collection[nameof(ResourceStrings.EndValueCaption)];
+                int tStartValue = Convert.ToInt32(collection[nameof(ResourceConstants.StartValue)]);
+                int tEndValue = Convert.ToInt32(collection[nameof(ResourceConstants.EndValue)]);
+                string tStartValueCaption = collection[nameof(ResourceConstants.StartValueCaption)];
+                string tEndValueCaption = collection[nameof(ResourceConstants.EndValueCaption)];
 
 
                 SliderQuestion tSliderQuestion = new SliderQuestion(tId, tOrder, tText, tType, tStartValue, tEndValue, tStartValueCaption, tEndValueCaption);
@@ -589,20 +589,20 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
                 if (tResult == ErrorCode.VALIDATION)
                 {
-                    //TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}";
-                    //TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}";
+                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
+                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
                     //pSliderModelError;
-                    pSliderModelError = $"{ResourceStrings.Order}";
-                    pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}";
+                    pSliderModelError = $"{ResourceConstants.Order}";
+                    pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
                 }
 
                 if (tEndValue < tStartValue)
                 {
                     //ModelState.AddModelError("EndValue", "End value must be larger than start value");
-                    //TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
-                    //pSliderModelError = $"{ResourceStrings.EndValue}";
-                    //pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
-                    TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
+                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
+                    //pSliderModelError = $"{ResourceConstants.EndValue}";
+                    //pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
+                    TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
                     pSliderModelError = null;
                 }
 
@@ -629,10 +629,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = -1;
-                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
-                string tText = collection[nameof(ResourceStrings.Text)];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceConstants.Order)]);
+                string tText = collection[nameof(ResourceConstants.Text)];
                 QuestionType tType = QuestionType.STAR;
-                int tNumberOfStars = Convert.ToInt32(collection[nameof(ResourceStrings.NumberOfStars)]);
+                int tNumberOfStars = Convert.ToInt32(collection[nameof(ResourceConstants.NumberOfStars)]);
 
                 StarQuestion tStarQuestion = new StarQuestion(tId, tOrder, tText, tType, tNumberOfStars);
                 ErrorCode tResult = mQuestionManager.InsertStarQuestion(tStarQuestion);
@@ -665,7 +665,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 }
                 if (tReslut != ErrorCode.SUCCESS)
                 {
-                    TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
+                    TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.QuestionDoesNotExistError}")}";
                     return View(nameof(ActionNameConstants.DisabledEdit));
                 }
                 return View(mEditSmileyQuestionViewName, tSmileyQuestion);
@@ -697,7 +697,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 }
                 if (tReslut != ErrorCode.SUCCESS)
                 {
-                    TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
+                    TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.QuestionDoesNotExistError}")}";
                     return View(nameof(ActionNameConstants.DisabledEdit));
                 }
                 return View(mEditSliderQuestionViewName, tSliderQuestion);
@@ -729,7 +729,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 }
                 if (tReslut != ErrorCode.SUCCESS)
                 {
-                    TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.QuestionDoesNotExistError}")}";
+                    TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.QuestionDoesNotExistError}")}";
                     return View(nameof(ActionNameConstants.DisabledEdit));
                 }
                 return View(mEditStarQuestionViewName, tStarQuestion);
@@ -755,10 +755,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = id;
-                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
-                string tText = collection[nameof(ResourceStrings.Text)];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceConstants.Order)]);
+                string tText = collection[nameof(ResourceConstants.Text)];
                 QuestionType tType = QuestionType.SMILEY;
-                int tNumberOfSmileyFaces = Convert.ToInt32(collection[nameof(ResourceStrings.NumberOfSmileyFaces)]);
+                int tNumberOfSmileyFaces = Convert.ToInt32(collection[nameof(ResourceConstants.NumberOfSmileyFaces)]);
 
                 SmileyQuestion tSmileyQuestion = new SmileyQuestion(tId, tOrder, tText, tType, tNumberOfSmileyFaces);
                 ErrorCode tResult = mQuestionManager.UpdateSmileyQuestion(tSmileyQuestion);
@@ -785,13 +785,13 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = id;
-                int tOrder = Convert.ToInt32(Collection[nameof(ResourceStrings.Order)]);
-                string tText = Collection[nameof(ResourceStrings.Text)];
+                int tOrder = Convert.ToInt32(Collection[nameof(ResourceConstants.Order)]);
+                string tText = Collection[nameof(ResourceConstants.Text)];
                 QuestionType tType = QuestionType.SLIDER;
-                int tStartValue = Convert.ToInt32(Collection[nameof(ResourceStrings.StartValue)]);
-                int tEndValue = Convert.ToInt32(Collection[nameof(ResourceStrings.EndValue)]);
-                string tStartValueCaption = Collection[nameof(ResourceStrings.StartValueCaption)];
-                string tEndValueCaption = Collection[nameof(ResourceStrings.EndValueCaption)];
+                int tStartValue = Convert.ToInt32(Collection[nameof(ResourceConstants.StartValue)]);
+                int tEndValue = Convert.ToInt32(Collection[nameof(ResourceConstants.EndValue)]);
+                string tStartValueCaption = Collection[nameof(ResourceConstants.StartValueCaption)];
+                string tEndValueCaption = Collection[nameof(ResourceConstants.EndValueCaption)];
 
 
                 SliderQuestion tSliderQuestion = new SliderQuestion(tId, tOrder, tText, tType, tStartValue, tEndValue, tStartValueCaption, tEndValueCaption);
@@ -799,7 +799,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
                 if (tEndValue < tStartValue)
                 {
-                    TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
+                    TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
                 }
 
                 return tResult;
@@ -825,10 +825,10 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = id;
-                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
-                string tText = collection[nameof(ResourceStrings.Text)];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceConstants.Order)]);
+                string tText = collection[nameof(ResourceConstants.Text)];
                 QuestionType tType = QuestionType.STAR;
-                int tNumberOfStars = Convert.ToInt32(collection[nameof(ResourceStrings.NumberOfStars)]);
+                int tNumberOfStars = Convert.ToInt32(collection[nameof(ResourceConstants.NumberOfStars)]);
 
                 StarQuestion tStarQuestion = new StarQuestion(tId, tOrder, tText, tType, tNumberOfStars);
                 ErrorCode tResult = mQuestionManager.UpdateStarQuestion(tStarQuestion);

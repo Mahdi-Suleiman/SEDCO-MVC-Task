@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SurveyQuestionsConfigurator.Entities.Generic;
-using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceConstants;
 
 namespace SurveyQuestionsConfigurator.Entities
 {
@@ -15,23 +15,23 @@ namespace SurveyQuestionsConfigurator.Entities
     {
         #region Attributes
 
-        [Display(Name = nameof(ResourceStrings.StartValue), ResourceType = typeof(LanguageStrings))]
-        [Required(ErrorMessageResourceName = nameof(ResourceStrings.StartValueRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
+        [Display(Name = nameof(ResourceConstants.StartValue), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceConstants.StartValueRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [Range(1, 99)]
         public int StartValue { get; set; }
 
-        [Display(Name = nameof(ResourceStrings.EndValue), ResourceType = typeof(LanguageStrings))]
-        [Required(ErrorMessageResourceName = nameof(ResourceStrings.EndValueRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
+        [Display(Name = nameof(ResourceConstants.EndValue), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceConstants.EndValueRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [Range(1, 100)]
         public int EndValue { get; set; }
 
-        [Display(Name = nameof(ResourceStrings.StartValueCaption), ResourceType = typeof(LanguageStrings))]
-        [Required(ErrorMessageResourceName = nameof(ResourceStrings.StartValueCaptionRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
+        [Display(Name = nameof(ResourceConstants.StartValueCaption), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceConstants.StartValueCaptionRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [MaxLength(100)]
         public string StartValueCaption { get; set; }
 
-        [Display(Name = nameof(ResourceStrings.EndValueCaption), ResourceType = typeof(LanguageStrings))]
-        [Required(ErrorMessageResourceName = nameof(ResourceStrings.EndValueCaptionRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
+        [Display(Name = nameof(ResourceConstants.EndValueCaption), ResourceType = typeof(LanguageStrings))]
+        [Required(ErrorMessageResourceName = nameof(ResourceConstants.EndValueCaptionRequired), ErrorMessageResourceType = typeof(LanguageStrings))]
         [MaxLength(100)]
         public string EndValueCaption { get; set; }
         #endregion

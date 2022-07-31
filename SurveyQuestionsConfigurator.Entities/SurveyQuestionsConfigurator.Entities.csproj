@@ -52,7 +52,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Question.cs" />
-    <Compile Include="Resources\EnumResourceStrings.cs" />
+    <Compile Include="Resources\EnumResourceConstants.cs" />
     <Compile Include="Resources\LanguageStrings.ar.Designer.cs">
       <DependentUpon>LanguageStrings.ar.resx</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -9,7 +9,7 @@ using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using static SurveyQuestionsConfigurator.Entities.Generic;
-using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceStrings;
+using static SurveyQuestionsConfigurator.Entities.Resources.EnumResourceConstants;
 
 namespace SurveyQuestionsConfigurator.Web.Controllers
 {
@@ -58,7 +58,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 SliderQuestion tSliderQuestion = null;
                 if (ModelState.IsValid)
                 {
-                    int tType = Convert.ToInt32(collection[nameof(ResourceStrings.Type)]);
+                    int tType = Convert.ToInt32(collection[nameof(ResourceConstants.Type)]);
                     string tSliderModelError = null, tSliderModelErrorMessaage = null;
                     ErrorCode tResult = AddSliderQuestion(collection, ref tSliderQuestion, ref tSliderModelError, ref tSliderModelErrorMessaage);
 
@@ -101,13 +101,13 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 int tId = -1;
-                int tOrder = Convert.ToInt32(collection[nameof(ResourceStrings.Order)]);
-                string tText = collection[nameof(ResourceStrings.Text)];
+                int tOrder = Convert.ToInt32(collection[nameof(ResourceConstants.Order)]);
+                string tText = collection[nameof(ResourceConstants.Text)];
                 QuestionType tType = QuestionType.SLIDER;
-                int tStartValue = Convert.ToInt32(collection[nameof(ResourceStrings.StartValue)]);
-                int tEndValue = Convert.ToInt32(collection[nameof(ResourceStrings.EndValue)]);
-                string tStartValueCaption = collection[nameof(ResourceStrings.StartValueCaption)];
-                string tEndValueCaption = collection[nameof(ResourceStrings.EndValueCaption)];
+                int tStartValue = Convert.ToInt32(collection[nameof(ResourceConstants.StartValue)]);
+                int tEndValue = Convert.ToInt32(collection[nameof(ResourceConstants.EndValue)]);
+                string tStartValueCaption = collection[nameof(ResourceConstants.StartValueCaption)];
+                string tEndValueCaption = collection[nameof(ResourceConstants.EndValueCaption)];
 
 
                 SliderQuestion tSliderQuestion = new SliderQuestion(tId, tOrder, tText, tType, tStartValue, tEndValue, tStartValueCaption, tEndValueCaption);
@@ -116,22 +116,22 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
                 if (tResult == ErrorCode.VALIDATION)
                 {
-                    //TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}";
-                    //TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}";
+                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
+                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
                     //pSliderModelError;
-                    pSliderModelError = $"{ResourceStrings.Order}";
-                    pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}";
+                    pSliderModelError = $"{ResourceConstants.Order}";
+                    pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceConstants.OrderAlreadyInUse}")}";
                 }
 
                 if (tEndValue < tStartValue)
                 {
                     //ModelState.AddModelError("EndValue", "End value must be larger than start value");
-                    //TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
-                    //pSliderModelError = $"{ResourceStrings.EndValue}";
-                    //pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
-                    //TempData[$"{ResourceStrings.EndValue}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
-                    pSliderModelError = $"{ResourceStrings.EndValue}";
-                    pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
+                    //TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
+                    //pSliderModelError = $"{ResourceConstants.EndValue}";
+                    //pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
+                    //TempData[$"{ResourceConstants.EndValue}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
+                    pSliderModelError = $"{ResourceConstants.EndValue}";
+                    pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceConstants.EndValueError}")}";
                 }
 
                 return tResult;
