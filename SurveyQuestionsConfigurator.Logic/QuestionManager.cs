@@ -230,13 +230,14 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
         {
             try
             {
-                if (CheckSmileyQuestionValues(pSmileyQuestion) == ErrorCode.SUCCESS)
+                ErrorCode tResult = CheckSmileyQuestionValidation(pSmileyQuestion);
+                if (tResult == ErrorCode.SUCCESS)
                 {
                     return mSmileyQuestionRepository.Add(pSmileyQuestion);
                 }
                 else
                 {
-                    return Generic.ErrorCode.ERROR;
+                    return tResult;
                 }
             }
             catch (Exception ex)
@@ -258,13 +259,14 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
         {
             try
             {
-                if (CheckSliderQuestionValues(pSliderQuestion) == ErrorCode.SUCCESS)
+                ErrorCode tResult = CheckSliderQuestionValidation(pSliderQuestion);
+                if (tResult == ErrorCode.SUCCESS)
                 {
                     return mSliderQuestionRepository.Add(pSliderQuestion);
                 }
                 else
                 {
-                    return Generic.ErrorCode.ERROR;
+                    return tResult;
                 }
             }
             catch (Exception ex)
@@ -286,13 +288,14 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
         {
             try
             {
-                if (CheckStarQuestionValues(pStarQuestion) == ErrorCode.SUCCESS)
+                ErrorCode tResult = CheckStarQuestionValidation(pStarQuestion);
+                if (tResult == ErrorCode.SUCCESS)
                 {
                     return mStarQuestionRepository.Add(pStarQuestion);
                 }
                 else
                 {
-                    return Generic.ErrorCode.ERROR;
+                    return tResult;
                 }
             }
             catch (Exception ex)
@@ -318,13 +321,14 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
         {
             try
             {
-                if (CheckSmileyQuestionValues(pSmileyQuestion) == ErrorCode.SUCCESS)
+                ErrorCode tResult = CheckSmileyQuestionValidation(pSmileyQuestion);
+                if (tResult == ErrorCode.SUCCESS)
                 {
                     return mSmileyQuestionRepository.Update(pSmileyQuestion);
                 }
                 else
                 {
-                    return Generic.ErrorCode.ERROR;
+                    return tResult;
                 }
             }
             catch (Exception ex)
@@ -346,13 +350,14 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
         {
             try
             {
-                if (CheckSliderQuestionValues(pSliderQuestion) == ErrorCode.SUCCESS)
+                ErrorCode tResult = CheckSliderQuestionValidation(pSliderQuestion);
+                if (tResult == ErrorCode.SUCCESS)
                 {
                     return mSliderQuestionRepository.Update(pSliderQuestion);
                 }
                 else
                 {
-                    return Generic.ErrorCode.ERROR;
+                    return tResult;
                 }
             }
             catch (Exception ex)
@@ -374,13 +379,14 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
         {
             try
             {
-                if (CheckStarQuestionValues(pStarQuestion) == ErrorCode.SUCCESS)
+                ErrorCode tResult = CheckStarQuestionValidation(pStarQuestion);
+                if (tResult == ErrorCode.SUCCESS)
                 {
                     return mStarQuestionRepository.Update(pStarQuestion);
                 }
                 else
                 {
-                    return Generic.ErrorCode.ERROR;
+                    return tResult;
                 }
             }
             catch (Exception ex)
@@ -412,7 +418,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
                 }
                 else
                 {
-                    return Generic.ErrorCode.ERROR;
+                    return Generic.ErrorCode.VALIDATION;
                 }
             }
             catch (Exception ex)
@@ -440,7 +446,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
                 }
                 else
                 {
-                    return Generic.ErrorCode.ERROR;
+                    return Generic.ErrorCode.VALIDATION;
                 }
             }
             catch (Exception ex)
@@ -468,7 +474,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
                 }
                 else
                 {
-                    return Generic.ErrorCode.ERROR;
+                    return Generic.ErrorCode.VALIDATION;
                 }
             }
             catch (Exception ex)
@@ -552,7 +558,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
                     if (pQuestion.Order > 0)
                         return ErrorCode.SUCCESS;
 
-                return ErrorCode.ERROR;
+                return ErrorCode.VALIDATION;
             }
             catch (Exception ex)
             {
@@ -568,7 +574,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
         /// ErrorCode.SUCCESS
         /// ErrorCode.ERROR
         /// </returns>
-        public ErrorCode CheckSmileyQuestionValues(SmileyQuestion pSmileyQuestion)
+        public ErrorCode CheckSmileyQuestionValidation(SmileyQuestion pSmileyQuestion)
         {
             try
             {
@@ -576,7 +582,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
                     if (pSmileyQuestion.NumberOfSmileyFaces >= 2 && pSmileyQuestion.NumberOfSmileyFaces <= 5)
                         return ErrorCode.SUCCESS;
 
-                return ErrorCode.ERROR;
+                return ErrorCode.VALIDATION;
             }
             catch (Exception ex)
             {
@@ -592,7 +598,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
         /// ErrorCode.SUCCESS
         /// ErrorCode.ERROR
         /// </returns>
-        public ErrorCode CheckSliderQuestionValues(SliderQuestion pSliderQuestion)
+        public ErrorCode CheckSliderQuestionValidation(SliderQuestion pSliderQuestion)
         {
             try
             {
@@ -602,7 +608,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
                             if (pSliderQuestion.StartValue < pSliderQuestion.EndValue)
                                 return ErrorCode.SUCCESS;
 
-                return ErrorCode.ERROR;
+                return ErrorCode.VALIDATION;
             }
             catch (Exception ex)
             {
@@ -618,7 +624,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
         /// ErrorCode.SUCCESS
         /// ErrorCode.ERROR
         /// </returns>
-        public ErrorCode CheckStarQuestionValues(StarQuestion pStarQuestion)
+        public ErrorCode CheckStarQuestionValidation(StarQuestion pStarQuestion)
         {
             try
             {
@@ -626,7 +632,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
                     if (pStarQuestion.NumberOfStars >= 1 && pStarQuestion.NumberOfStars <= 10)
                         return ErrorCode.SUCCESS;
 
-                return ErrorCode.ERROR;
+                return ErrorCode.VALIDATION;
             }
             catch (Exception ex)
             {

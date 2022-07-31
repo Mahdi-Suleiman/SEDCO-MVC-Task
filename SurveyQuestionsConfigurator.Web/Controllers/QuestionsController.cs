@@ -244,6 +244,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 {
                     int tType = Convert.ToInt32(collection[nameof(ResourceStrings.Type)]);
                     ErrorCode tResult = ErrorCode.ERROR;
+                    string tSliderModelError = null, tSliderModelErrorMessaage = null;
                     switch ((QuestionType)tType)
                     {
                         case QuestionType.SMILEY:
@@ -253,7 +254,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                             break;
                         case QuestionType.SLIDER:
                             {
-                                tResult = AddSliderQuestion(collection);
+                                tResult = AddSliderQuestion(collection, ref tSliderModelError, ref tSliderModelErrorMessaage);
                             }
                             break;
                         case QuestionType.STAR:
@@ -268,7 +269,11 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                         case ErrorCode.SUCCESS:
                             return RedirectToAction(nameof(ActionNameConstants.Index));
                         case ErrorCode.VALIDATION:
-                            ModelState.AddModelError($"{ResourceStrings.Order}", mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}"));
+                            if (tSliderModelError != null)
+                            {
+                                ModelState.AddModelError(tSliderModelError, tSliderModelErrorMessaage);
+                                //ModelState.AddModelError($"{ResourceStrings.Order}", mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}"));
+                            }
                             break;
                         default:
                             return View(mOfflineViewName);
@@ -563,7 +568,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         /// ErrorCode.ERROR
         /// ErrorCode.VALIDATION
         /// </returns>
-        private ErrorCode AddSliderQuestion(FormCollection collection)
+        private ErrorCode AddSliderQuestion(FormCollection collection, ref string pSliderModelError, ref string pSliderModelErrorMessaage)
         {
             try
             {
@@ -580,10 +585,23 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 SliderQuestion tSliderQuestion = new SliderQuestion(tId, tOrder, tText, tType, tStartValue, tEndValue, tStartValueCaption, tEndValueCaption);
                 ErrorCode tResult = mQuestionManager.InsertSliderQuestion(tSliderQuestion);
 
+                if (tResult == ErrorCode.VALIDATION)
+                {
+                    //TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}";
+                    //TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}";
+                    //pSliderModelError;
+                    pSliderModelError = $"{ResourceStrings.Order}";
+                    pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceStrings.OrderAlreadyInUse}")}";
+                }
+
                 if (tEndValue < tStartValue)
                 {
                     //ModelState.AddModelError("EndValue", "End value must be larger than start value");
+                    //TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
+                    //pSliderModelError = $"{ResourceStrings.EndValue}";
+                    //pSliderModelErrorMessaage = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
                     TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.EndValueError}")}";
+                    pSliderModelError = null;
                 }
 
                 return tResult;

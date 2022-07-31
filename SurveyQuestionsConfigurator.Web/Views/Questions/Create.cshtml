@@ -1,4 +1,4 @@
-﻿@switch ((SurveyQuestionsConfigurator.Entities.Generic.QuestionType)Model.Type)
+﻿@*@switch ((SurveyQuestionsConfigurator.Entities.Generic.QuestionType)Model.Type)
 {
     case SurveyQuestionsConfigurator.Entities.Generic.QuestionType.SMILEY:
         @model SurveyQuestionsConfigurator.Entities.SmileyQuestion;
@@ -11,7 +11,7 @@
         break;
     default:
         break;
-}
+}*@
 
 @model SurveyQuestionsConfigurator.Entities.Question
 
@@ -59,17 +59,6 @@
 
     $(document).ready(function() {
         $("#partialView").load('@Url.Action("PartialSmiley")');
-
-        //Sys.Mvc.FormContext._Application_Load();
-
-        @*$.ajax({
-            url: "@Url.Action("PartialSmiley")",
-            dataType: "html",
-            success: function (result) {
-                $('#partialView').html(result);
-                Sys.Mvc.FormContext._Application_Load();
-            }
-        });*@
     });
 
 </script>
