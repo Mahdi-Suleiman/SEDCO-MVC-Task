@@ -21,6 +21,21 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         #region Properties & Attributes
         private readonly QuestionManager mQuestionManager;
         private readonly ResourceManager mLocalResourceManager;
+        private readonly string mOfflineViewName;
+
+        enum KeyConstants
+        {
+            ServerName,
+            DatabaseName,
+            UserId,
+            Password,
+            Checkconnectivity
+        }
+
+        enum ActionNameConstants
+        {
+            Index
+        }
 
         #endregion
 
@@ -33,6 +48,7 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 QuestionManager.refreshDataEvent += Refresh;
                 mQuestionManager.WatchForChanges(); /// Subscribe to data changes event
                 mLocalResourceManager = new ResourceManager("SurveyQuestionsConfigurator.Entities.Resources.LanguageStrings", typeof(LanguageStrings).Assembly);
+                mOfflineViewName = "~/Views/Shared/Offline.cshtml";
             }
             catch (Exception ex)
             {

@@ -22,6 +22,20 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
         private readonly ConnectionSettingsManager mConnectionSettingsManager;
         private readonly ResourceManager mLocalResourceManager;
 
+        enum KeyConstants
+        {
+            ServerName,
+            DatabaseName,
+            UserId,
+            Password,
+            Checkconnectivity
+        }
+
+        enum ActionNameConstants
+        {
+            Index
+        }
+
         #endregion
 
         #region Constructor
@@ -92,13 +106,13 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
             try
             {
                 SqlConnectionStringBuilder tBuilder = new SqlConnectionStringBuilder();
-                tBuilder.DataSource = collection["ServerName"];
-                tBuilder.InitialCatalog = collection["DatabaseName"];
-                tBuilder.UserID = collection["UserId"];
-                tBuilder.Password = collection["Password"];
+                tBuilder.DataSource = collection[$"{KeyConstants.ServerName}"];
+                tBuilder.InitialCatalog = collection[$"{KeyConstants.DatabaseName}"];
+                tBuilder.UserID = collection[$"{KeyConstants.UserId}"];
+                tBuilder.Password = collection[$"{KeyConstants.Password}"];
 
                 /// If Check Connectivity button is pressed
-                if (collection["Checkconnectivity"] != null)
+                if (collection[$"{KeyConstants.Checkconnectivity}"] != null)
                 {
                     return CheckConnectivity(tBuilder);
                 }
@@ -108,16 +122,16 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
 
                 if (tResult == ErrorCode.SUCCESS)
                 {
-                    return RedirectToAction("Index", new { message = $"{ResourceStrings.SettingsSavedMessage}" });
+                    return RedirectToAction($"{ActionNameConstants.Index}", new { message = mLocalResourceManager.GetString($"{ResourceStrings.SettingsSavedMessage}") });
                 }
                 else
                 {
-                    return RedirectToAction("Index", new { error = $"{ResourceStrings.ConnectionFailedError}" });
+                    return RedirectToAction($"{ActionNameConstants.Index}", new { error = mLocalResourceManager.GetString($"{ResourceStrings.ConnectionFailedError}") });
                 }
             }
             catch
             {
-                return RedirectToAction("Index", new { error = $"{ResourceStrings.ConnectionFailedError}" });
+                return RedirectToAction($"{ActionNameConstants.Index}", new { error = mLocalResourceManager.GetString($"{ResourceStrings.ConnectionFailedError}") });
             }
         }
 
@@ -144,12 +158,12 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 {
                     TempData[$"{ResourceStrings.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceStrings.ConnectionFailedError}")}";
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction($"{ActionNameConstants.Index}");
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex);
-                return RedirectToAction("Index");
+                return RedirectToAction($"{ActionNameConstants.Index}");
             }
         }
 
