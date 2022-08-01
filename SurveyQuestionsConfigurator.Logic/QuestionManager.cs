@@ -102,6 +102,7 @@ namespace SurveyQuestionsConfigurator.QuestionLogic
                     {
                         tList.Clear();
                         tResult = mRepository.GetAll(ref tList);
+                        /// lock reading the chached list to prevent exception of changing the array while looping through it
                         lock (mChachedQuestions)
                         {
                             if (mChachedQuestions.SequenceEqual(tList) == false &&

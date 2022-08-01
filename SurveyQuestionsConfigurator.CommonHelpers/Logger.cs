@@ -20,8 +20,7 @@ namespace SurveyQuestionsConfigurator.CommonHelpers
         {
             try
             {
-                /// lock file writing to prevent exception System.IO.IOException : 
-                /// The process cannot access the file 'LogFile.txt' because it is being used by another process
+                /// lock file writing to prevent exception System.IO.IOException : The process cannot access the file 'LogFile.txt' because it is being used by another process
                 lock (mBalanceLock)
                 {
                     ///create directory if doens't exist
