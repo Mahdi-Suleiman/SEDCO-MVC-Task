@@ -139,14 +139,13 @@ namespace SurveyQuestionsConfigurator.Web.Controllers
                 ErrorCode tResult = mConnectionSettingsManager.CheckConnectivity(pBuilder);
                 if (tResult == ErrorCode.SUCCESS)
                 {
-                    TempData[$"{ResourceConstants.Message}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.SuccessfulConnectionMessage}")}";
+                    return RedirectToAction($"{ActionNameConstants.Index}", new { message = mLocalResourceManager.GetString($"{ResourceConstants.SuccessfulConnectionMessage}") });
 
                 }
                 else
                 {
-                    TempData[$"{ResourceConstants.Error}"] = $"{mLocalResourceManager.GetString($"{ResourceConstants.ConnectionFailedError}")}";
+                    return RedirectToAction($"{ActionNameConstants.Index}", new { error = mLocalResourceManager.GetString($"{ResourceConstants.ConnectionFailedError}") });
                 }
-                return RedirectToAction($"{ActionNameConstants.Index}");
             }
             catch (Exception ex)
             {
